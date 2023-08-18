@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\ulp_net_inmobiliaria.props" />
+</Project>
