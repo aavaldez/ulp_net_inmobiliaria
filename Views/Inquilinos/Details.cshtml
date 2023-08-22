@@ -1,14 +1,13 @@
-@model ulp_net_inmobiliaria.Models.Propietario
+@model ulp_net_inmobiliaria.Models.Inquilino
 
 @{
-    ViewData["Title"] = "Borrar Propietario";
+    ViewData["Title"] = "Detalles";
 }
 
-<h1>Eliminación</h1>
+<h1>Detalles del Inquilino</h1>
 
-<h3>¿Está seguro que desa eliminar el Propietario?</h3>
 <div>
-    <h4>Propietario</h4>
+    <h4>Inquilino</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -48,9 +47,8 @@
             @Html.DisplayFor(model => model.Email)
         </dd>
     </dl>
-    
-    <form asp-action="Delete">
-        <input type="submit" value="Borrar" class="btn btn-danger" /> |
-        <a asp-action="Index">Volver a la lista</a>
-    </form>
+</div>
+<div>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    <a asp-action="Index">Volver a la lista</a>
 </div>

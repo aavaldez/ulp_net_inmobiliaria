@@ -1,10 +1,10 @@
 @model ulp_net_inmobiliaria.Models.Propietario
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles";
 }
 
-<h1>Details</h1>
+<h1>Detalles del Propietario</h1>
 
 <div>
     <h4>Propietario</h4>
@@ -49,6 +49,6 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    <a asp-action="Index">Volver a la lista</a>
 </div>

@@ -1,3 +1,4 @@
 {
-	"dotnet.defaultSolution": "ulp_net_inmobiliaria.sln"
+	"dotnet.defaultSolution": "ulp_net_inmobiliaria.sln",
+	"nuxt.isNuxtApp": false
 }

@@ -14,6 +14,14 @@ namespace ulp_net_inmobiliaria.Controllers
 		}
 
 		[HttpGet]
+		public ActionResult Details(int id)
+		{
+			RepositorioPropietario repo = new RepositorioPropietario();
+			var entidad = repo.ObtenerPorId(id);
+			return View(entidad);
+		}
+
+		[HttpGet]
 		public ActionResult Create()
 		{
 			return View();
@@ -30,13 +38,12 @@ namespace ulp_net_inmobiliaria.Controllers
 			}
 			catch (System.Exception)
 			{
-				
 				throw;
 			}
 		}
 
 		[HttpGet]
-		public ActionResult Update(int id)
+		public ActionResult Edit(int id)
 		{
 			RepositorioPropietario repo = new RepositorioPropietario();
 			Propietario p = repo.ObtenerPorId(id);
@@ -44,17 +51,46 @@ namespace ulp_net_inmobiliaria.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Update(Propietario propietario)
+		public ActionResult Update(int id, Propietario propietario)
 		{
+			Propietario p;
 			try
 			{
 				RepositorioPropietario repo = new RepositorioPropietario();
-				var lista = repo.Alta(propietario);
+				p = repo.ObtenerPorId(id);
+				p.Nombre = propietario.Nombre;
+				p.Apellido = propietario.Apellido;
+				p.Dni = propietario.Dni;
+				p.Email = propietario.Email;
+				p.Telefono = propietario.Telefono;
+				repo.Modificacion(propietario);
 				return RedirectToAction("Index");
 			}
 			catch (System.Exception)
 			{
-				
+				throw;
+			}
+		}
+
+		[HttpGet]
+		public ActionResult Delete(int id)
+		{
+			RepositorioPropietario repo = new RepositorioPropietario();
+			var entidad = repo.ObtenerPorId(id);
+			return View(entidad);
+		}
+
+		[HttpPost]
+		public ActionResult Delete(int id, IFormCollection collection)
+		{
+			try
+			{
+				RepositorioPropietario repo = new RepositorioPropietario();
+				var lista = repo.Baja(id);
+				return RedirectToAction("Index");
+			}
+			catch (System.Exception)
+			{
 				throw;
 			}
 		}
