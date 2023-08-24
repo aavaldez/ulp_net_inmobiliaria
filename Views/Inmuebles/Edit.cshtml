@@ -5,14 +5,13 @@
     var Propietarios = (IList<Propietario>)ViewBag.Propietarios;
 }
 
-<h1>Edit</h1>
-
-<h4>Inmueble</h4>
+<h4>Formulario de edición de Inmuebles</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" name="Id" value="@Model.Id" />
             <div class="form-group">
                 <label asp-for="Direccion" class="control-label"></label>
                 <input asp-for="Direccion" class="form-control" />
@@ -56,6 +55,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Volver a la lista</a>
 </div>
 

@@ -87,8 +87,8 @@ namespace ulp_net_inmobiliaria.Models
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"SELECT 
-					Id, Direccion, Direccion, Ambientes, Superficie, Latitud, Longitud, PropietarioId, i.Nombre, i.Apellido
-					FROM Inmuebles i INNER JOIN Propietarios p ON i.PropietarioId = i.Id";
+					i.Id, Direccion, Direccion, Ambientes, Superficie, Latitud, Longitud, PropietarioId, p.Nombre, p.Apellido
+					FROM Inmuebles i INNER JOIN Propietarios p ON p.Id = i.PropietarioId";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
 					command.CommandType = CommandType.Text;

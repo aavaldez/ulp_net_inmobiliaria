@@ -26,8 +26,8 @@ namespace ulp_net_inmobiliaria.Models
 					command.Parameters.AddWithValue("@nombre", p.Nombre);
 					command.Parameters.AddWithValue("@apellido", p.Apellido);
 					command.Parameters.AddWithValue("@dni", p.Dni);
-					command.Parameters.AddWithValue("@telefono", p.Telefono);
-					command.Parameters.AddWithValue("@email", p.Email);
+					command.Parameters.AddWithValue("@telefono", p.Telefono == null? DBNull.Value : p.Telefono);
+					command.Parameters.AddWithValue("@email", p.Email == null? DBNull.Value : p.Email);
 					connection.Open();
 					res = Convert.ToInt32(command.ExecuteScalar());
 					p.Id = res;
@@ -69,8 +69,8 @@ namespace ulp_net_inmobiliaria.Models
 					command.Parameters.AddWithValue("@nombre", p.Nombre);
 					command.Parameters.AddWithValue("@apellido", p.Apellido);
 					command.Parameters.AddWithValue("@dni", p.Dni);
-					command.Parameters.AddWithValue("@telefono", p.Telefono);
-					command.Parameters.AddWithValue("@email", p.Email);
+					command.Parameters.AddWithValue("@telefono", p.Telefono == null? DBNull.Value : p.Telefono);
+					command.Parameters.AddWithValue("@email", p.Email == null? DBNull.Value : p.Email);
 					command.Parameters.AddWithValue("@id", p.Id);
 					connection.Open();
 					res = command.ExecuteNonQuery();
@@ -101,8 +101,8 @@ namespace ulp_net_inmobiliaria.Models
 							Nombre = reader.GetString("Nombre"),
 							Apellido = reader.GetString("Apellido"),
 							Dni = reader.GetString("Dni"),
-							Telefono = reader.GetString("Telefono"),
-							Email = reader.GetString("Email"),
+							Telefono = reader["Telefono"] == DBNull.Value? "" : reader.GetString("Telefono"),
+							Email = reader["Email"] == DBNull.Value? "" : reader.GetString("Email"),
 						};
 						res.Add(p);
 					}
@@ -134,8 +134,8 @@ namespace ulp_net_inmobiliaria.Models
 							Nombre = reader.GetString("Nombre"),
 							Apellido = reader.GetString("Apellido"),
 							Dni = reader.GetString("Dni"),
-							Telefono = reader.GetString("Telefono"),
-							Email = reader.GetString("Email"),
+							Telefono = reader["Telefono"] == DBNull.Value? "" : reader.GetString("Telefono"),
+							Email = reader["Email"] == DBNull.Value? "" : reader.GetString("Email"),
 						};
 					}
 					connection.Close();

@@ -63,7 +63,7 @@ namespace ulp_net_inmobiliaria.Controllers
 				p.Dni = propietario.Dni;
 				p.Email = propietario.Email;
 				p.Telefono = propietario.Telefono;
-				repo.Modificacion(propietario);
+				repo.Modificacion(p);
 				return RedirectToAction("Index");
 			}
 			catch (System.Exception)
