@@ -31,6 +31,18 @@ CREATE TABLE `inmuebles` (
   	PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+ALTER TABLE `inmuebles` ADD CONSTRAINT `inmuebles_propietarioId` FOREIGN KEY (`propietarioId`) REFERENCES `propietarios`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+CREATE TABLE `contratos` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`inquilinoId` INT NOT NULL,
+	`inmuebleId` INT NOT NULL,
+	`desde` DATETIME DEFAULT NULL,
+	`hasta` DATETIME DEFAULT NULL,
+	`valor` DECIMAL(10,2) NOT NULL DEFAULT 0,
+  	PRIMARY KEY(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 dotnet-aspnet-codegenerator view Index List -outDir "Views/Propietarios" -udl --model ulp_net_inmobiliaria.Models.Propietario -f
 dotnet-aspnet-codegenerator view Create Create -outDir "Views/Propietarios" -udl --model ulp_net_inmobiliaria.Models.Propietario -f

@@ -87,7 +87,7 @@ namespace ulp_net_inmobiliaria.Models
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"SELECT 
-					i.Id, Direccion, Direccion, Ambientes, Superficie, Latitud, Longitud, PropietarioId, p.Nombre, p.Apellido
+					{nameof(i.Id)}, Direccion, Ambientes, Superficie, Latitud, Longitud, PropietarioId, p.Nombre, p.Apellido
 					FROM Inmuebles i INNER JOIN Propietarios p ON p.Id = i.PropietarioId";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
@@ -125,7 +125,7 @@ namespace ulp_net_inmobiliaria.Models
 			Inmueble p = null;
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
-				string sql = @"SELECT Id, Direccion, Direccion, Ambientes, Superficie, Latitud, Longitud, PropietarioId, i.Nombre, i.Apellido
+				string sql = @"SELECT {nameof(Inmueble.Id)}, Direccion, Ambientes, Superficie, Latitud, Longitud, PropietarioId, i.Nombre, i.Apellido
 					FROM Inmuebles
 					WHERE Id=@id";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))

@@ -1,0 +1,65 @@
+@model ulp_net_inmobiliaria.Models.Contrato
+
+@{
+    ViewData["Title"] = "Crear Contrato";
+    var ltaInmuebles = (IList<Inmueble>)ViewBag.Inmuebles;
+	var ltaInquilinos = (IList<Inquilino>)ViewBag.Inquilinos;
+}
+
+<form asp-action="Create">
+	<div class="card">
+		<div class="card-header">
+			<h5>Nuevo Contrato</h5>
+		</div>
+		<div class="card-body">
+			<div class="row">
+				<div class="col-md-4">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<div class="mb-3">
+						<label asp-for="Desde" class="form-label"></label>
+						<input asp-for="Desde" class="form-control" />
+						<span asp-validation-for="Desde" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
+						<label asp-for="Hasta" class="form-label"></label>
+						<input asp-for="Hasta" class="form-control" />
+						<span asp-validation-for="Hasta" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
+						<label asp-for="Valor" class="form-label"></label>
+						<input asp-for="Valor" class="form-control" />
+						<span asp-validation-for="Valor" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
+						<label asp-for="InmuebleId" class="form-label"></label>
+						<select name="InmuebleId" class="form-control" >
+							@foreach (var item in ltaInmuebles)
+							{
+								<option value="item.Id" >@(item.Direccion)</option>
+							}
+						</select>
+						<span asp-validation-for="InmuebleId" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
+						<label asp-for="InquilinoId" class="form-label"></label>
+						<select name="InquilinoId" class="form-control" >
+							@foreach (var item in ltaInquilinos)
+							{
+								<option value="item.Id" >@(item.ToString())</option>
+							}
+						</select>
+						<span asp-validation-for="InquilinoId" class="text-danger"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="card-footer">
+			<a asp-action="Index" class="float-end">Volver a la lista</a>
+			<input type="submit" value="Guardar" class="btn btn-outline-primary btn-sm" />
+		</div>
+	</div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

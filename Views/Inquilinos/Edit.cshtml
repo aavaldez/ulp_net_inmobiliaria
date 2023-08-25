@@ -4,48 +4,50 @@
     ViewData["Title"] = "Editar Inquilino";
 }
 
-<h4>Formulario de edición de Inquilinos</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Update">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" name="Id" value="@Model.Id" />
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" required/>
-                <span asp-validation-for="Nombre" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Apellido" class="control-label"></label>
-                <input asp-for="Apellido" class="form-control" required/>
-                <span asp-validation-for="Apellido" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Dni" class="control-label"></label>
-                <input asp-for="Dni" class="form-control" required/>
-                <span asp-validation-for="Dni" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Telefono" class="control-label"></label>
-                <input asp-for="Telefono" class="form-control" />
-                <span asp-validation-for="Telefono" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Volver a la lista</a>
-</div>
+<form asp-action="Update">
+	<div class="card">
+		<div class="card-header">
+			<h5>Edición Propietario</h5>
+		</div>
+		<div class="card-body">
+			<div class="row">
+				<div class="col-md-4">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<input type="hidden" name="Id" value="@Model.Id" />
+					<div class="mb-3">
+						<label asp-for="Nombre" class="form-label"></label>
+						<input asp-for="Nombre" class="form-control" required/>
+						<span asp-validation-for="Nombre" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
+						<label asp-for="Apellido" class="form-label"></label>
+						<input asp-for="Apellido" class="form-control" required/>
+						<span asp-validation-for="Apellido" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
+						<label asp-for="Dni" class="form-label"></label>
+						<input asp-for="Dni" class="form-control" required/>
+						<span asp-validation-for="Dni" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
+						<label asp-for="Telefono" class="form-label"></label>
+						<input asp-for="Telefono" class="form-control" />
+						<span asp-validation-for="Telefono" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
+						<label asp-for="Email" class="form-label"></label>
+						<input asp-for="Email" class="form-control" />
+						<span asp-validation-for="Email" class="text-danger"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="card-footer">
+			<a asp-action="Index" class="float-end">Volver a la lista</a>
+			<input type="submit" value="Guardar" class="btn btn-outline-primary btn-sm" />
+		</div>
+	<div>
+</form>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

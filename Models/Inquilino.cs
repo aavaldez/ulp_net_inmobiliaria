@@ -14,5 +14,10 @@ namespace ulp_net_inmobiliaria.Models
 		[Display(Name = "Teléfono")]
 		public string? Telefono { get; set; }
 		public string? Email { get; set; }
+	
+		public override string ToString()
+		{
+			return $"{Apellido}, {Nombre}";
+		}
 	}
 }
