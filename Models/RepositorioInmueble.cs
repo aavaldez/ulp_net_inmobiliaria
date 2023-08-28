@@ -87,8 +87,9 @@ namespace ulp_net_inmobiliaria.Models
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"SELECT 
-					{nameof(i.Id)}, Direccion, Ambientes, Superficie, Latitud, Longitud, PropietarioId, p.Nombre, p.Apellido
-					FROM Inmuebles i INNER JOIN Propietarios p ON p.Id = i.PropietarioId";
+					{nameof(i.Id)}, PropietarioId, Direccion, Ambientes, Superficie, Latitud, Longitud, p.Nombre, p.Apellido
+					FROM Inmuebles i 
+					INNER JOIN Propietarios p ON p.Id = i.PropietarioId";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
 					command.CommandType = CommandType.Text;
@@ -107,7 +108,7 @@ namespace ulp_net_inmobiliaria.Models
 							PropietarioId = reader.GetInt32("PropietarioId"),
 							Propietario = new Propietario
 							{
-								Id = reader.GetInt32("PropetarioId"),
+								Id = reader.GetInt32("Id"),
 								Nombre = reader.GetString("Nombre"),
 								Apellido = reader.GetString("Apellido"),
 							}
@@ -125,9 +126,11 @@ namespace ulp_net_inmobiliaria.Models
 			Inmueble p = null;
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
-				string sql = @"SELECT {nameof(Inmueble.Id)}, Direccion, Ambientes, Superficie, Latitud, Longitud, PropietarioId, i.Nombre, i.Apellido
-					FROM Inmuebles
-					WHERE Id=@id";
+				string sql = @"SELECT 
+					{nameof(i.Id)}, PropietarioId, Direccion, Ambientes, Superficie, Latitud, Longitud, p.Nombre, p.Apellido, p.Dni
+					FROM Inmuebles i 
+					INNER JOIN Propietarios p ON p.Id = i.PropietarioId
+					WHERE i.Id=@id";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
 					command.Parameters.Add("@id", MySqlDbType.Int32).Value = id;
@@ -147,9 +150,10 @@ namespace ulp_net_inmobiliaria.Models
 							PropietarioId = reader.GetInt32("PropietarioId"),
 							Propietario = new Propietario
 							{
-								Id = reader.GetInt32("PropetarioId"),
+								Id = reader.GetInt32("Id"),
 								Nombre = reader.GetString("Nombre"),
 								Apellido = reader.GetString("Apellido"),
+								Dni = reader.GetString("Dni"),
 							}
 						};
 					}

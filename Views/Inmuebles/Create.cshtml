@@ -44,7 +44,7 @@
 						<select name="PropietarioId" class="form-control" >
 							@foreach (var item in ltaPropietarios)
 							{
-								<option value="item.Id" >@(item.ToString())</option>
+								<option value="@item.Id" >@(item.ToString())</option>
 							}
 						</select>
 						<span asp-validation-for="PropietarioId" class="text-danger"></span>

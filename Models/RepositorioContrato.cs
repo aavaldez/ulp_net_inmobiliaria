@@ -18,7 +18,7 @@ namespace ulp_net_inmobiliaria.Models
 			{
 				string sql = @"INSERT INTO Contratos 
 					(InquilinoId, InmuebleId, Desde, Hasta, Valor)
-					VALUES (@PropietarioId, @InmuebleId, @Desde, @Hasta, @Valor);
+					VALUES (@inquilinoId, @inmuebleId, @desde, @hasta, @valor);
 					SELECT LAST_INSERT_ID();";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
@@ -86,8 +86,8 @@ namespace ulp_net_inmobiliaria.Models
 				string sql = @"SELECT 
 					c.Id, InquilinoId, InmuebleId, Desde, Hasta, Valor, i.Nombre, i.Apellido, inm.Direccion
 					FROM Contratos c 
-					INNER JOIN Inquilinos i ON c.inquilinoId = i.Id
-					INNER JOIN Inmuebles inm ON c.inmuebleId = inm.Id";
+					INNER JOIN Inquilinos i ON c.InquilinoId = i.Id
+					INNER JOIN Inmuebles inm ON c.InmuebleId = inm.Id";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
 					command.CommandType = CommandType.Text;
@@ -111,7 +111,7 @@ namespace ulp_net_inmobiliaria.Models
 							InmuebleId = reader.GetInt32("InmuebleId"),
 							Inmueble = new Inmueble
 							{
-								Id = reader.GetInt32("PropetarioId"),
+								Id = reader.GetInt32("InmuebleId"),
 								Direccion = reader.GetString("Direccion")
 							}
 						};
@@ -131,8 +131,8 @@ namespace ulp_net_inmobiliaria.Models
 				string sql = @"SELECT 
 					c.Id, InquilinoId, InmuebleId, Desde, Hasta, Valor, i.Nombre, i.Apellido, inm.Direccion
 					FROM Contratos c 
-					INNER JOIN Inquilinos i ON c.inquilinoId = i.Id
-					INNER JOIN Inmuebles inm ON c.inmuebleId = inm.Id
+					INNER JOIN Inquilinos i ON c.InquilinoId = i.Id
+					INNER JOIN Inmuebles inm ON c.InmuebleId = inm.Id
 					WHERE c.Id=@id";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
@@ -158,7 +158,7 @@ namespace ulp_net_inmobiliaria.Models
 							InmuebleId = reader.GetInt32("InmuebleId"),
 							Inmueble = new Inmueble
 							{
-								Id = reader.GetInt32("PropetarioId"),
+								Id = reader.GetInt32("InmuebleId"),
 								Direccion = reader.GetString("Direccion")
 							}
 						};
