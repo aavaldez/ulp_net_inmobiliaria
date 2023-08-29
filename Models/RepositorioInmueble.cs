@@ -62,7 +62,7 @@ namespace ulp_net_inmobiliaria.Models
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"UPDATE Inmuebles 
-					SET Direccion=@direccion, Ambientes=@ambientes, Superficie=@superficie, Latitud=@latitud, Longitud=@longitud
+					SET Direccion=@direccion, Ambientes=@ambientes, Superficie=@superficie, Latitud=@latitud, Longitud=@longitud, Valor=@Valor
 					WHERE Id = @id";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
@@ -72,6 +72,7 @@ namespace ulp_net_inmobiliaria.Models
 					command.Parameters.AddWithValue("@superficie", i.Superficie);
 					command.Parameters.AddWithValue("@latitud", i.Latitud);
 					command.Parameters.AddWithValue("@longitud", i.Longitud);
+					command.Parameters.AddWithValue("@valor", i.Valor);
 					command.Parameters.AddWithValue("@id", i.Id);
 					connection.Open();
 					res = command.ExecuteNonQuery();

@@ -18,6 +18,6 @@ namespace ulp_net_inmobiliaria.Models
 		public Inmueble? Inmueble { get; set; }
 		public DateTime Desde { get; set; }
 		public DateTime Hasta { get; set; }
-		public Decimal Valor { get; set; }
+		public Decimal Valor { get; set; } = 0;
 	}
 }

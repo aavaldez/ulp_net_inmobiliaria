@@ -28,6 +28,8 @@ CREATE TABLE `inmuebles` (
 	`superficie` INT NOT NULL DEFAULT 0,
 	`latitud` DECIMAL(10,2) NOT NULL DEFAULT 0,
 	`longitud` DECIMAL(10,2) NOT NULL DEFAULT 0,
+	`valor` DECIMAL(10,2) NOT NULL DEFAULT 0,
+	`estado` INT NOT NULL DEFAULT 1,
   	PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -46,6 +48,28 @@ CREATE TABLE `contratos` (
 ALTER TABLE `contratos` ADD CONSTRAINT `contratos_inquilinos_inquilinoId` FOREIGN KEY (`inquilinoId`) REFERENCES `inquilinos`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `contratos` ADD CONSTRAINT `contratos_inmuebles_inmuebleId` FOREIGN KEY (`inmuebleId`) REFERENCES `inmuebles`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+CREATE TABLE `pagos` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`numero` INT NOT NULL,
+	`contratoId` INT NOT NULL,
+	`fecha` DATETIME DEFAULT NULL,
+	`valor` DECIMAL(10,2) NOT NULL DEFAULT 0,
+  	PRIMARY KEY(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+ALTER TABLE `pagos` ADD CONSTRAINT `pagos_contratos_contatoId` FOREIGN KEY (`contratoId`) REFERENCES `contratos`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+CREATE TABLE `usuarios` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`rol` INT NOT NULL DEFAULT 10,
+	`nombre` VARCHAR(255) NOT NULL,
+	`apellido` VARCHAR(255) NOT  NULL,
+	`email` VARCHAR(160) DEFAULT NULL,
+	`password` VARCHAR(160) DEFAULT NULL,
+	`avatar` VARCHAR(160) DEFAULT NULL,
+	`estado` INT NOT NULL DEFAULT 1,
+  	PRIMARY KEY(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 dotnet-aspnet-codegenerator view Index List -outDir "Views/Propietarios" -udl --model ulp_net_inmobiliaria.Models.Propietario -f
 dotnet-aspnet-codegenerator view Create Create -outDir "Views/Propietarios" -udl --model ulp_net_inmobiliaria.Models.Propietario -f

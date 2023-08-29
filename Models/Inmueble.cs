@@ -11,11 +11,13 @@ namespace ulp_net_inmobiliaria.Models
     [Display(Name = "Dirección")]
     public string Direccion { get; set; } = "";
 		[Required]
-    public int Ambientes { get; set; }
+    public int Ambientes { get; set; } = 1;
 		[Required]
-    public int Superficie { get; set; }
-		public decimal Latitud { get; set; }
-		public decimal Longitud { get; set; }
+    public int Superficie { get; set; } = 0;
+	public decimal Latitud { get; set; } = 0;
+	public decimal Longitud { get; set; } = 0;
+	public decimal Valor { get; set; } = 0;
+	public int estado { get; set; } = 1;
     [Display(Name = "Propietario")]
     public int PropietarioId { get; set; }
     [ForeignKey(nameof(PropietarioId))]
