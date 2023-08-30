@@ -14,6 +14,9 @@
 			<thead>
 				<tr>
 					<th>
+						@Html.DisplayNameFor(model => model.Tipo)
+					</th>
+					<th>
 						@Html.DisplayNameFor(model => model.Direccion)
 					</th>
 					<th>
@@ -28,12 +31,18 @@
 					<th>
 						@Html.DisplayNameFor(model => model.Longitud)
 					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Valor)
+					</th>
 					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 		@foreach (var item in Model) {
 				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.TipoNombre)
+					</td>
 					<td>
 						@Html.DisplayFor(modelItem => item.Direccion)
 					</td>
@@ -48,6 +57,9 @@
 					</td>
 					<td>
 						@Html.DisplayFor(modelItem => item.Longitud)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Valor)
 					</td>
 					<td>
 						@Html.ActionLink("Editar", "Edit", new { id=item.Id }) |

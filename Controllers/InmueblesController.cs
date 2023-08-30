@@ -52,6 +52,7 @@ namespace ulp_net_inmobiliaria.Controllers
 			RepositorioInmueble repo = new RepositorioInmueble();
 			RepositorioPropietario repoPropietario = new RepositorioPropietario();
 			ViewBag.Propietarios = repoPropietario.ObtenerTodos();
+			ViewBag.Tipos = Inmueble.ObtenerTipos();
 			Inmueble i = repo.ObtenerPorId(id);
 			return View(i);
 		}
@@ -64,11 +65,14 @@ namespace ulp_net_inmobiliaria.Controllers
 			{
 				RepositorioInmueble repo = new RepositorioInmueble();
 				i = repo.ObtenerPorId(id);
+				i.Tipo = inmueble.Tipo;
 				i.Direccion = inmueble.Direccion;
 				i.Ambientes = inmueble.Ambientes;
 				i.Superficie = inmueble.Superficie;
 				i.Latitud = inmueble.Latitud;
 				i.Longitud = inmueble.Longitud;
+				i.Valor = inmueble.Valor;
+				i.Estado = inmueble.Estado;
 				repo.Modificacion(inmueble);
 				return RedirectToAction("Index");
 			}

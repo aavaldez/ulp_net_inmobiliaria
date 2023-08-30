@@ -16,6 +16,16 @@
 					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 					<input type="hidden" name="Id" value="@Model.Id" />
 					<div class="mb-3">
+						<label asp-for="Tipo" class="form-label"></label>
+						<select class="form-control" name="Tipo">
+							@foreach (var item in (IDictionary<int, string>)ViewBag.Tipos)
+							{
+								@:<option @(item.Key == Model.Tipo ? "selected" : "") value="@item.Key">@item.Value</option>
+							}
+						</select>
+						<span asp-validation-for="Tipo" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
 						<label asp-for="Direccion" class="form-label"></label>
 						<input asp-for="Direccion" class="form-control" />
 						<span asp-validation-for="Direccion" class="text-danger"></span>
@@ -49,6 +59,19 @@
 							}
 						</select>
 						<span asp-validation-for="PropietarioId" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
+						<label asp-for="Valor" class="form-label"></label>
+						<input asp-for="Valor" class="form-control" />
+						<span asp-validation-for="Valor" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
+						<label asp-for="Estado" class="form-label"></label>
+						<select class="form-control" name="Estado">
+							<option value="0">No Disponible</option>
+							<option value="1">Disponible</option>
+						</select>
+						<span asp-validation-for="Tipo" class="text-danger"></span>
 					</div>
 				</div>
 			</div>
