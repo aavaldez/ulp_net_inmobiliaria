@@ -26,6 +26,7 @@ namespace ulp_net_inmobiliaria.Controllers
 		{
 			RepositorioPropietario repoPropietario = new RepositorioPropietario();
 			ViewBag.Propietarios = repoPropietario.ObtenerTodos();
+			ViewBag.Tipos = Inmueble.ObtenerTipos();
 			return View();
 		}
 

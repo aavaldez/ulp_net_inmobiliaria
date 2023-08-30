@@ -3,24 +3,44 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ulp_net_inmobiliaria.Models
 {
+	public enum enTipos
+	{
+		Casa = 1,
+		Departamento = 2,
+	}
+
 	public class Inmueble
 	{
-    [Key]
+		[Key]
 		public int Id { get; set; }
-		[Required]
-    [Display(Name = "Dirección")]
-    public string Direccion { get; set; } = "";
-		[Required]
-    public int Ambientes { get; set; } = 1;
-		[Required]
-    public int Superficie { get; set; } = 0;
-	public decimal Latitud { get; set; } = 0;
-	public decimal Longitud { get; set; } = 0;
-	public decimal Valor { get; set; } = 0;
-	public int estado { get; set; } = 1;
-    [Display(Name = "Propietario")]
-    public int PropietarioId { get; set; }
-    [ForeignKey(nameof(PropietarioId))]
-    public Propietario? Propietario { get; set; }
+		public int Tipo { get; set; } = 1;
+		[NotMapped]
+		public string TipoNombre => Tipo > 0 ? ((enTipos)Tipo).ToString() : "";
+		[Required(ErrorMessage= "La dirección es obligatoria.")]
+		[Display(Name = "Dirección")]
+		public string Direccion { get; set; } = "";
+		[Required(ErrorMessage= "La cantidad de ambientes es obligatorio.")]
+		public int Ambientes { get; set; } = 1;
+		[Required(ErrorMessage= "La superficie es obligatoria.")]
+		public int Superficie { get; set; } = 0;
+		public decimal Latitud { get; set; } = 0;
+		public decimal Longitud { get; set; } = 0;
+		public decimal Valor { get; set; } = 0;
+		public int Estado { get; set; } = 1;
+		[Display(Name = "Propietario")]
+		public int PropietarioId { get; set; }
+		[ForeignKey(nameof(PropietarioId))]
+		public Propietario? Propietario { get; set; }
+
+		public static IDictionary<int, string> ObtenerTipos()
+		{
+			SortedDictionary<int, string> tipos = new SortedDictionary<int, string>();
+			Type tipoEnumTipo = typeof(enTipos);
+			foreach (var valor in Enum.GetValues(tipoEnumTipo))
+			{
+				tipos.Add((int)valor, Enum.GetName(tipoEnumTipo, valor));
+			}
+			return tipos;
+		}
 	}
 }

@@ -6,8 +6,8 @@ namespace ulp_net_inmobiliaria.Models
 	public class Contrato
 	{
 		[Key]	
-			public int Id { get; set; }
-			[Required]
+		public int Id { get; set; }
+		[Required]
 		[Display(Name = "Inquilino")]
 		public int InquilinoId { get; set; }
 		[ForeignKey(nameof(InquilinoId))]

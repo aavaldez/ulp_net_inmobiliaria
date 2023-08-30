@@ -17,17 +17,19 @@ namespace ulp_net_inmobiliaria.Models
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"INSERT INTO Inmuebles 
-					(Direccion, Ambientes, Superficie, Latitud, Longitud, PropietarioId)
-					VALUES (@direccion, @ambientes, @superficie, @latitud, @longitud, @PropietarioId);
+					(Tipo, Direccion, Ambientes, Superficie, Latitud, Longitud, Valor, PropietarioId)
+					VALUES (@tipo, @direccion, @ambientes, @superficie, @latitud, @longitud, @valor, @PropietarioId);
 					SELECT LAST_INSERT_ID();";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
 					command.CommandType = CommandType.Text;
+					command.Parameters.AddWithValue("@tipo", i.Tipo);
 					command.Parameters.AddWithValue("@direccion", i.Direccion);
 					command.Parameters.AddWithValue("@ambientes", i.Ambientes);
 					command.Parameters.AddWithValue("@superficie", i.Superficie);
 					command.Parameters.AddWithValue("@latitud", i.Latitud);
 					command.Parameters.AddWithValue("@longitud", i.Longitud);
+					command.Parameters.AddWithValue("@valor", i.Valor);
 					command.Parameters.AddWithValue("@propietarioId", i.PropietarioId);
 					connection.Open();
 					res = Convert.ToInt32(command.ExecuteScalar());
@@ -62,17 +64,19 @@ namespace ulp_net_inmobiliaria.Models
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"UPDATE Inmuebles 
-					SET Direccion=@direccion, Ambientes=@ambientes, Superficie=@superficie, Latitud=@latitud, Longitud=@longitud, Valor=@Valor
+					SET Tipo=@tipo, Direccion=@direccion, Ambientes=@ambientes, Superficie=@superficie, Latitud=@latitud, Longitud=@longitud, Valor=@Valor, Estado=@Estado
 					WHERE Id = @id";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
 					command.CommandType = CommandType.Text;
+					command.Parameters.AddWithValue("@tipo", i.Tipo);
 					command.Parameters.AddWithValue("@direccion", i.Direccion);
 					command.Parameters.AddWithValue("@ambientes", i.Ambientes);
 					command.Parameters.AddWithValue("@superficie", i.Superficie);
 					command.Parameters.AddWithValue("@latitud", i.Latitud);
 					command.Parameters.AddWithValue("@longitud", i.Longitud);
 					command.Parameters.AddWithValue("@valor", i.Valor);
+					command.Parameters.AddWithValue("@estado", i.Estado);
 					command.Parameters.AddWithValue("@id", i.Id);
 					connection.Open();
 					res = command.ExecuteNonQuery();
@@ -88,7 +92,7 @@ namespace ulp_net_inmobiliaria.Models
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"SELECT 
-					{nameof(i.Id)}, PropietarioId, Direccion, Ambientes, Superficie, Latitud, Longitud, p.Nombre, p.Apellido
+					{nameof(i.Id)}, Tipo, Direccion, Ambientes, Superficie, Latitud, Longitud, Valor, Estado, PropietarioId, p.Nombre, p.Apellido, p.Dni
 					FROM Inmuebles i 
 					INNER JOIN Propietarios p ON p.Id = i.PropietarioId";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
@@ -101,17 +105,21 @@ namespace ulp_net_inmobiliaria.Models
 						Inmueble p = new Inmueble
 						{
 							Id = reader.GetInt32(nameof(Inmueble.Id)),
+							Tipo = reader.GetInt32("Tipo"),
 							Direccion = reader.GetString("Direccion"),
 							Ambientes = reader.GetInt32("Ambientes"),
 							Superficie = reader.GetInt32("Superficie"),
 							Latitud = reader.GetDecimal("Latitud"),
 							Longitud = reader.GetDecimal("Longitud"),
+							Valor = reader.GetDecimal("Valor"),
+							Estado = reader.GetInt32("Estado"),
 							PropietarioId = reader.GetInt32("PropietarioId"),
 							Propietario = new Propietario
 							{
-								Id = reader.GetInt32("Id"),
+								Id = reader.GetInt32("PropietarioId"),
 								Nombre = reader.GetString("Nombre"),
 								Apellido = reader.GetString("Apellido"),
+								Dni = reader.GetString("Dni")
 							}
 						};
 						res.Add(p);
@@ -128,7 +136,7 @@ namespace ulp_net_inmobiliaria.Models
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"SELECT 
-					{nameof(i.Id)}, PropietarioId, Direccion, Ambientes, Superficie, Latitud, Longitud, p.Nombre, p.Apellido, p.Dni
+					{nameof(i.Id)}, Tipo, Direccion, Ambientes, Superficie, Latitud, Longitud, Valor, Estado, PropietarioId, p.Nombre, p.Apellido, p.Dni
 					FROM Inmuebles i 
 					INNER JOIN Propietarios p ON p.Id = i.PropietarioId
 					WHERE i.Id=@id";
@@ -151,10 +159,10 @@ namespace ulp_net_inmobiliaria.Models
 							PropietarioId = reader.GetInt32("PropietarioId"),
 							Propietario = new Propietario
 							{
-								Id = reader.GetInt32("Id"),
+								Id = reader.GetInt32("PropietarioId"),
 								Nombre = reader.GetString("Nombre"),
 								Apellido = reader.GetString("Apellido"),
-								Dni = reader.GetString("Dni"),
+								Dni = reader.GetString("Dni")
 							}
 						};
 					}
