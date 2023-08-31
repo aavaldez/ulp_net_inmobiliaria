@@ -1,0 +1,37 @@
+@model ulp_net_inmobiliaria.Models.Usuario
+
+@{
+    ViewData["Title"] = "Detalles";
+}
+
+<div class="card">
+	<div class="card-header">
+		<h5>Detalles Usuario</h5>
+	</div>
+	<div class="card-body">
+		<dl class="row">
+			<dt class = "col-sm-2">
+				@Html.DisplayNameFor(model => model.Nombre)
+			</dt>
+			<dd class = "col-sm-10">
+				@Html.DisplayFor(model => model.Nombre)
+			</dd>
+			<dt class = "col-sm-2">
+				@Html.DisplayNameFor(model => model.Apellido)
+			</dt>
+			<dd class = "col-sm-10">
+				@Html.DisplayFor(model => model.Apellido)
+			</dd>
+			<dt class = "col-sm-2">
+				@Html.DisplayNameFor(model => model.Email)
+			</dt>
+			<dd class = "col-sm-10">
+				@Html.DisplayFor(model => model.Email)
+			</dd>
+		</dl>
+	</div>
+	<div class="card-footer">
+    	@Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+		<a asp-action="Index">Volver a la lista</a>
+	</div>
+</div>

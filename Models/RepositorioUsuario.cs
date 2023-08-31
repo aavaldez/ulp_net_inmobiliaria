@@ -28,7 +28,11 @@ namespace ulp_net_inmobiliaria.Models
 					command.Parameters.AddWithValue("@apellido", p.Apellido);
 					command.Parameters.AddWithValue("@email", p.Email);
 					command.Parameters.AddWithValue("@password", p.Password);
-					command.Parameters.AddWithValue("@avatar", p.Avatar);
+					if(String.IsNullOrEmpty(p.Avatar)){
+						command.Parameters.AddWithValue("@avatar", DBNull.Value);
+					} else {
+						command.Parameters.AddWithValue("@avatar", p.Avatar);
+					}
 					command.Parameters.AddWithValue("@estado", p.Estado);
 					connection.Open();
 					res = Convert.ToInt32(command.ExecuteScalar());
@@ -122,7 +126,7 @@ namespace ulp_net_inmobiliaria.Models
 		
 		public Usuario ObtenerPorId(int id)
 		{
-			Usuario p = null;
+			Usuario u = null;
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"SELECT Id, Rol, Nombre, Apellido, Email, Password, Avatar, Estado
@@ -136,22 +140,54 @@ namespace ulp_net_inmobiliaria.Models
 					var reader = command.ExecuteReader();
 					if (reader.Read())
 					{
-						p = new Usuario
+						u = new Usuario
 						{
 							Id = reader.GetInt32(nameof(Usuario.Id)),
 							Rol = reader.GetInt32("Rol"),
 							Nombre = reader.GetString("Nombre"),
 							Apellido = reader.GetString("Apellido"),
 							Email = reader.GetString("Email"),
-							Password = reader.GetString("Password"),
 							Avatar = reader.GetString("Avatar"),
-							Estado = reader.GetInt32("Estado"),
+							Estado = reader.GetInt32("Estado")
 						};
 					}
 					connection.Close();
 				}
 			}
-			return p;
+			return u;
+		}
+
+		public Usuario ObtenerPorEmail(string email)
+		{
+			Usuario? u = null;
+			using (MySqlConnection connection = new MySqlConnection(connectionString))
+			{
+				string sql = @"SELECT
+					Id, Nombre, Apellido, Avatar, Email, Clave, Rol FROM Usuarios
+					WHERE Email=@email";
+				using (MySqlCommand command = new MySqlCommand(sql, connection))
+				{
+					command.CommandType = CommandType.Text;
+					command.Parameters.Add("@email", MySqlDbType.VarChar).Value = email;
+					connection.Open();
+					var reader = command.ExecuteReader();
+					if (reader.Read())
+					{
+						u = new Usuario
+						{
+							Id = reader.GetInt32("Id"),
+							Rol = reader.GetInt32("Rol"),
+							Nombre = reader.GetString("Nombre"),
+							Apellido = reader.GetString("Apellido"),
+							Email = reader.GetString("Email"),
+							Avatar = reader.GetString("Avatar"),
+							Estado = reader.GetInt32("Estado")
+						};
+					}
+					connection.Close();
+				}
+			}
+			return u;
 		}
 	}
 }

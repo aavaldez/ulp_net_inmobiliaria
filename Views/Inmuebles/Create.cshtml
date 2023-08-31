@@ -23,7 +23,6 @@
 							}
 						</select>
 						<span asp-validation-for="Tipo" class="text-danger"></span>
-
 					</div>
 					<div class="mb-3">
 						<label asp-for="Direccion" class="form-label"></label>
@@ -62,7 +61,10 @@
 					</div>
 					<div class="mb-3">
 						<label asp-for="Valor" class="form-label"></label>
-						<input asp-for="Valor" class="form-control" />
+						<div class="input-group">
+							<span class="input-group-text" id="">$</span>
+							<input asp-for="Valor" class="form-control text-end" />
+						</div>
 						<span asp-validation-for="Valor" class="text-danger"></span>
 					</div>
 				</div>

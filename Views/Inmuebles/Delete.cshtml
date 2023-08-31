@@ -12,6 +12,12 @@
 		<div class="card-body">
 			<dl class="row">
 				<dt class = "col-sm-2">
+					@Html.DisplayNameFor(model => model.Tipo)
+				</dt>
+				<dd class = "col-sm-10">
+					@Html.DisplayFor(model => model.TipoNombre)
+				</dd>
+				<dt class = "col-sm-2">
 					@Html.DisplayNameFor(model => model.Direccion)
 				</dt>
 				<dd class = "col-sm-10">
@@ -42,10 +48,16 @@
 					@Html.DisplayFor(model => model.Longitud)
 				</dd>
 				<dt class = "col-sm-2">
+					@Html.DisplayNameFor(model => model.Valor)
+				</dt>
+				<dd class = "col-sm-10">
+					$@Html.DisplayFor(model => model.Valor)
+				</dd>
+				<dt class = "col-sm-2">
 					@Html.DisplayNameFor(model => model.PropietarioId)
 				</dt>
 				<dd class = "col-sm-10">
-					@Html.DisplayFor(model => model.PropietarioId)
+					@Model.Propietario.ToString()
 				</dd>
 			</dl>
 		</div>

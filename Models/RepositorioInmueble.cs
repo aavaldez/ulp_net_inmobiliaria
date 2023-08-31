@@ -151,11 +151,14 @@ namespace ulp_net_inmobiliaria.Models
 						p = new Inmueble
 						{
 							Id = reader.GetInt32(nameof(Inmueble.Id)),
+							Tipo = reader.GetInt32("Tipo"),
 							Direccion = reader.GetString("Direccion"),
 							Ambientes = reader.GetInt32("Ambientes"),
 							Superficie = reader.GetInt32("Superficie"),
 							Latitud = reader.GetDecimal("Latitud"),
 							Longitud = reader.GetDecimal("Longitud"),
+							Valor = reader.GetDecimal("Valor"),
+							Estado = reader.GetInt32("Estado"),
 							PropietarioId = reader.GetInt32("PropietarioId"),
 							Propietario = new Propietario
 							{

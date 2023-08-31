@@ -6,7 +6,13 @@ namespace ulp_net_inmobiliaria.Models
 	public enum enTipos
 	{
 		Casa = 1,
-		Departamento = 2,
+		Departamento = 2
+	}
+
+	public enum enEstados
+	{
+		Habilitado = 1,
+		Inhabilitado = 2
 	}
 
 	public class Inmueble
@@ -41,6 +47,17 @@ namespace ulp_net_inmobiliaria.Models
 				tipos.Add((int)valor, Enum.GetName(tipoEnumTipo, valor));
 			}
 			return tipos;
+		}
+
+		public static IDictionary<int, string> ObtenerEstados()
+		{
+			SortedDictionary<int, string> estados = new SortedDictionary<int, string>();
+			Type tipoEnumEstado = typeof(enEstados);
+			foreach (var valor in Enum.GetValues(tipoEnumEstado))
+			{
+				estados.Add((int)valor, Enum.GetName(tipoEnumEstado, valor));
+			}
+			return estados;
 		}
 	}
 }
