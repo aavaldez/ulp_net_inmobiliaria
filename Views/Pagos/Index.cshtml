@@ -1,4 +1,4 @@
-@model IEnumerable<ulp_net_inmobiliaria.Models.Contrato>
+@model IEnumerable<ulp_net_inmobiliaria.Models.Pago>
 
 @{
     ViewData["Title"] = "Listado";
@@ -6,27 +6,24 @@
 
 <div class="card">
 	<div class="card-header">
-		<a asp-action="Create" class="float-end btn btn-outline-primary btn-sm">Crear Contrato</a>
-		<h5>Contratos</h5>
+		<a asp-action="Create" class="float-end btn btn-outline-primary btn-sm">Crear Pago</a>
+		<h5>Pagos</h5>
 	</div>
 	<div class="card-body">
 		<table class="table">
 			<thead>
 				<tr>
 					<th>
-						@Html.DisplayNameFor(model => model.Desde)
+						@Html.DisplayNameFor(model => model.Numero)
 					</th>
 					<th>
-						@Html.DisplayNameFor(model => model.Hasta)
+						@Html.DisplayNameFor(model => model.Fecha)
 					</th>
 					<th>
-						@Html.DisplayNameFor(model => model.Valor)
+						@Html.DisplayNameFor(model => model.Importe)
 					</th>
 					<th>
-						@Html.DisplayNameFor(model => model.InquilinoId)
-					</th>
-					<th>
-						@Html.DisplayNameFor(model => model.InmuebleId)
+						@Html.DisplayNameFor(model => model.ContratoId)
 					</th>
 					<th></th>
 				</tr>
@@ -35,21 +32,17 @@
 		@foreach (var item in Model) {
 				<tr>
 					<td>
-						@Html.DisplayFor(modelItem => item.Desde)
+						@Html.DisplayFor(modelItem => item.Numero)
 					</td>
 					<td>
-						@Html.DisplayFor(modelItem => item.Hasta)
+						@Html.DisplayFor(modelItem => item.Fecha)
 					</td>
 					<td>
-						@Html.DisplayFor(modelItem => item.Valor)
+						@Html.DisplayFor(modelItem => item.Importe)
 					</td>
 					<td>
-						@item.Inquilino.ToString()
+						@item.Contrato.ToString()
 					</td>
-					<td>
-						@item.Inmueble.ToString()
-					</td>
-
 					<td>
 						@Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
 						@Html.ActionLink("Detalles", "Details", new { id=item.Id }) |

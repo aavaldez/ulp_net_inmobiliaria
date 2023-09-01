@@ -60,12 +60,19 @@ namespace ulp_net_inmobiliaria.Models
 			int res = -1;
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
-				string sql = @"UPDATE Inmuebles 
-					SET Desde=@desde, Hasta=@hasta, Valor=@valor
+				string sql = @"UPDATE Contratos 
+					SET 
+						InmuebleId = @inmuebleId, 
+						InquilinoId = @inquilinoId, 
+						Desde = @desde, 
+						Hasta = @hasta, 
+						Valor = @valor
 					WHERE Id = @id";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
 					command.CommandType = CommandType.Text;
+					command.Parameters.AddWithValue("@inmuebleId", c.InmuebleId);
+					command.Parameters.AddWithValue("@inquilinoId", c.InquilinoId);
 					command.Parameters.AddWithValue("@desde", c.Desde);
 					command.Parameters.AddWithValue("@hasta", c.Hasta);
 					command.Parameters.AddWithValue("@valor", c.Valor);
@@ -84,7 +91,7 @@ namespace ulp_net_inmobiliaria.Models
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"SELECT 
-					c.Id, InquilinoId, InmuebleId, Desde, Hasta, Valor, i.Nombre, i.Apellido, inm.Direccion
+					c.Id, c.InquilinoId, c.InmuebleId, c.Desde, c.Hasta, c.Valor, i.Nombre, i.Apellido, inm.Tipo, inm.Direccion
 					FROM Contratos c 
 					INNER JOIN Inquilinos i ON c.InquilinoId = i.Id
 					INNER JOIN Inmuebles inm ON c.InmuebleId = inm.Id";
@@ -97,7 +104,7 @@ namespace ulp_net_inmobiliaria.Models
 					{
 						Contrato c = new Contrato
 						{
-							Id = reader.GetInt32(nameof(Inmueble.Id)),
+							Id = reader.GetInt32(nameof(Contrato.Id)),
 							Desde = reader.GetDateTime("Desde"),
 							Hasta = reader.GetDateTime("Hasta"),
 							Valor = reader.GetDecimal("Valor"),
@@ -112,6 +119,7 @@ namespace ulp_net_inmobiliaria.Models
 							Inmueble = new Inmueble
 							{
 								Id = reader.GetInt32("InmuebleId"),
+								Tipo = reader.GetInt32("Tipo"),
 								Direccion = reader.GetString("Direccion")
 							}
 						};
@@ -123,13 +131,13 @@ namespace ulp_net_inmobiliaria.Models
 			return res;
 		}
 
-		public Contrato ObtenerPorId(int id)
+		public Contrato? ObtenerPorId(int id)
 		{
-			Contrato c = null;
+			Contrato? c = null;
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"SELECT 
-					c.Id, InquilinoId, InmuebleId, Desde, Hasta, Valor, i.Nombre, i.Apellido, inm.Direccion
+					c.Id, c.InquilinoId, c.InmuebleId, c.Desde, c.Hasta, c.Valor, i.Nombre, i.Apellido, inm.Tipo, inm.Direccion
 					FROM Contratos c 
 					INNER JOIN Inquilinos i ON c.InquilinoId = i.Id
 					INNER JOIN Inmuebles inm ON c.InmuebleId = inm.Id
@@ -144,7 +152,7 @@ namespace ulp_net_inmobiliaria.Models
 					{
 						c = new Contrato
 						{
-							Id = reader.GetInt32(nameof(Inmueble.Id)),
+							Id = reader.GetInt32(nameof(Contrato.Id)),
 							Desde = reader.GetDateTime("Desde"),
 							Hasta = reader.GetDateTime("Hasta"),
 							Valor = reader.GetDecimal("Valor"),
@@ -159,6 +167,7 @@ namespace ulp_net_inmobiliaria.Models
 							Inmueble = new Inmueble
 							{
 								Id = reader.GetInt32("InmuebleId"),
+								Tipo = reader.GetInt32("Tipo"),
 								Direccion = reader.GetString("Direccion")
 							}
 						};

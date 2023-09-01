@@ -52,25 +52,27 @@ namespace ulp_net_inmobiliaria.Controllers
 		{
 			RepositorioContrato repo = new RepositorioContrato();
 			RepositorioInquilino repoInquilino = new RepositorioInquilino();
-			ViewBag.Propietarios = repoInquilino.ObtenerTodos();
+			ViewBag.Inquilinos = repoInquilino.ObtenerTodos();
 			RepositorioInmueble repoInmueble = new RepositorioInmueble();
 			ViewBag.Inmuebles = repoInmueble.ObtenerTodos();
-			Contrato c = repo.ObtenerPorId(id);
+			Contrato? c = repo.ObtenerPorId(id);
 			return View(c);
 		}
 
 		[HttpPost]
 		public ActionResult Update(int id, Contrato contrato)
 		{
-			Contrato c;
+			Contrato? c = null;
 			try
 			{
 				RepositorioContrato repo = new RepositorioContrato();
 				c = repo.ObtenerPorId(id);
+				c.InmuebleId = contrato.InmuebleId;
+				c.InquilinoId = contrato.InquilinoId;
 				c.Desde = contrato.Desde;
 				c.Hasta = contrato.Hasta;
 				c.Valor = contrato.Valor;
-				repo.Modificacion(contrato);
+				repo.Modificacion(c);
 				return RedirectToAction("Index");
 			}
 			catch (System.Exception)

@@ -6,23 +6,24 @@
 	var ltaInquilinos = (IList<Inquilino>)ViewBag.Inquilinos;
 }
 
-<form asp-action="Create">
+<form asp-action="Update">
 	<div class="card">
 		<div class="card-header">
-			<h5>Nuevo Contrato</h5>
+			<h5>Edición Contrato</h5>
 		</div>
 		<div class="card-body">
 			<div class="row">
 				<div class="col-md-4">
 					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<input type="hidden" name="Id" value="@Model.Id" />
 					<div class="mb-3">
 						<label asp-for="Desde" class="form-label"></label>
-						<input asp-for="Desde" class="form-control" type="date" />
+						<input asp-for="Desde" class="form-control" />
 						<span asp-validation-for="Desde" class="text-danger"></span>
 					</div>
 					<div class="mb-3">
 						<label asp-for="Hasta" class="form-label"></label>
-						<input asp-for="Hasta" class="form-control" type="date" />
+						<input asp-for="Hasta" class="form-control" />
 						<span asp-validation-for="Hasta" class="text-danger"></span>
 					</div>
 					<div class="mb-3">
@@ -32,20 +33,20 @@
 					</div>
 					<div class="mb-3">
 						<label asp-for="InmuebleId" class="form-label"></label>
-						<select name="InmuebleId" class="form-control" >
+						<select name="InmuebleId" class="form-control">
 							@foreach (var item in ltaInmuebles)
 							{
-								<option value="@item.Id" >@(item.TipoNombre) - @(item.Direccion) - $@(item.Valor)</option>
+								@:<option @(item.Id==Model.InmuebleId ? "selected" : "")  value="@item.Id" >@(item.TipoNombre) - @(item.Direccion) - $@(item.Valor)</option>
 							}
 						</select>
 						<span asp-validation-for="InmuebleId" class="text-danger"></span>
 					</div>
 					<div class="mb-3">
 						<label asp-for="InquilinoId" class="form-label"></label>
-						<select name="InquilinoId" class="form-control" >
+						<select name="InquilinoId" class="form-control">
 							@foreach (var item in ltaInquilinos)
 							{
-								<option value="@item.Id" >@(item.ToString())</option>
+								@:<option @(item.Id==Model.InquilinoId ? "selected" : "") value="@item.Id">@(item.ToString())</option>
 							}
 						</select>
 						<span asp-validation-for="InquilinoId" class="text-danger"></span>

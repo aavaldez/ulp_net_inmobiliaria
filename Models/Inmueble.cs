@@ -59,5 +59,10 @@ namespace ulp_net_inmobiliaria.Models
 			}
 			return estados;
 		}
+
+		public override string ToString()
+		{
+			return $"{TipoNombre} - {Direccion}";
+		}
 	}
 }

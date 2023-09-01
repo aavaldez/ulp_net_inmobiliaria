@@ -54,7 +54,7 @@ CREATE TABLE `pagos` (
 	`numero` INT NOT NULL,
 	`contratoId` INT NOT NULL,
 	`fecha` DATETIME DEFAULT NULL,
-	`valor` DECIMAL(10,2) NOT NULL DEFAULT 0,
+	`importe` DECIMAL(10,2) NOT NULL DEFAULT 0,
   	PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
