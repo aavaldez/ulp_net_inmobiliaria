@@ -18,13 +18,13 @@ namespace ulp_net_inmobiliaria.Models
 		[NotMapped]
 		public string RolNombre => Rol > 0 ? ((enRoles)Rol).ToString() : "";
 		public string Nombre { get; set; } = "";
-		[Required(ErrorMessage= "El Apellido es obligatorio.")]
+		[Required(ErrorMessage = "El Apellido es obligatorio.")]
 		public string Apellido { get; set; } = "";
-		[Required(ErrorMessage= "El email es obligatorio."), EmailAddress]
+		[Required(ErrorMessage = "El email es obligatorio."), EmailAddress]
 		public string Email { get; set; } = "";
-		[Required(ErrorMessage= "La contraseña es obligatoria."), DataType(DataType.Password)]
+		[Required(ErrorMessage = "La contraseña es obligatoria."), DataType(DataType.Password)]
 		public string Password { get; set; }
-		public string Avatar { get; set; } = "";
+		public string? Avatar { get; set; }
 		[NotMapped]
 		public IFormFile AvatarFile { get; set; }
 		public int Estado { get; set; } = 1;

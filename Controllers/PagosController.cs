@@ -8,6 +8,8 @@ namespace ulp_net_inmobiliaria.Controllers
 		// GET: PagosController
 		public ActionResult Index(int contratoId)
 		{
+			RepositorioContrato repoContrato = new RepositorioContrato();
+			ViewBag.Contrato = repoContrato.ObtenerPorId(contratoId);
 			RepositorioPago repo = new RepositorioPago();
 			var lista = repo.ObtenerTodos();
 			return View(lista);
@@ -41,7 +43,7 @@ namespace ulp_net_inmobiliaria.Controllers
 			}
 			catch (System.Exception)
 			{
-				
+
 				throw;
 			}
 		}
@@ -75,7 +77,7 @@ namespace ulp_net_inmobiliaria.Controllers
 				throw;
 			}
 		}
-	
+
 		[HttpGet]
 		public ActionResult Delete(int id)
 		{

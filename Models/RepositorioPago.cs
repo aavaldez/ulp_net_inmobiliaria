@@ -35,7 +35,7 @@ namespace ulp_net_inmobiliaria.Models
 			}
 			return res;
 		}
-		
+
 		public int Baja(int id)
 		{
 			int res = -1;
@@ -53,7 +53,7 @@ namespace ulp_net_inmobiliaria.Models
 			}
 			return res;
 		}
-		
+
 		public int Modificacion(Pago p)
 		{
 			int res = -1;
@@ -147,8 +147,14 @@ namespace ulp_net_inmobiliaria.Models
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"SELECT 
-					Id, ContratoId, Numero, Fecha, Importe
+						p.Id, p.ContratoId, p.Numero, p.Fecha, p.Importe, 
+						c.InquilinoId, c.InmuebleId, c.Desde, c.Hasta, c.Valor,
+						i.Nombre, i.Apellido, i.Dni, i.Telefono, i.Email, 
+						inm.Tipo, inm.Direccion, inm.Ambientes, inm.Superficie, inm.Latitud, inm.Longitud, inm.Estado
 					FROM Pagos p
+					JOIN Contratos c ON c.Id = p.ContratoId
+					JOIN Inquilinos i ON i.Id = c.InquilinoId
+					JOIN Inmuebles inm ON inm.id = c.InmuebleId
 					WHERE c.Id=@id";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
@@ -164,7 +170,28 @@ namespace ulp_net_inmobiliaria.Models
 							Numero = reader.GetInt32("Numero"),
 							Fecha = reader.GetDateTime("Hasta"),
 							Importe = reader.GetDecimal("Importe"),
-							ContratoId = reader.GetInt32("ContratoId")
+							ContratoId = reader.GetInt32("ContratoId"),
+							Contrato = new Contrato
+							{
+								Id = reader.GetInt32(nameof(Contrato.Id)),
+								Desde = reader.GetDateTime("Desde"),
+								Hasta = reader.GetDateTime("Hasta"),
+								Valor = reader.GetDecimal("Valor"),
+								InquilinoId = reader.GetInt32("InquilinoId"),
+								Inquilino = new Inquilino
+								{
+									Id = reader.GetInt32("InquilinoId"),
+									Nombre = reader.GetString("Nombre"),
+									Apellido = reader.GetString("Apellido"),
+								},
+								InmuebleId = reader.GetInt32("InmuebleId"),
+								Inmueble = new Inmueble
+								{
+									Id = reader.GetInt32("InmuebleId"),
+									Tipo = reader.GetInt32("Tipo"),
+									Direccion = reader.GetString("Direccion")
+								}
+							}
 						};
 					}
 					connection.Close();

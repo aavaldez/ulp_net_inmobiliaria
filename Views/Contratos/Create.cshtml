@@ -27,12 +27,16 @@
 					</div>
 					<div class="mb-3">
 						<label asp-for="Valor" class="form-label"></label>
-						<input asp-for="Valor" class="form-control" />
+						<div class="input-group">
+							<span class="input-group-text" id="">$</span>
+							<input asp-for="Valor" class="form-control text-end" />
+						</div>						
 						<span asp-validation-for="Valor" class="text-danger"></span>
 					</div>
 					<div class="mb-3">
 						<label asp-for="InmuebleId" class="form-label"></label>
 						<select name="InmuebleId" class="form-control" >
+							<option value="0" selected>Seleccione una opcion</option>
 							@foreach (var item in ltaInmuebles)
 							{
 								<option value="@item.Id" >@(item.TipoNombre) - @(item.Direccion) - $@(item.Valor)</option>
@@ -43,6 +47,7 @@
 					<div class="mb-3">
 						<label asp-for="InquilinoId" class="form-label"></label>
 						<select name="InquilinoId" class="form-control" >
+							<option value="0" selected>Seleccione una opcion</option>
 							@foreach (var item in ltaInquilinos)
 							{
 								<option value="@item.Id" >@(item.ToString())</option>

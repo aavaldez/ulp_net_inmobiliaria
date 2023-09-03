@@ -72,6 +72,9 @@ CREATE TABLE `usuarios` (
   	PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+INSERT INTO `usuarios` (`id`, `rol`, `nombre`, `apellido`, `email`, `password`, `avatar`, `estado`) VALUES (NULL, '10', 'Alberto', 'Valdez', 'aavaldez@gmail.com', 'asdasdasd', NULL, '1');
+INSERT INTO `usuarios` (`id`, `rol`, `nombre`, `apellido`, `email`, `password`, `avatar`, `estado`) VALUES (NULL, '10', 'Mariano', 'Luzza', 'mluzza@gmail.com', 'asdasdasd', NULL, '1');
+
 dotnet-aspnet-codegenerator view Index List -outDir "Views/Propietarios" -udl --model ulp_net_inmobiliaria.Models.Propietario -f
 dotnet-aspnet-codegenerator view Create Create -outDir "Views/Propietarios" -udl --model ulp_net_inmobiliaria.Models.Propietario -f
 dotnet-aspnet-codegenerator view Edit Edit -outDir "Views/Propietarios" -udl --model ulp_net_inmobiliaria.Models.Propietario -f

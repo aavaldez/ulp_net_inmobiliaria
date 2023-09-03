@@ -20,3 +20,18 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* ========== */
+/* Navigation */
+/* ========== */
+.navbar a.user-profile {
+	width: 3rem;
+	height: 3rem;
+	padding: 5px 0px;
+	background: none;
+	transition: none;
+	border-radius: 50rem;
+	display: flex;
+	justify-content: center;
+	background-color: #fbf7f4;
+}

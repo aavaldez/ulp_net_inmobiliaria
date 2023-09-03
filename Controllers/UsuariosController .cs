@@ -20,7 +20,7 @@ namespace ulp_net_inmobiliaria.Controllers
 		}
 
 		// GET: UsuariosController
-		[Authorize(Policy = "Administrador")]
+		//[Authorize(Policy = "Administrador")]
 		public ActionResult Index()
 		{
 			var lista = repo.ObtenerTodos();
@@ -36,7 +36,7 @@ namespace ulp_net_inmobiliaria.Controllers
 		}
 
 		[HttpGet]
-		[Authorize(Policy = "Administrador")]
+		//[Authorize(Policy = "Administrador")]
 		public ActionResult Create()
 		{
 			ViewBag.Roles = Usuario.ObtenerRoles();
@@ -45,7 +45,7 @@ namespace ulp_net_inmobiliaria.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		[Authorize(Policy = "Administrador")]
+		//[Authorize(Policy = "Administrador")]
 		public ActionResult Create(Usuario usuario)
 		{
 			try
@@ -55,7 +55,7 @@ namespace ulp_net_inmobiliaria.Controllers
 					salt: System.Text.Encoding.ASCII.GetBytes("1234567890"),
 					prf: KeyDerivationPrf.HMACSHA1,
 					iterationCount: 10000,
-					numBytesRequested: 256/8
+					numBytesRequested: 256 / 8
 				));
 				usuario.Password = hashed;
 				usuario.Rol = User.IsInRole("Administrador") ? usuario.Rol : (int)enRoles.Empleado;
@@ -249,7 +249,7 @@ namespace ulp_net_inmobiliaria.Controllers
 		[HttpPost]
 		[AllowAnonymous]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Login(LoginView login)
+		public async Task<ActionResult> Login(LoginView login)
 		{
 			try
 			{
@@ -260,22 +260,24 @@ namespace ulp_net_inmobiliaria.Controllers
 						password: login.Password,
 						salt: System.Text.Encoding.ASCII.GetBytes("1234567890"),
 						prf: KeyDerivationPrf.HMACSHA1,
-						iterationCount: 1000,
+						iterationCount: 10000,
 						numBytesRequested: 256 / 8));
 
-					var e = repo.ObtenerPorEmail(login.Email);
-					if (e == null || e.Password != hashed)
+					var usuario = repo.ObtenerPorEmail(login.Email);
+					if (usuario == null || usuario.Password != hashed)
 					{
-						ModelState.AddModelError("", "El email o la clave no son correctos");
+						ModelState.AddModelError("", "El email o la contraseña son incorrectos");
 						TempData["returnUrl"] = returnUrl;
 						return View();
 					}
 
 					var claims = new List<Claim>
 					{
-						new Claim(ClaimTypes.Name, e.Email),
-						new Claim("FullName", e.Nombre + " " + e.Apellido),
-						new Claim(ClaimTypes.Role, e.RolNombre),
+						new Claim(ClaimTypes.Name, usuario.Email),
+						new Claim("FullName", $"{usuario.Nombre} {usuario.Apellido}"),
+						new Claim(ClaimTypes.Role, usuario.RolNombre),
+						new Claim("Id", usuario.Id.ToString()),
+						new Claim("Avatar", usuario.Avatar ?? "")
 					};
 
 					var claimsIdentity = new ClaimsIdentity(

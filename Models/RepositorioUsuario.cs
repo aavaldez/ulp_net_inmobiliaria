@@ -28,9 +28,12 @@ namespace ulp_net_inmobiliaria.Models
 					command.Parameters.AddWithValue("@apellido", p.Apellido);
 					command.Parameters.AddWithValue("@email", p.Email);
 					command.Parameters.AddWithValue("@password", p.Password);
-					if(String.IsNullOrEmpty(p.Avatar)){
+					if (String.IsNullOrEmpty(p.Avatar))
+					{
 						command.Parameters.AddWithValue("@avatar", DBNull.Value);
-					} else {
+					}
+					else
+					{
 						command.Parameters.AddWithValue("@avatar", p.Avatar);
 					}
 					command.Parameters.AddWithValue("@estado", p.Estado);
@@ -42,7 +45,7 @@ namespace ulp_net_inmobiliaria.Models
 			}
 			return res;
 		}
-		
+
 		public int Baja(int id)
 		{
 			int res = -1;
@@ -60,7 +63,7 @@ namespace ulp_net_inmobiliaria.Models
 			}
 			return res;
 		}
-		
+
 		public int Modificacion(Usuario p)
 		{
 			int res = -1;
@@ -89,7 +92,7 @@ namespace ulp_net_inmobiliaria.Models
 			}
 			return res;
 		}
-		
+
 		public IList<Usuario> ObtenerTodos()
 		{
 			IList<Usuario> res = new List<Usuario>();
@@ -112,9 +115,8 @@ namespace ulp_net_inmobiliaria.Models
 							Nombre = reader.GetString("Nombre"),
 							Apellido = reader.GetString("Apellido"),
 							Email = reader.GetString("Email"),
-							Password = reader.GetString("Password"),
-							Avatar = reader.GetString("Avatar"),
-							Estado = reader.GetInt32("Estado"),
+							Avatar = reader["Avatar"] == DBNull.Value ? "" : reader.GetString("Avatar"),
+							Estado = reader.GetInt32("Estado")
 						};
 						res.Add(p);
 					}
@@ -123,7 +125,7 @@ namespace ulp_net_inmobiliaria.Models
 			}
 			return res;
 		}
-		
+
 		public Usuario ObtenerPorId(int id)
 		{
 			Usuario u = null;
@@ -163,7 +165,7 @@ namespace ulp_net_inmobiliaria.Models
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"SELECT
-					Id, Nombre, Apellido, Avatar, Email, Clave, Rol FROM Usuarios
+					Id, Nombre, Apellido, Avatar, Email, Password, Rol FROM Usuarios
 					WHERE Email=@email";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
