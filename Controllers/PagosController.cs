@@ -6,12 +6,12 @@ namespace ulp_net_inmobiliaria.Controllers
 	public class PagosController : Controller
 	{
 		// GET: PagosController
-		public ActionResult Index(int contratoId)
+		public ActionResult Index(int id)
 		{
 			RepositorioContrato repoContrato = new RepositorioContrato();
-			ViewBag.Contrato = repoContrato.ObtenerPorId(contratoId);
+			ViewBag.Contrato = repoContrato.ObtenerPorId(id);
 			RepositorioPago repo = new RepositorioPago();
-			var lista = repo.ObtenerTodos();
+			var lista = repo.ObtenerTodosContrato(id);
 			return View(lista);
 		}
 
@@ -24,10 +24,10 @@ namespace ulp_net_inmobiliaria.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult Create(int contratoId)
+		public ActionResult Create(int id)
 		{
 			RepositorioContrato repoContrato = new RepositorioContrato();
-			ViewBag.Contrato = repoContrato.ObtenerPorId(contratoId);
+			ViewBag.Contrato = repoContrato.ObtenerPorId(id);
 			Pago p = new Pago();
 			return View(p);
 		}

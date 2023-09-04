@@ -1,12 +1,22 @@
 @model IEnumerable<ulp_net_inmobiliaria.Models.Pago>
 
 @{
-    ViewData["Title"] = "Listado";
+	ViewData["Title"] = "Listado";
+	var contrato = (Contrato)ViewBag.Contrato;
 }
 
 <div class="card">
 	<div class="card-header">
-		<a asp-action="Create" class="float-end btn btn-outline-primary btn-sm">Crear Pago</a>
+		<a asp-action="Create" asp-route-id="@contrato.Id" class="float-end btn btn-outline-primary btn-sm">Crear Pago</a>
+		<h5>Contrato</h5>
+	</div>
+	<div class="card-body">
+		<p>@contrato.ToString()</p>
+	</div>
+</div>
+
+<div class="card">
+	<div class="card-header">
 		<h5>Pagos</h5>
 	</div>
 	<div class="card-body">
@@ -29,27 +39,28 @@
 				</tr>
 			</thead>
 			<tbody>
-		@foreach (var item in Model) {
-				<tr>
-					<td>
-						@Html.DisplayFor(modelItem => item.Numero)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Fecha)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Importe)
-					</td>
-					<td>
-						@item.Contrato.ToString()
-					</td>
-					<td>
-						@Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
-						@Html.ActionLink("Detalles", "Details", new { id=item.Id }) |
-						@Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
-					</td>
-				</tr>
-		}
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => item.Numero)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Fecha)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Importe)
+						</td>
+						<td>
+							@item.Contrato.ToString()
+						</td>
+						<td>
+							@Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+							@Html.ActionLink("Detalles", "Details", new { id=item.Id }) |
+							@Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
+						</td>
+					</tr>
+				}
 			</tbody>
 		</table>
 	</div>

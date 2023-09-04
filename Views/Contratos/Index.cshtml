@@ -1,7 +1,7 @@
 @model IEnumerable<ulp_net_inmobiliaria.Models.Contrato>
 
 @{
-    ViewData["Title"] = "Listado";
+	ViewData["Title"] = "Listado";
 }
 
 <div class="card">
@@ -32,31 +32,32 @@
 				</tr>
 			</thead>
 			<tbody>
-		@foreach (var item in Model) {
-				<tr>
-					<td>
-						@(item.Desde.ToShortDateString())
-					</td>
-					<td>
-						@(item.Hasta.ToShortDateString())
-					</td>
-					<td>
-						$@Html.DisplayFor(modelItem => item.Valor)
-					</td>
-					<td>
-						@item.Inquilino.ToString()
-					</td>
-					<td>
-						@item.Inmueble.ToString()
-					</td>
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>
+							@(item.Desde.ToShortDateString())
+						</td>
+						<td>
+							@(item.Hasta.ToShortDateString())
+						</td>
+						<td>
+							$@Html.DisplayFor(modelItem => item.Valor)
+						</td>
+						<td>
+							@item.Inquilino.ToString()
+						</td>
+						<td>
+							@item.Inmueble.ToString()
+						</td>
 
-					<td>
-						@Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
-						@Html.ActionLink("Detalles", "Details", new { id=item.Id }) |
-						@Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
-					</td>
-				</tr>
-		}
+						<td>
+							@Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+							@Html.ActionLink("Detalles", "Details", new { id=item.Id }) |
+							@Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
+						</td>
+					</tr>
+				}
 			</tbody>
 		</table>
 	</div>

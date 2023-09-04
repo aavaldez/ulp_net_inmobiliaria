@@ -20,7 +20,7 @@ namespace ulp_net_inmobiliaria.Controllers
 		}
 
 		// GET: UsuariosController
-		//[Authorize(Policy = "Administrador")]
+		[Authorize(Policy = "Administrador")]
 		public ActionResult Index()
 		{
 			var lista = repo.ObtenerTodos();
@@ -36,7 +36,7 @@ namespace ulp_net_inmobiliaria.Controllers
 		}
 
 		[HttpGet]
-		//[Authorize(Policy = "Administrador")]
+		[Authorize(Policy = "Administrador")]
 		public ActionResult Create()
 		{
 			ViewBag.Roles = Usuario.ObtenerRoles();
@@ -45,7 +45,7 @@ namespace ulp_net_inmobiliaria.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		//[Authorize(Policy = "Administrador")]
+		[Authorize(Policy = "Administrador")]
 		public ActionResult Create(Usuario usuario)
 		{
 			try

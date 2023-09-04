@@ -165,7 +165,8 @@ namespace ulp_net_inmobiliaria.Models
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"SELECT
-					Id, Nombre, Apellido, Avatar, Email, Password, Rol FROM Usuarios
+					Id, Nombre, Apellido, Avatar, Email, Password, Rol, Estado
+					FROM Usuarios
 					WHERE Email=@email";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
@@ -182,7 +183,8 @@ namespace ulp_net_inmobiliaria.Models
 							Nombre = reader.GetString("Nombre"),
 							Apellido = reader.GetString("Apellido"),
 							Email = reader.GetString("Email"),
-							Avatar = reader.GetString("Avatar"),
+							Password = reader.GetString("Password"),
+							Avatar = reader["Avatar"] == DBNull.Value ? "" : reader.GetString("Avatar"),
 							Estado = reader.GetInt32("Estado")
 						};
 					}

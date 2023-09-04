@@ -119,7 +119,7 @@ namespace ulp_net_inmobiliaria.Models
 					WHERE ContratoId = @contratoId";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
-					command.Parameters.Add("@id", MySqlDbType.Int32).Value = contratoId;
+					command.Parameters.Add("@contratoId", MySqlDbType.Int32).Value = contratoId;
 					command.CommandType = CommandType.Text;
 					connection.Open();
 					var reader = command.ExecuteReader();

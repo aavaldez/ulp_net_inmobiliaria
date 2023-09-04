@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\ALBERTO\\Documents\\GitHub\\ulp_net_inmobiliaria\\ulp_net_inmobiliaria.csproj": {}
+    "C:\\Users\\ALBERTO\\Documents\\GitHub\\ulp_net_inmobiliaria\\ulp_net_inmobiliaria.csproj": {}
   },
   "projects": {
-    "c:\\Users\\ALBERTO\\Documents\\GitHub\\ulp_net_inmobiliaria\\ulp_net_inmobiliaria.csproj": {
+    "C:\\Users\\ALBERTO\\Documents\\GitHub\\ulp_net_inmobiliaria\\ulp_net_inmobiliaria.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\ALBERTO\\Documents\\GitHub\\ulp_net_inmobiliaria\\ulp_net_inmobiliaria.csproj",
+        "projectUniqueName": "C:\\Users\\ALBERTO\\Documents\\GitHub\\ulp_net_inmobiliaria\\ulp_net_inmobiliaria.csproj",
         "projectName": "ulp_net_inmobiliaria",
-        "projectPath": "c:\\Users\\ALBERTO\\Documents\\GitHub\\ulp_net_inmobiliaria\\ulp_net_inmobiliaria.csproj",
+        "projectPath": "C:\\Users\\ALBERTO\\Documents\\GitHub\\ulp_net_inmobiliaria\\ulp_net_inmobiliaria.csproj",
         "packagesPath": "C:\\Users\\ALBERTO\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\ALBERTO\\Documents\\GitHub\\ulp_net_inmobiliaria\\obj\\",
+        "outputPath": "C:\\Users\\ALBERTO\\Documents\\GitHub\\ulp_net_inmobiliaria\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ALBERTO\\AppData\\Roaming\\NuGet\\NuGet.Config"
