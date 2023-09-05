@@ -1,8 +1,23 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
+
+    var welcomeMessage = User.Identity.IsAuthenticated ? $"Bienvenido {User.FindFirst("FullName")?.Value}" : "Bienvenido!";
 }
 
 <div class="text-center">
     <h1 class="display-4">Bienvenidos a la Inmobiliaria Té AlKilo</h1>
-    <p>Un proyecto para la materia .NET de la ULP.</p>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p>Ya puede empezar a utilizar el sistema!</p>
+    }
+    else
+    {
+        <p>Simplifica la gestión de tu inmobiliaria con nuestra solución!</p>
+    }
 </div>
+
+
+@if (!User.Identity.IsAuthenticated)
+{
+    await Html.RenderPartialAsync("_Login", new LoginView());
+}
