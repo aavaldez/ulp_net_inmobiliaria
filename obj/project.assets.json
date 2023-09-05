@@ -10013,24 +10013,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ALBERTO\\.nuget\\packages\\": {}
+    "C:\\Users\\PUESTO-A1\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ALBERTO\\Documents\\GitHub\\ulp_net_inmobiliaria\\ulp_net_inmobiliaria.csproj",
+      "projectUniqueName": "c:\\Users\\PUESTO-A1\\Documents\\GitHub\\ulp_net_inmobiliaria\\ulp_net_inmobiliaria.csproj",
       "projectName": "ulp_net_inmobiliaria",
-      "projectPath": "C:\\Users\\ALBERTO\\Documents\\GitHub\\ulp_net_inmobiliaria\\ulp_net_inmobiliaria.csproj",
-      "packagesPath": "C:\\Users\\ALBERTO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ALBERTO\\Documents\\GitHub\\ulp_net_inmobiliaria\\obj\\",
+      "projectPath": "c:\\Users\\PUESTO-A1\\Documents\\GitHub\\ulp_net_inmobiliaria\\ulp_net_inmobiliaria.csproj",
+      "packagesPath": "C:\\Users\\PUESTO-A1\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\PUESTO-A1\\Documents\\GitHub\\ulp_net_inmobiliaria\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ALBERTO\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\PUESTO-A1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
