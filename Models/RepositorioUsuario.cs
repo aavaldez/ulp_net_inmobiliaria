@@ -126,9 +126,9 @@ namespace ulp_net_inmobiliaria.Models
 			return res;
 		}
 
-		public Usuario ObtenerPorId(int id)
+		public Usuario? ObtenerPorId(int id)
 		{
-			Usuario u = null;
+			Usuario? u = null;
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"SELECT Id, Rol, Nombre, Apellido, Email, Password, Avatar, Estado
@@ -149,7 +149,7 @@ namespace ulp_net_inmobiliaria.Models
 							Nombre = reader.GetString("Nombre"),
 							Apellido = reader.GetString("Apellido"),
 							Email = reader.GetString("Email"),
-							Avatar = reader.GetString("Avatar"),
+							Avatar = reader["Avatar"] == DBNull.Value ? "" : reader.GetString("Avatar"),
 							Estado = reader.GetInt32("Estado")
 						};
 					}
@@ -159,7 +159,7 @@ namespace ulp_net_inmobiliaria.Models
 			return u;
 		}
 
-		public Usuario ObtenerPorEmail(string email)
+		public Usuario? ObtenerPorEmail(string? email)
 		{
 			Usuario? u = null;
 			using (MySqlConnection connection = new MySqlConnection(connectionString))

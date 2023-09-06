@@ -91,7 +91,7 @@ namespace ulp_net_inmobiliaria.Controllers
 		public ActionResult Perfil()
 		{
 			ViewData["Title"] = "Mi perfil";
-			var usuario = repo.ObtenerPorEmail(User.Identity.Name);
+			var usuario = repo.ObtenerPorEmail(User?.Identity?.Name);
 			ViewBag.Roles = Usuario.ObtenerRoles();
 			return View("Edit", usuario);
 		}
@@ -157,7 +157,7 @@ namespace ulp_net_inmobiliaria.Controllers
 		[Authorize]
 		public ActionResult Avatar()
 		{
-			var u = repo.ObtenerPorEmail(User.Identity.Name);
+			var u = repo.ObtenerPorEmail(User?.Identity?.Name);
 			string fileName = "avatar_" + u.Id + Path.GetExtension(u.Avatar);
 			string wwwPath = environment.WebRootPath;
 			string path = Path.Combine(wwwPath, "Uploads");
@@ -172,7 +172,7 @@ namespace ulp_net_inmobiliaria.Controllers
 		[Authorize]
 		public string AvatarBase64()
 		{
-			var u = repo.ObtenerPorEmail(User.Identity.Name);
+			var u = repo.ObtenerPorEmail(User?.Identity?.Name);
 			string fileName = "avatar_" + u.Id + Path.GetExtension(u.Avatar);
 			string wwwPath = environment.WebRootPath;
 			string path = Path.Combine(wwwPath, "Uploads");
@@ -204,7 +204,7 @@ namespace ulp_net_inmobiliaria.Controllers
 		{
 			try
 			{
-				var u = repo.ObtenerPorEmail(User.Identity.Name);
+				var u = repo.ObtenerPorEmail(User?.Identity?.Name);
 				var stream = System.IO.File.Open(
 						Path.Combine(environment.WebRootPath, u.Avatar.Substring(1)),
 						FileMode.Open,
@@ -212,9 +212,9 @@ namespace ulp_net_inmobiliaria.Controllers
 				var ext = Path.GetExtension(u.Avatar);
 				return new FileStreamResult(stream, $"image/{ext.Substring(1)}");
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				throw ex;
+				throw;
 			}
 		}
 

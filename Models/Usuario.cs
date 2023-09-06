@@ -23,7 +23,7 @@ namespace ulp_net_inmobiliaria.Models
 		[Required(ErrorMessage = "El email es obligatorio."), EmailAddress]
 		public string Email { get; set; } = "";
 		[Required(ErrorMessage = "La contraseña es obligatoria."), DataType(DataType.Password)]
-		public string Password { get; set; }
+		public string Password { get; set; } = "";
 		public string? Avatar { get; set; }
 		[NotMapped]
 		public IFormFile AvatarFile { get; set; }
