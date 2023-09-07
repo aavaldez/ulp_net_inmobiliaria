@@ -6,6 +6,8 @@
 
 <div class="card">
 	<div class="card-header">
+		<a class="float-end ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Inmuebles" asp-action="Edit" asp-route-id="@Model.Id"><i class="fa-solid fa-pencil"></i></a>
+		<a class="float-end ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Inmuebles" asp-action="Delete" asp-route-id="@Model.Id"><i class="fa-solid fa-xmark"></i></a>
 		<h5>Detalles Inmueble</h5>
 	</div>
 	<div class="card-body">

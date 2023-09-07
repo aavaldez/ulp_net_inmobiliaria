@@ -2,10 +2,15 @@
 
 @{
 	ViewData["Title"] = "Detalles";
+	var ltaPagos = (IList<Pago>)ViewBag.Pagos;
 }
 
 <div class="card">
 	<div class="card-header">
+		<a class="float-end ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Contratos" asp-action="index" asp-route-id="@Model.Id"><i class="fa-solid fa-xmark"></i></a>
+		<a class="float-end ms-1 btn btn-sm btn btn-outline-success" asp-controller="Contratos" asp-action="index" asp-route-id="@Model.Id"><i class="fa-solid fa-repeat"></i></a>
+		<a class="float-end ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Contratos" asp-action="Edit" asp-route-id="@Model.Id"><i class="fa-solid fa-pencil"></i></a>
+		<a class="float-end ms-1 btn btn-sm btn-outline-primary" asp-controller="Pagos" asp-action="index" asp-route-id="@Model.Id" ><i class="fa-solid fa-hand-holding-dollar"></i> Crear Pago</a>
 		<h5>Detalles Contrato</h5>
 	</div>
 	<div class="card-body">
@@ -42,9 +47,46 @@
 			</dd>
 		</dl>
 	</div>
+	<div class="card-body">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>
+						Numero
+					</th>
+					<th>
+						Fecha
+					</th>
+					<th>
+						Importe
+					</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in ltaPagos)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => item.Numero)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Fecha)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Importe)
+						</td>
+						<td>
+							@Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+							@Html.ActionLink("Detalles", "Details", new { id=item.Id }) |
+							@Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
 	<div class="card-footer">
-		<a asp-controller="Pagos" asp-action="index" asp-route-id="@Model.Id"><i class="fa-solid fa-hand-holding-dollar"></i> Pagos</a> |
-		@Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
 		<a asp-action="Index">Volver a la lista</a>
 	</div>
 </div>

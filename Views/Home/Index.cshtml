@@ -4,18 +4,12 @@
     var welcomeMessage = User.Identity.IsAuthenticated ? $"Bienvenido {User.FindFirst("FullName")?.Value}" : "Bienvenido!";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Bienvenidos a la Inmobiliaria Té AlKilo</h1>
-    @if (User.Identity.IsAuthenticated)
-    {
-        <p>Ya puede empezar a utilizar el sistema!</p>
-    }
-    else
-    {
-        <p>Simplifica la gestión de tu inmobiliaria con nuestra solución!</p>
-    }
-</div>
-
+@if (User.Identity.IsAuthenticated){
+	<div class="text-center">
+		<h1 class="display-4">Bienvenidos a la Inmobiliaria Té AlKilo</h1>
+		<p>La propiedad que estas buscando la encontras acá!</p>
+	</div>
+}
 
 @if (!User.Identity.IsAuthenticated)
 {

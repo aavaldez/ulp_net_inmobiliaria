@@ -18,6 +18,8 @@ namespace ulp_net_inmobiliaria.Controllers
 		{
 			RepositorioContrato repo = new RepositorioContrato();
 			var entidad = repo.ObtenerPorId(id);
+			RepositorioPago repoPago = new RepositorioPago();
+			ViewBag.Pagos = repoPago.ObtenerTodosContrato(id);
 			return View(entidad);
 		}
 

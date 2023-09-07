@@ -1,28 +1,33 @@
 @model ulp_net_inmobiliaria.Models.LoginView
-
-<h4>Acceso</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-controller="Usuarios" asp-action="Login">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-			<div class="mb-3">
-                <label asp-for="Email" class="form-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+<section class="body">
+    <div class="container">
+        <div class="login-box">
+            <div class="row">
+                <div class="col">
+                    <div class="logo">
+                        <span class="logo-font">Te</span> AlKilo
+                    </div>
+                </div>
             </div>
-            <div class="mb-3">
-                <label asp-for="Password" class="form-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
+            <div class="row">
+                <div class="col">
+                    <br>
+                    <h3 class="header-title">Ingreso a la plataforma</h3>
+					<form asp-controller="Usuarios" asp-action="Login" class="login-form">
+                        <div class="mb-3">
+							<label asp-for="Email" class="form-label"></label>
+                            <input asp-for="Email" type="email" class="form-control" placeholder="Email">
+                        </div>
+                        <div class="mb-3">
+							<label asp-for="Password" class="form-label"></label>
+                            <input asp-for="Password" type="password" class="form-control" placeholder="Password">
+                        </div>
+                        <div class="mb-3">
+                            <button class="btn btn-primary btn-block">Ingresar</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="mb-3">
-                <input type="submit" value="Entrar" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+</section>

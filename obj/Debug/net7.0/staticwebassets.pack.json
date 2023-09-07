@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\ulp_net_inmobiliaria.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\PUESTO-A1\\Documents\\GitHub\\ulp_net_inmobiliaria\\wwwroot\\css\\login.css",
+      "PackagePath": "staticwebassets\\css\\login.css"
+    },
+    {
       "Id": "C:\\Users\\PUESTO-A1\\Documents\\GitHub\\ulp_net_inmobiliaria\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

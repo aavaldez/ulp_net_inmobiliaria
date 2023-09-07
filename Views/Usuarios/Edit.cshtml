@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Editar Usuario";
+	var usuarioAvatar = Model.Avatar != null && Model.Avatar != "" ? Model.Avatar : "/img/user_avatar.jpg";
 }
 
 <form asp-action="Update">
@@ -13,6 +14,17 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+					<div class="mb-3">
+						<label for="AvatarFile" class="form-avatar">
+							<img src="@usuarioAvatar" id="user-avatar">
+							<div class="change-avatar">
+								<i class="fa-solid fa-pencil"></i>
+							</div>
+						</label>
+						<input class="form-control" type="file" name="AvatarFile" id="AvatarFile" hidden accept="image/*" />
+					</div>
+
 					<input type="hidden" name="Id" value="@Model.Id" />
 					<div class="mb-3">
 						<label asp-for="Nombre" class="form-label"></label>
@@ -34,16 +46,21 @@
 						<input asp-for="Password" class="form-control" />
 						<span asp-validation-for="Password" class="text-danger"></span>
 					</div>
-					<div class="mb-3">
-						<label asp-for="Rol" class="form-label"></label>
-						<select class="form-control" name="Tipo">
-							@foreach (var item in (IDictionary<int, string>)ViewBag.Roles)
-							{
-								<option value="@item.Key">@item.Value</option>
-							}
-						</select>
-						<span asp-validation-for="Rol" class="text-danger"></span>
-					</div>
+
+					@if (User.IsInRole("Administrador"))
+					{
+						<div class="mb-3">
+							<label asp-for="Rol" class="form-label"></label>
+							<select class="form-control" name="Tipo">
+								@foreach (var item in (IDictionary<int, string>)ViewBag.Roles)
+								{
+									@:<option @(item.Key == Model.Rol ? "selected" : "") value="@item.Key">@item.Value</option>
+								}
+							</select>
+							<span asp-validation-for="Rol" class="text-danger"></span>
+						</div>
+					}
+
 				</div>
 			</div>
 		</div>
@@ -53,6 +70,25 @@
 		</div>
 	<div>
 </form>
+
+<script>
+
+	const profileImageInput = document.getElementById('AvatarFile');
+
+	profileImageInput.addEventListener('change', (event) => {
+		const file = event.target.files[0];
+		const reader = new FileReader();
+
+		reader.addEventListener('load', () => {
+			const imageDataUrl = reader.result;
+			const imageElement = document.getElementById('user-avatar');
+			imageElement.setAttribute('src', imageDataUrl);
+		});
+
+		reader.readAsDataURL(file);
+	});
+
+</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
