@@ -1,4 +1,5 @@
-CREATE DATABASE 'inmo_aavaldez';
+CREATE DATABASE inmo_aavaldez;
+USE inmo_aavaldez;
 
 CREATE TABLE `propietarios` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -58,7 +59,7 @@ CREATE TABLE `pagos` (
   	PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-ALTER TABLE `pagos` ADD CONSTRAINT `pagos_contratos_contatoId` FOREIGN KEY (`contratoId`) REFERENCES `contratos`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `pagos` ADD CONSTRAINT `pagos_contratos_contratoId` FOREIGN KEY (`contratoId`) REFERENCES `contratos`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 CREATE TABLE `usuarios` (
 	`id` INT NOT NULL AUTO_INCREMENT,
@@ -72,8 +73,9 @@ CREATE TABLE `usuarios` (
   	PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO `usuarios` (`id`, `rol`, `nombre`, `apellido`, `email`, `password`, `avatar`, `estado`) VALUES (NULL, '10', 'Alberto', 'Valdez', 'aavaldez@gmail.com', 'asdasdasd', NULL, '1');
-INSERT INTO `usuarios` (`id`, `rol`, `nombre`, `apellido`, `email`, `password`, `avatar`, `estado`) VALUES (NULL, '10', 'Mariano', 'Luzza', 'mluzza@gmail.com', 'asdasdasd', NULL, '1');
+/*CONTRASEÑA EN AMBOS USUARIOS: asdasd*/
+INSERT INTO `usuarios` (`id`, `rol`, `nombre`, `apellido`, `email`, `password`, `avatar`, `estado`) VALUES (NULL, '10', 'Alberto', 'Valdez', 'aavaldez@gmail.com', 'o3P72xbu1tuJBR6BSKYhoBUSl64w2I7ZJ3ctKgPwD34=', NULL, '1');
+INSERT INTO `usuarios` (`id`, `rol`, `nombre`, `apellido`, `email`, `password`, `avatar`, `estado`) VALUES (NULL, '10', 'Mariano', 'Luzza', 'mluzza@gmail.com', 'o3P72xbu1tuJBR6BSKYhoBUSl64w2I7ZJ3ctKgPwD34=', NULL, '1');
 
 dotnet-aspnet-codegenerator view Index List -outDir "Views/Propietarios" -udl --model ulp_net_inmobiliaria.Models.Propietario -f
 dotnet-aspnet-codegenerator view Create Create -outDir "Views/Propietarios" -udl --model ulp_net_inmobiliaria.Models.Propietario -f

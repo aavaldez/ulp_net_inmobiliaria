@@ -6,7 +6,7 @@
 
 <div class="card">
 	<div class="card-header">
-		<a asp-action="Create" class="float-end btn btn-outline-primary btn-sm">Crear Propietario</a>
+		<a asp-action="Create" class="float-end btn btn-outline-primary btn-sm"><i class="fa-solid fa-plus"></i> Crear Propietario</a>
 		<h5>Propietarios</h5>
 	</div>
 	<div class="card-body">
@@ -50,8 +50,8 @@
 						@Html.DisplayFor(modelItem => item.Email)
 					</td>
 					<td>
-						<a class="ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Propietarios" asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pencil"></i></a>
 						<a class="ms-1 btn btn-sm btn btn-outline-success" asp-controller="Propietarios" asp-action="Details" asp-route-id="@item.Id"><i class="fa-solid fa-eye"></i></a>
+						<a class="ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Propietarios" asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pencil"></i></a>
 						<a class="ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Propietarios" asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-xmark"></i></a>
 					</td>
 				</tr>

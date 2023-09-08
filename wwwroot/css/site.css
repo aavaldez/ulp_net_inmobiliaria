@@ -24,6 +24,10 @@ body {
 /* ========== */
 /* Navigation */
 /* ========== */
+.logo-font {
+	color: #3BC3FF;
+}
+
 .navbar a.user-profile {
 	width: 3rem;
 	height: 3rem;

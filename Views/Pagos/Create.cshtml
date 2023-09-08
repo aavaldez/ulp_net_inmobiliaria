@@ -3,6 +3,11 @@
 @{
 	ViewData["Title"] = "Crear Pago";
 	var contrato = (Contrato)ViewBag.Contrato;
+	var pagoUltimo = 1;
+	if( (Pago)ViewBag.PagoUltimo != null){
+		pagoUltimo = ViewBag.PagoUltimo.Numero+1;
+	}
+	var fecha = DateTime.Today;
 }
 
 <form asp-action="Create">
@@ -14,10 +19,10 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-					<input type="hidden" name="ContratoId" value="@Model.ContratoId" />
+					<input type="hidden" name="ContratoId" value="@contrato.Id" />
 					<div class="mb-3">
 						<label asp-for="Numero" class="form-label"></label>
-						<input asp-for="Numero" class="form-control text-end" readonly />
+						<input asp-for="Numero" class="form-control text-end"  value="@pagoUltimo" readonly />
 						<span asp-validation-for="Numero" class="text-danger"></span>
 					</div>
 					<div class="mb-3">
@@ -38,7 +43,6 @@
 						<input class="form-control" value="@contrato.ToString()" />
 						<span asp-validation-for="ContratoId" class="text-danger"></span>
 					</div>
-
 				</div>
 			</div>
 		</div>

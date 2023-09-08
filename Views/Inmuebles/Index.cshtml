@@ -62,8 +62,8 @@
 						$@Html.DisplayFor(modelItem => item.Valor)
 					</td>
 					<td>
-						<a class="ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Inmuebles" asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pencil"></i></a>
 						<a class="ms-1 btn btn-sm btn btn-outline-success" asp-controller="Inmuebles" asp-action="Details" asp-route-id="@item.Id"><i class="fa-solid fa-eye"></i></a>
+						<a class="ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Inmuebles" asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pencil"></i></a>
 						<a class="ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Inmuebles" asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-xmark"></i></a>
 					</td>
 				</tr>

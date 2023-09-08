@@ -77,9 +77,9 @@ namespace ulp_net_inmobiliaria.Models
 			return res;
 		}
 
-		public IList<Pago> ObtenerTodos()
+		public List<Pago> ObtenerTodos()
 		{
-			IList<Pago> res = new List<Pago>();
+			List<Pago> res = new List<Pago>();
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"SELECT 
@@ -94,9 +94,9 @@ namespace ulp_net_inmobiliaria.Models
 					{
 						Pago p = new Pago
 						{
-							Id = reader.GetInt32(nameof(Inmueble.Id)),
+							Id = reader.GetInt32(nameof(Pago.Id)),
 							Numero = reader.GetInt32("Numero"),
-							Fecha = reader.GetDateTime("Hasta"),
+							Fecha = reader.GetDateTime("Fecha"),
 							Importe = reader.GetDecimal("Importe"),
 							ContratoId = reader.GetInt32("ContratoId"),
 						};
@@ -108,9 +108,9 @@ namespace ulp_net_inmobiliaria.Models
 			return res;
 		}
 
-		public IList<Pago> ObtenerTodosContrato(int contratoId)
+		public List<Pago> ObtenerTodosContrato(int contratoId)
 		{
-			IList<Pago> res = new List<Pago>();
+			List<Pago> res = new List<Pago>();
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"SELECT 
@@ -127,9 +127,9 @@ namespace ulp_net_inmobiliaria.Models
 					{
 						Pago p = new Pago
 						{
-							Id = reader.GetInt32(nameof(Inmueble.Id)),
+							Id = reader.GetInt32(nameof(Pago.Id)),
 							Numero = reader.GetInt32("Numero"),
-							Fecha = reader.GetDateTime("Hasta"),
+							Fecha = reader.GetDateTime("Fecha"),
 							Importe = reader.GetDecimal("Importe"),
 							ContratoId = reader.GetInt32("ContratoId")
 						};
@@ -141,9 +141,9 @@ namespace ulp_net_inmobiliaria.Models
 			return res;
 		}
 
-		public Pago ObtenerPorId(int id)
+		public Pago? ObtenerPorId(int id)
 		{
-			Pago p = null;
+			Pago? p = null;
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"SELECT 
@@ -166,7 +166,7 @@ namespace ulp_net_inmobiliaria.Models
 					{
 						p = new Pago
 						{
-							Id = reader.GetInt32(nameof(Inmueble.Id)),
+							Id = reader.GetInt32(nameof(Pago.Id)),
 							Numero = reader.GetInt32("Numero"),
 							Fecha = reader.GetDateTime("Hasta"),
 							Importe = reader.GetDecimal("Importe"),
@@ -192,6 +192,39 @@ namespace ulp_net_inmobiliaria.Models
 									Direccion = reader.GetString("Direccion")
 								}
 							}
+						};
+					}
+					connection.Close();
+				}
+			}
+			return p;
+		}
+
+		public Pago? ObtenerUltimoPago(int contratoId) 
+		{
+			Pago? p = null;
+			using (MySqlConnection connection = new MySqlConnection(connectionString))
+			{
+				string sql = @"SELECT *
+					FROM pagos
+					WHERE contratoId = @contratoId
+					ORDER BY id DESC
+					LIMIT 1";
+
+				using (MySqlCommand command = new MySqlCommand(sql, connection))
+				{
+					command.Parameters.AddWithValue("@contratoId", contratoId);
+					connection.Open();
+					var reader = command.ExecuteReader();
+					if (reader.Read())
+					{
+						p = new Pago
+						{
+							Id = reader.GetInt32(nameof(Pago.Id)),
+							Numero = reader.GetInt32("Numero"),
+							Fecha = reader.GetDateTime("Fecha"),
+							Importe = reader.GetDecimal("Importe"),
+							ContratoId = reader.GetInt32("ContratoId")
 						};
 					}
 					connection.Close();

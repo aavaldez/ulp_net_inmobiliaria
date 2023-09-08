@@ -7,10 +7,10 @@
 
 <div class="card">
 	<div class="card-header">
-		<a class="float-end ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Contratos" asp-action="index" asp-route-id="@Model.Id"><i class="fa-solid fa-xmark"></i></a>
-		<a class="float-end ms-1 btn btn-sm btn btn-outline-success" asp-controller="Contratos" asp-action="index" asp-route-id="@Model.Id"><i class="fa-solid fa-repeat"></i></a>
+		<a class="float-end ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Contratos" asp-action="Delete" asp-route-id="@Model.Id"><i class="fa-solid fa-xmark"></i></a>
 		<a class="float-end ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Contratos" asp-action="Edit" asp-route-id="@Model.Id"><i class="fa-solid fa-pencil"></i></a>
-		<a class="float-end ms-1 btn btn-sm btn-outline-primary" asp-controller="Pagos" asp-action="index" asp-route-id="@Model.Id" ><i class="fa-solid fa-hand-holding-dollar"></i> Crear Pago</a>
+		<a class="float-end ms-1 btn btn-sm btn btn-outline-success" asp-controller="Contratos" asp-action="Index" asp-route-id="@Model.Id"><i class="fa-solid fa-repeat"></i></a>
+		<a class="float-end ms-1 btn btn-sm btn-outline-primary" asp-controller="Pagos" asp-action="Create" asp-route-id="@Model.Id" ><i class="fa-solid fa-hand-holding-dollar"></i> Crear Pago</a>
 		<h5>Detalles Contrato</h5>
 	</div>
 	<div class="card-body">
@@ -60,7 +60,6 @@
 					<th>
 						Importe
 					</th>
-					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -75,11 +74,6 @@
 						</td>
 						<td>
 							@Html.DisplayFor(modelItem => item.Importe)
-						</td>
-						<td>
-							@Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
-							@Html.ActionLink("Detalles", "Details", new { id=item.Id }) |
-							@Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
 						</td>
 					</tr>
 				}

@@ -6,7 +6,7 @@
 
 <div class="card">
 	<div class="card-header">
-		<a asp-action="Create" class="float-end btn btn-outline-primary btn-sm">Crear Contrato</a>
+		<a asp-action="Create" class="float-end btn btn-outline-primary btn-sm"><i class="fa-solid fa-plus"></i> Crear Contrato</a>
 		<h5>Contratos</h5>
 	</div>
 	<div class="card-body">
@@ -50,11 +50,10 @@
 						<td>
 							@item.Inmueble.ToString()
 						</td>
-
 						<td>
-							@Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
-							@Html.ActionLink("Detalles", "Details", new { id=item.Id }) |
-							@Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
+							<a class="ms-1 btn btn-sm btn btn-outline-success" asp-controller="Contratos" asp-action="Details" asp-route-id="@item.Id"><i class="fa-solid fa-eye"></i></a>
+							<a class="ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Contratos" asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pencil"></i></a>
+							<a class="ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Contratos" asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-xmark"></i></a>
 						</td>
 					</tr>
 				}
