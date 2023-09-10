@@ -8,6 +8,7 @@ namespace ulp_net_inmobiliaria.Models
 		[Key]
 		public int Id { get; set; }
 		public int Numero { get; set; } = 0;
+		[DataType(DataType.Date)]
 		public DateTime Fecha { get; set; } = DateTime.Today;
 		[DataType(DataType.Currency)]
 		[Column(TypeName = "decimal(10, 2)")]

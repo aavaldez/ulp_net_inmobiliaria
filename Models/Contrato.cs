@@ -5,7 +5,7 @@ namespace ulp_net_inmobiliaria.Models
 {
 	public class Contrato
 	{
-		[Key]	
+		[Key]
 		public int Id { get; set; }
 		[Required]
 		[Display(Name = "Inquilino")]
@@ -16,11 +16,13 @@ namespace ulp_net_inmobiliaria.Models
 		public int InmuebleId { get; set; }
 		[ForeignKey(nameof(InmuebleId))]
 		public Inmueble? Inmueble { get; set; }
-		[Required(ErrorMessage= "La fecha de inicio es obligatoria.")]
+		[DataType(DataType.Date)]
+		[Required(ErrorMessage = "La fecha de inicio es obligatoria.")]
 		public DateTime Desde { get; set; }
-		[Required(ErrorMessage= "La fecha de fin es obligatoria.")]
+		[DataType(DataType.Date)]
+		[Required(ErrorMessage = "La fecha de fin es obligatoria.")]
 		public DateTime Hasta { get; set; }
-		[Required(ErrorMessage= "La valor de alquiler es obligatorio.")]
+		[Required(ErrorMessage = "La valor de alquiler es obligatorio.")]
 		public Decimal Valor { get; set; } = 0;
 
 		public override string ToString()
