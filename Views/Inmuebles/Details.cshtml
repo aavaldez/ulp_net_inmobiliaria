@@ -1,69 +1,70 @@
 @model ulp_net_inmobiliaria.Models.Inmueble
 
 @{
-    ViewData["Title"] = "Detalles";
+	ViewData["Title"] = "Detalles";
 }
 
 <div class="card">
 	<div class="card-header">
-		<a class="float-end ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Inmuebles" asp-action="Delete" asp-route-id="@Model.Id"><i class="fa-solid fa-xmark"></i></a>
-		<a class="float-end ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Inmuebles" asp-action="Edit" asp-route-id="@Model.Id"><i class="fa-solid fa-pencil"></i></a>
+		<a class="float-end ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Inmuebles" asp-action="Delete"
+			asp-route-id="@Model.Id"><span><i class="fa-solid fa-xmark fa-fw"></i></span></a>
+		<a class="float-end ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Inmuebles" asp-action="Edit"
+			asp-route-id="@Model.Id"><span><i class="fa-solid fa-pencil fa-fw"></i></span></a></a>
 		<h5>Detalles Inmueble</h5>
 	</div>
 	<div class="card-body">
 		<dl class="row">
-			<dt class = "col-sm-2">
+			<dt class="col-sm-2">
 				@Html.DisplayNameFor(model => model.Tipo)
 			</dt>
-			<dd class = "col-sm-10">
+			<dd class="col-sm-10">
 				@Html.DisplayFor(model => model.TipoNombre)
 			</dd>
-			<dt class = "col-sm-2">
+			<dt class="col-sm-2">
 				@Html.DisplayNameFor(model => model.Direccion)
 			</dt>
-			<dd class = "col-sm-10">
+			<dd class="col-sm-10">
 				@Html.DisplayFor(model => model.Direccion)
 			</dd>
-			<dt class = "col-sm-2">
+			<dt class="col-sm-2">
 				@Html.DisplayNameFor(model => model.Ambientes)
 			</dt>
-			<dd class = "col-sm-10">
+			<dd class="col-sm-10">
 				@Html.DisplayFor(model => model.Ambientes)
 			</dd>
-			<dt class = "col-sm-2">
+			<dt class="col-sm-2">
 				@Html.DisplayNameFor(model => model.Superficie)
 			</dt>
-			<dd class = "col-sm-10">
+			<dd class="col-sm-10">
 				@Html.DisplayFor(model => model.Superficie)
 			</dd>
-			<dt class = "col-sm-2">
+			<dt class="col-sm-2">
 				@Html.DisplayNameFor(model => model.Latitud)
 			</dt>
-			<dd class = "col-sm-10">
+			<dd class="col-sm-10">
 				@Html.DisplayFor(model => model.Latitud)
 			</dd>
-			<dt class = "col-sm-2">
+			<dt class="col-sm-2">
 				@Html.DisplayNameFor(model => model.Longitud)
 			</dt>
-			<dd class = "col-sm-10">
+			<dd class="col-sm-10">
 				@Html.DisplayFor(model => model.Longitud)
 			</dd>
-			<dt class = "col-sm-2">
+			<dt class="col-sm-2">
 				@Html.DisplayNameFor(model => model.Valor)
 			</dt>
-			<dd class = "col-sm-10">
+			<dd class="col-sm-10">
 				$@Html.DisplayFor(model => model.Valor)
 			</dd>
-			<dt class = "col-sm-2">
+			<dt class="col-sm-2">
 				@Html.DisplayNameFor(model => model.PropietarioId)
 			</dt>
-			<dd class = "col-sm-10">
+			<dd class="col-sm-10">
 				@Model.Propietario.ToString()
 			</dd>
 		</dl>
 	</div>
 	<div class="card-footer">
-    	@Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
-		<a asp-action="Index">Volver a la lista</a>
+		<a asp-action="Index" class="float-end">Volver a la lista</a>
 	</div>
 </div>

@@ -7,10 +7,14 @@
 
 <div class="card">
 	<div class="card-header">
-		<a class="float-end ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Contratos" asp-action="Delete" asp-route-id="@Model.Id"><i class="fa-solid fa-xmark"></i></a>
-		<a class="float-end ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Contratos" asp-action="Edit" asp-route-id="@Model.Id"><i class="fa-solid fa-pencil"></i></a>
-		<a class="float-end ms-1 btn btn-sm btn btn-outline-success" asp-controller="Contratos" asp-action="Index" asp-route-id="@Model.Id"><i class="fa-solid fa-repeat"></i></a>
-		<a class="float-end ms-1 btn btn-sm btn-outline-primary" asp-controller="Pagos" asp-action="Create" asp-route-id="@Model.Id" ><i class="fa-solid fa-hand-holding-dollar"></i> Crear Pago</a>
+		<a class="float-end ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Contratos" asp-action="Delete"
+			asp-route-id="@Model.Id"><span><i class="fa-solid fa-xmark fa-fw"></i></span></a>
+		<a class="float-end ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Contratos" asp-action="Edit"
+			asp-route-id="@Model.Id"><span><i class="fa-solid fa-pencil fa-fw"></i></span></a></a>
+		<a class="float-end ms-1 btn btn-sm btn btn-outline-success" asp-controller="Contratos" asp-action="Index"
+			asp-route-id="@Model.Id"><span><i class="fa-solid fa-repeat fa-fw"></i></span></a>
+		<a class="float-end ms-1 btn btn-sm btn-outline-primary" asp-controller="Pagos" asp-action="Create"
+			asp-route-id="@Model.Id"><span><i class="fa-solid fa-hand-holding-dollar fa-fw"></i></span> Crear Pago</a>
 		<h5>Detalles Contrato</h5>
 	</div>
 	<div class="card-body">
@@ -81,6 +85,6 @@
 		</table>
 	</div>
 	<div class="card-footer">
-		<a asp-action="Index">Volver a la lista</a>
+		<a asp-action="Index" class="float-end">Volver a la lista</a>
 	</div>
 </div>

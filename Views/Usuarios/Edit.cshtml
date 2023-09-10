@@ -1,7 +1,7 @@
 @model ulp_net_inmobiliaria.Models.Usuario
 
 @{
-    ViewData["Title"] = "Editar Usuario";
+	ViewData["Title"] = "Editar Usuario";
 	var usuarioAvatar = Model.Avatar != null && Model.Avatar != "" ? Model.Avatar : "/img/user_avatar.jpg";
 }
 
@@ -19,7 +19,7 @@
 						<label for="AvatarFile" class="form-avatar">
 							<img src="@usuarioAvatar" id="user-avatar">
 							<div class="change-avatar">
-								<i class="fa-solid fa-pencil"></i>
+								<span><i class="fa-solid fa-pencil"></i></span></a>
 							</div>
 						</label>
 						<input class="form-control" type="file" name="AvatarFile" id="AvatarFile" hidden accept="image/*" />
@@ -28,12 +28,12 @@
 					<input type="hidden" name="Id" value="@Model.Id" />
 					<div class="mb-3">
 						<label asp-for="Nombre" class="form-label"></label>
-						<input asp-for="Nombre" class="form-control" required/>
+						<input asp-for="Nombre" class="form-control" required />
 						<span asp-validation-for="Nombre" class="text-danger"></span>
 					</div>
 					<div class="mb-3">
 						<label asp-for="Apellido" class="form-label"></label>
-						<input asp-for="Apellido" class="form-control" required/>
+						<input asp-for="Apellido" class="form-control" required />
 						<span asp-validation-for="Apellido" class="text-danger"></span>
 					</div>
 					<div class="mb-3">
@@ -68,7 +68,7 @@
 			<a asp-action="Index" class="float-end">Volver a la lista</a>
 			<input type="submit" value="Guardar" class="btn btn-outline-primary btn-sm" />
 		</div>
-	<div>
+		<div>
 </form>
 
 <script>
@@ -91,5 +91,7 @@
 </script>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
 }

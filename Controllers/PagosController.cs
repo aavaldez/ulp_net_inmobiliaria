@@ -10,11 +10,14 @@ namespace ulp_net_inmobiliaria.Controllers
 		{
 			RepositorioPago repo = new RepositorioPago();
 			List<Pago> lista = new List<Pago>();
-			if(id != 0){
+			if (id != 0)
+			{
 				RepositorioContrato repoContrato = new RepositorioContrato();
 				ViewBag.Contrato = repoContrato.ObtenerPorId(id);
 				lista = repo.ObtenerTodosContrato(id);
-			} else {
+			}
+			else
+			{
 				lista = repo.ObtenerTodos();
 			}
 			return View(lista);
@@ -46,7 +49,7 @@ namespace ulp_net_inmobiliaria.Controllers
 			{
 				RepositorioPago repo = new RepositorioPago();
 				var lista = repo.Alta(pago);
-				return RedirectToAction("Index");
+				return RedirectToAction("Details", "Contratos", new { id = pago.ContratoId });
 			}
 			catch (System.Exception)
 			{

@@ -74,8 +74,8 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*CONTRASEÑA EN AMBOS USUARIOS: asdasd*/
-INSERT INTO `usuarios` (`id`, `rol`, `nombre`, `apellido`, `email`, `password`, `avatar`, `estado`) VALUES (NULL, '10', 'Alberto', 'Valdez', 'aavaldez@gmail.com', 'o3P72xbu1tuJBR6BSKYhoBUSl64w2I7ZJ3ctKgPwD34=', NULL, '1');
-INSERT INTO `usuarios` (`id`, `rol`, `nombre`, `apellido`, `email`, `password`, `avatar`, `estado`) VALUES (NULL, '10', 'Mariano', 'Luzza', 'mluzza@gmail.com', 'o3P72xbu1tuJBR6BSKYhoBUSl64w2I7ZJ3ctKgPwD34=', NULL, '1');
+INSERT INTO `usuarios` (`id`, `rol`, `nombre`, `apellido`, `email`, `password`, `avatar`, `estado`) VALUES (NULL, '1', 'Alberto', 'Valdez', 'aavaldez@gmail.com', 'o3P72xbu1tuJBR6BSKYhoBUSl64w2I7ZJ3ctKgPwD34=', NULL, '1');
+INSERT INTO `usuarios` (`id`, `rol`, `nombre`, `apellido`, `email`, `password`, `avatar`, `estado`) VALUES (NULL, '1', 'Mariano', 'Luzza', 'mluzza@gmail.com', 'o3P72xbu1tuJBR6BSKYhoBUSl64w2I7ZJ3ctKgPwD34=', NULL, '1');
 
 dotnet-aspnet-codegenerator view Index List -outDir "Views/Propietarios" -udl --model ulp_net_inmobiliaria.Models.Propietario -f
 dotnet-aspnet-codegenerator view Create Create -outDir "Views/Propietarios" -udl --model ulp_net_inmobiliaria.Models.Propietario -f

@@ -1,12 +1,14 @@
 @model IEnumerable<ulp_net_inmobiliaria.Models.Inquilino>
 
 @{
-    ViewData["Title"] = "Listado";
+	ViewData["Title"] = "Listado";
 }
 
 <div class="card">
 	<div class="card-header">
-		<a asp-action="Create" class="float-end btn btn-outline-primary btn-sm"><i class="fa-solid fa-plus"></i> Crear Inquilino</a>
+		<a asp-action="Create" class="float-end btn btn-outline-primary btn-sm"><span><i
+					class="fa-solid fa-plus fa-fw"></i></span> Crear
+			Inquilino</a>
 		<h5>Inquilinos</h5>
 	</div>
 	<div class="card-body">
@@ -32,30 +34,34 @@
 				</tr>
 			</thead>
 			<tbody>
-		@foreach (var item in Model) {
-				<tr>
-					<td>
-						@Html.DisplayFor(modelItem => item.Nombre)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Apellido)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Dni)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Telefono)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Email)
-					</td>
-					<td>
-						<a class="ms-1 btn btn-sm btn btn-outline-success" asp-controller="Inquilinos" asp-action="Details" asp-route-id="@item.Id"><i class="fa-solid fa-eye"></i></a>
-						<a class="ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Inquilinos" asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pencil"></i></a>
-						<a class="ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Inquilinos" asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-xmark"></i></a>
-					</td>
-				</tr>
-		}
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => item.Nombre)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Apellido)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Dni)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Telefono)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Email)
+						</td>
+						<td>
+							<a class="ms-1 btn btn-sm btn btn-outline-success" asp-controller="Inquilinos" asp-action="Details"
+								asp-route-id="@item.Id"><span><i class="fa-solid fa-eye fa-fw"></i></span></a>
+							<a class="ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Inquilinos" asp-action="Edit"
+								asp-route-id="@item.Id"><span><i class="fa-solid fa-pencil fa-fw"></i></span></a>
+							<a class="ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Inquilinos" asp-action="Delete"
+								asp-route-id="@item.Id"><span><i class="fa-solid fa-xmark fa-fw"></i></span></a>
+						</td>
+					</tr>
+				}
 			</tbody>
 		</table>
 	</div>

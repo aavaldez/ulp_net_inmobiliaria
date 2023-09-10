@@ -1,39 +1,40 @@
 @model ulp_net_inmobiliaria.Models.Usuario
 
 @{
-    ViewData["Title"] = "Detalles";
+	ViewData["Title"] = "Detalles";
 }
 
 <div class="card">
 	<div class="card-header">
-		<a class="float-end ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Usuarios" asp-action="Delete" asp-route-id="@Model.Id"><i class="fa-solid fa-xmark"></i></a>
-		<a class="float-end ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Usuarios" asp-action="Edit" asp-route-id="@Model.Id"><i class="fa-solid fa-pencil"></i></a>
+		<a class="float-end ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Usuarios" asp-action="Delete"
+			asp-route-id="@Model.Id"><span><i class="fa-solid fa-xmark fa-fw"></i></span></a>
+		<a class="float-end ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Usuarios" asp-action="Edit"
+			asp-route-id="@Model.Id"><span><i class="fa-solid fa-pencil fa-fw"></i></span></a></a>
 		<h5>Detalles Usuario</h5>
 	</div>
 	<div class="card-body">
 		<dl class="row">
-			<dt class = "col-sm-2">
+			<dt class="col-sm-2">
 				@Html.DisplayNameFor(model => model.Nombre)
 			</dt>
-			<dd class = "col-sm-10">
+			<dd class="col-sm-10">
 				@Html.DisplayFor(model => model.Nombre)
 			</dd>
-			<dt class = "col-sm-2">
+			<dt class="col-sm-2">
 				@Html.DisplayNameFor(model => model.Apellido)
 			</dt>
-			<dd class = "col-sm-10">
+			<dd class="col-sm-10">
 				@Html.DisplayFor(model => model.Apellido)
 			</dd>
-			<dt class = "col-sm-2">
+			<dt class="col-sm-2">
 				@Html.DisplayNameFor(model => model.Email)
 			</dt>
-			<dd class = "col-sm-10">
+			<dd class="col-sm-10">
 				@Html.DisplayFor(model => model.Email)
 			</dd>
 		</dl>
 	</div>
 	<div class="card-footer">
-    	@Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
-		<a asp-action="Index">Volver a la lista</a>
+		<a asp-action="Index" class="float-end">Volver a la lista</a>
 	</div>
 </div>

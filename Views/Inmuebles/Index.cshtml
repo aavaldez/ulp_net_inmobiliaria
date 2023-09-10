@@ -1,12 +1,14 @@
 @model IEnumerable<ulp_net_inmobiliaria.Models.Inmueble>
 
 @{
-    ViewData["Title"] = "Listado";
+	ViewData["Title"] = "Listado";
 }
 
 <div class="card">
 	<div class="card-header">
-		<a asp-action="Create" class="float-end btn btn-outline-primary btn-sm"><i class="fa-solid fa-plus"></i> Crear Inmueble</a>
+		<a asp-action="Create" class="float-end btn btn-outline-primary btn-sm"><span><i
+					class="fa-solid fa-plus fa-fw"></i></span> Crear
+			Inmueble</a>
 		<h5>Inmuebles</h5>
 	</div>
 	<div class="card-body">
@@ -38,36 +40,40 @@
 				</tr>
 			</thead>
 			<tbody>
-		@foreach (var item in Model) {
-				<tr>
-					<td>
-						@Html.DisplayFor(modelItem => item.TipoNombre)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Direccion)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Ambientes)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Superficie)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Latitud)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Longitud)
-					</td>
-					<td>
-						$@Html.DisplayFor(modelItem => item.Valor)
-					</td>
-					<td>
-						<a class="ms-1 btn btn-sm btn btn-outline-success" asp-controller="Inmuebles" asp-action="Details" asp-route-id="@item.Id"><i class="fa-solid fa-eye"></i></a>
-						<a class="ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Inmuebles" asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pencil"></i></a>
-						<a class="ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Inmuebles" asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-xmark"></i></a>
-					</td>
-				</tr>
-		}
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => item.TipoNombre)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Direccion)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Ambientes)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Superficie)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Latitud)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Longitud)
+						</td>
+						<td>
+							$@Html.DisplayFor(modelItem => item.Valor)
+						</td>
+						<td>
+							<a class="ms-1 btn btn-sm btn btn-outline-success" asp-controller="Inmuebles" asp-action="Details"
+								asp-route-id="@item.Id"><span><i class="fa-solid fa-eye fa-fw"></i></span></a>
+							<a class="ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Inmuebles" asp-action="Edit"
+								asp-route-id="@item.Id"><span><i class="fa-solid fa-pencil fa-fw"></i></span></a>
+							<a class="ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Inmuebles" asp-action="Delete"
+								asp-route-id="@item.Id"><span><i class="fa-solid fa-xmark fa-fw"></i></span></a>
+						</td>
+					</tr>
+				}
 			</tbody>
 		</table>
 	</div>

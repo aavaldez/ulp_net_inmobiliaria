@@ -1,12 +1,14 @@
 @model IEnumerable<ulp_net_inmobiliaria.Models.Usuario>
 
 @{
-    ViewData["Title"] = "Listado";
+	ViewData["Title"] = "Listado";
 }
 
 <div class="card">
 	<div class="card-header">
-		<a asp-action="Create" class="float-end btn btn-outline-primary btn-sm"><i class="fa-solid fa-plus"></i> Crear Usuario</a>
+		<a asp-action="Create" class="float-end btn btn-outline-primary btn-sm"><span><i
+					class="fa-solid fa-plus fa-fw"></i></span> Crear
+			Usuario</a>
 		<h5>Usuarios</h5>
 	</div>
 	<div class="card-body">
@@ -32,34 +34,41 @@
 				</tr>
 			</thead>
 			<tbody>
-		@foreach (var item in Model) {
-				<tr>
-					<td>
-						@Html.DisplayFor(modelItem => item.RolNombre)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Nombre)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Apellido)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Email)
-					</td>
-					<td>
-						@if(!String.IsNullOrEmpty(item.Avatar)){
-							<img width="32" src="@item.Avatar" />
-						} else {
-							<img width="32" src="img/user_avatar.jpg" />
-						}
-					</td>
-					<td>
-						<a class="ms-1 btn btn-sm btn btn-outline-success" asp-controller="Usuarios" asp-action="Details" asp-route-id="@item.Id"><i class="fa-solid fa-eye"></i></a>
-						<a class="ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Usuarios" asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pencil"></i></a>
-						<a class="ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Usuarios" asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-xmark"></i></a>
-					</td>
-				</tr>
-		}
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => item.RolNombre)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Nombre)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Apellido)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Email)
+						</td>
+						<td>
+							@if (!String.IsNullOrEmpty(item.Avatar))
+							{
+								<img width="32" src="@item.Avatar" />
+							}
+							else
+							{
+								<img width="32" src="img/user_avatar.jpg" />
+							}
+						</td>
+						<td>
+							<a class="ms-1 btn btn-sm btn btn-outline-success" asp-controller="Usuarios" asp-action="Details"
+								asp-route-id="@item.Id"><span><i class="fa-solid fa-eye fa-fw"></i></span></a>
+							<a class="ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Usuarios" asp-action="Edit"
+								asp-route-id="@item.Id"><span><i class="fa-solid fa-pencil fa-fw"></i></span></a>
+							<a class="ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Usuarios" asp-action="Delete"
+								asp-route-id="@item.Id"><span><i class="fa-solid fa-xmark fa-fw"></i></span></a>
+						</td>
+					</tr>
+				}
 			</tbody>
 		</table>
 	</div>

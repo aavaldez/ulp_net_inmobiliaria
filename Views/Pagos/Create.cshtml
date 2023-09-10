@@ -4,8 +4,9 @@
 	ViewData["Title"] = "Crear Pago";
 	var contrato = (Contrato)ViewBag.Contrato;
 	var pagoUltimo = 1;
-	if( (Pago)ViewBag.PagoUltimo != null){
-		pagoUltimo = ViewBag.PagoUltimo.Numero+1;
+	if ((Pago)ViewBag.PagoUltimo != null)
+	{
+		pagoUltimo = ViewBag.PagoUltimo.Numero + 1;
 	}
 	var fecha = DateTime.Today;
 }
@@ -22,7 +23,7 @@
 					<input type="hidden" name="ContratoId" value="@contrato.Id" />
 					<div class="mb-3">
 						<label asp-for="Numero" class="form-label"></label>
-						<input asp-for="Numero" class="form-control text-end"  value="@pagoUltimo" readonly />
+						<input asp-for="Numero" class="form-control text-end" value="@pagoUltimo" readonly />
 						<span asp-validation-for="Numero" class="text-danger"></span>
 					</div>
 					<div class="mb-3">
@@ -47,7 +48,8 @@
 			</div>
 		</div>
 		<div class="card-footer">
-			<a asp-action="Index" class="float-end">Volver a la lista</a>
+			<a asp-controller="Contratos" asp-action="Details" asp-route-id="@contrato.Id" class="float-end">Volver a la
+				lista</a>
 			<input type="submit" value="Guardar" class="btn btn-outline-primary btn-sm" />
 		</div>
 	</div>
