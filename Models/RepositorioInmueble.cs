@@ -94,7 +94,7 @@ namespace ulp_net_inmobiliaria.Models
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"SELECT 
-					{nameof(i.Id)}, Uso, Tipo, Direccion, Ambientes, Superficie, Latitud, Longitud, Valor, Estado, PropietarioId, p.Nombre, p.Apellido, p.Dni
+					{nameof(i.Id)}, i.Uso, i.Tipo, i.Direccion, i.Ambientes, i.Superficie, i.Latitud, i.Longitud, i.Valor, i.Estado, i.PropietarioId, p.Nombre, p.Apellido, p.Dni
 					FROM Inmuebles i 
 					INNER JOIN Propietarios p ON p.Id = i.PropietarioId";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
@@ -139,7 +139,7 @@ namespace ulp_net_inmobiliaria.Models
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"SELECT 
-					{nameof(i.Id)}, Uso, Tipo, Direccion, Ambientes, Superficie, Latitud, Longitud, Valor, Estado, PropietarioId, p.Nombre, p.Apellido, p.Dni
+					{nameof(i.Id)}, i.Uso, i.Tipo, i.Direccion, i.Ambientes, i.Superficie, i.Latitud, i.Longitud, i.Valor, i.Estado, i.PropietarioId, p.Nombre, p.Apellido, p.Dni
 					FROM Inmuebles i 
 					INNER JOIN Propietarios p ON p.Id = i.PropietarioId
 					WHERE i.Id=@id";

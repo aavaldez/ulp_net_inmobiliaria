@@ -22,8 +22,9 @@ namespace ulp_net_inmobiliaria.Models
 		[DataType(DataType.Date)]
 		[Required(ErrorMessage = "La fecha de fin es obligatoria.")]
 		public DateTime Hasta { get; set; }
-		[Required(ErrorMessage = "La valor de alquiler es obligatorio.")]
+		[Required(ErrorMessage = "El valor de alquiler es obligatorio.")]
 		public Decimal Valor { get; set; } = 0;
+		public int Estado { get; set; } = 1;
 
 		public override string ToString()
 		{

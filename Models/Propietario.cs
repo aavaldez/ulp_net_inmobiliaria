@@ -16,6 +16,7 @@ namespace ulp_net_inmobiliaria.Models
 		public string? Telefono { get; set; }
 		[DisplayFormat(NullDisplayText = "Sin email")]
 		public string? Email { get; set; }
+		public int Estado { get; set; } = 1;
 
 		public override string ToString()
 		{

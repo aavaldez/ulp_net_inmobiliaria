@@ -8,6 +8,7 @@ CREATE TABLE `propietarios` (
 	`dni` VARCHAR(16) NOT NULL,
 	`telefono` VARCHAR(160) DEFAULT NULL,
 	`email` VARCHAR(160) DEFAULT NULL,
+	`estado` INT NOT NULL DEFAULT 1,
   	PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -18,6 +19,7 @@ CREATE TABLE `inquilinos` (
 	`dni` VARCHAR(16) NOT NULL,
 	`telefono` VARCHAR(160) DEFAULT NULL,
 	`email` VARCHAR(160) DEFAULT NULL,
+	`estado` INT NOT NULL DEFAULT 1,
   	PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -45,6 +47,7 @@ CREATE TABLE `contratos` (
 	`desde` DATETIME DEFAULT NULL,
 	`hasta` DATETIME DEFAULT NULL,
 	`valor` DECIMAL(10,2) NOT NULL DEFAULT 0,
+	`estado` INT NOT NULL DEFAULT 1,
   	PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -74,9 +77,9 @@ CREATE TABLE `usuarios` (
   	PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-/*CONTRASEÑA EN AMBOS USUARIOS: asdasd*/
+/* CONTRASEÑA EN AMBOS USUARIOS: asdasd */
 INSERT INTO `usuarios` (`id`, `rol`, `nombre`, `apellido`, `email`, `password`, `avatar`, `estado`) VALUES (NULL, '1', 'Alberto', 'Valdez', 'aavaldez@gmail.com', 'o3P72xbu1tuJBR6BSKYhoBUSl64w2I7ZJ3ctKgPwD34=', NULL, '1');
-INSERT INTO `usuarios` (`id`, `rol`, `nombre`, `apellido`, `email`, `password`, `avatar`, `estado`) VALUES (NULL, '1', 'Mariano', 'Luzza', 'mluzza@gmail.com', 'o3P72xbu1tuJBR6BSKYhoBUSl64w2I7ZJ3ctKgPwD34=', NULL, '1');
+INSERT INTO `usuarios` (`id`, `rol`, `nombre`, `apellido`, `email`, `password`, `avatar`, `estado`) VALUES (NULL, '2', 'Mariano', 'Luzza', 'mluzza@gmail.com', 'o3P72xbu1tuJBR6BSKYhoBUSl64w2I7ZJ3ctKgPwD34=', NULL, '1');
 
 dotnet-aspnet-codegenerator view Index List -outDir "Views/Propietarios" -udl --model ulp_net_inmobiliaria.Models.Propietario -f
 dotnet-aspnet-codegenerator view Create Create -outDir "Views/Propietarios" -udl --model ulp_net_inmobiliaria.Models.Propietario -f

@@ -91,7 +91,7 @@ namespace ulp_net_inmobiliaria.Models
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"SELECT 
-					c.Id, c.InquilinoId, c.InmuebleId, c.Desde, c.Hasta, c.Valor, i.Nombre, i.Apellido, inm.Tipo, inm.Direccion
+					c.Id, c.InquilinoId, c.InmuebleId, c.Desde, c.Hasta, c.Valor, c.Estado, i.Nombre, i.Apellido, inm.Tipo, inm.Direccion
 					FROM Contratos c 
 					INNER JOIN Inquilinos i ON c.InquilinoId = i.Id
 					INNER JOIN Inmuebles inm ON c.InmuebleId = inm.Id";
@@ -108,6 +108,7 @@ namespace ulp_net_inmobiliaria.Models
 							Desde = reader.GetDateTime("Desde"),
 							Hasta = reader.GetDateTime("Hasta"),
 							Valor = reader.GetDecimal("Valor"),
+							Estado = reader.GetInt32("Estado"),
 							InquilinoId = reader.GetInt32("InquilinoId"),
 							Inquilino = new Inquilino
 							{
@@ -137,7 +138,7 @@ namespace ulp_net_inmobiliaria.Models
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"SELECT 
-					c.Id, c.InquilinoId, c.InmuebleId, c.Desde, c.Hasta, c.Valor, i.Nombre, i.Apellido, inm.Tipo, inm.Direccion
+					c.Id, c.InquilinoId, c.InmuebleId, c.Desde, c.Hasta, c.Valor, c.Estado, i.Nombre, i.Apellido, inm.Tipo, inm.Direccion
 					FROM Contratos c 
 					INNER JOIN Inquilinos i ON c.InquilinoId = i.Id
 					INNER JOIN Inmuebles inm ON c.InmuebleId = inm.Id
@@ -156,6 +157,7 @@ namespace ulp_net_inmobiliaria.Models
 							Desde = reader.GetDateTime("Desde"),
 							Hasta = reader.GetDateTime("Hasta"),
 							Valor = reader.GetDecimal("Valor"),
+							Estado = reader.GetInt32("Estado"),
 							InquilinoId = reader.GetInt32("InquilinoId"),
 							Inquilino = new Inquilino
 							{

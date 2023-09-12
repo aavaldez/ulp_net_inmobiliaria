@@ -86,7 +86,7 @@ namespace ulp_net_inmobiliaria.Models
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"SELECT 
-					Id, Nombre, Apellido, Dni, Telefono, Email
+					Id, Nombre, Apellido, Dni, Telefono, Email, Estado
 					FROM Propietarios";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
@@ -102,7 +102,8 @@ namespace ulp_net_inmobiliaria.Models
 							Apellido = reader.GetString("Apellido"),
 							Dni = reader.GetString("Dni"),
 							Telefono = reader["Telefono"] == DBNull.Value ? "" : reader.GetString("Telefono"),
-							Email = reader["Email"] == DBNull.Value ? "" : reader.GetString("Email")
+							Email = reader["Email"] == DBNull.Value ? "" : reader.GetString("Email"),
+							Estado = reader.GetInt32("Estado")
 						};
 						res.Add(p);
 					}
@@ -112,12 +113,12 @@ namespace ulp_net_inmobiliaria.Models
 			return res;
 		}
 
-		public Propietario ObtenerPorId(int id)
+		public Propietario? ObtenerPorId(int id)
 		{
-			Propietario p = null;
+			Propietario? p = null;
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
-				string sql = @"SELECT Id, Nombre, Apellido, Dni, Telefono, Email
+				string sql = @"SELECT Id, Nombre, Apellido, Dni, Telefono, Email, Estado
 					FROM Propietarios
 					WHERE Id=@id";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
@@ -136,6 +137,7 @@ namespace ulp_net_inmobiliaria.Models
 							Dni = reader.GetString("Dni"),
 							Telefono = reader["Telefono"] == DBNull.Value ? "" : reader.GetString("Telefono"),
 							Email = reader["Email"] == DBNull.Value ? "" : reader.GetString("Email"),
+							Estado = reader.GetInt32("Estado")
 						};
 					}
 					connection.Close();
