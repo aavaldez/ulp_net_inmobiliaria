@@ -70,19 +70,23 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach (var item in ltaPagos)
-				{
-					<tr>
-						<td>
-							@Html.DisplayFor(modelItem => item.Numero)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.Fecha)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.Importe)
-						</td>
-					</tr>
+				@if(ltaPagos.Count > 0){
+					foreach (var item in ltaPagos)
+					{
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.Numero)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Fecha)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Importe)
+							</td>
+						</tr>
+					} 
+				}else{
+					<tr><td class="text-center" colspan="3">No hay pagos para mostrar</td></tr>
 				}
 			</tbody>
 		</table>

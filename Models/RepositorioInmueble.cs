@@ -88,9 +88,9 @@ namespace ulp_net_inmobiliaria.Models
 			return res;
 		}
 
-		public IList<Inmueble> ObtenerTodos()
+		public List<Inmueble> ObtenerTodos()
 		{
-			IList<Inmueble> res = new List<Inmueble>();
+			List<Inmueble> res = new List<Inmueble>();
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"SELECT 
@@ -124,6 +124,46 @@ namespace ulp_net_inmobiliaria.Models
 								Apellido = reader.GetString("Apellido"),
 								Dni = reader.GetString("Dni")
 							}
+						};
+						res.Add(p);
+					}
+					connection.Close();
+				}
+			}
+			return res;
+		}
+
+		public List<Inmueble> ObtenerTodosPropietario(int id)
+		{
+			List<Inmueble> res = new List<Inmueble>();
+			using (MySqlConnection connection = new MySqlConnection(connectionString))
+			{
+				string sql = @"SELECT 
+					{nameof(i.Id)}, i.Uso, i.Tipo, i.Direccion, i.Ambientes, i.Superficie, i.Latitud, i.Longitud, i.Valor, i.Estado, i.PropietarioId, p.Nombre, p.Apellido, p.Dni
+					FROM Inmuebles i 
+					INNER JOIN Propietarios p ON p.Id = i.PropietarioId
+					WHERE i.PropietarioId=@id";
+				using (MySqlCommand command = new MySqlCommand(sql, connection))
+				{
+					command.Parameters.Add("@id", MySqlDbType.Int32).Value = id;
+					command.CommandType = CommandType.Text;
+					connection.Open();
+					var reader = command.ExecuteReader();
+					while (reader.Read())
+					{
+						Inmueble p = new Inmueble
+						{
+							Id = reader.GetInt32(nameof(Inmueble.Id)),
+							Uso = reader.GetInt32("Uso"),
+							Tipo = reader.GetInt32("Tipo"),
+							Direccion = reader.GetString("Direccion"),
+							Ambientes = reader.GetInt32("Ambientes"),
+							Superficie = reader.GetInt32("Superficie"),
+							Latitud = reader.GetDecimal("Latitud"),
+							Longitud = reader.GetDecimal("Longitud"),
+							Valor = reader.GetDecimal("Valor"),
+							Estado = reader.GetInt32("Estado"),
+							PropietarioId = reader.GetInt32("PropietarioId")
 						};
 						res.Add(p);
 					}

@@ -2,6 +2,7 @@
 
 @{
 	ViewData["Title"] = "Detalles";
+	var ltaInmuebles = (IList<Inmueble>)ViewBag.Inmuebles;
 }
 
 <div class="card">
@@ -48,6 +49,68 @@
 				@Html.DisplayFor(model => model.Email)
 			</dd>
 		</dl>
+	</div>
+	<h5 class="ps-3">Lista de Inmuebles del Propietario</h5>
+	<div class="card-body">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>
+						Tipo
+					</th>
+					<th>
+						Dirección
+					</th>
+					<th>
+						Ambientes
+					</th>
+					<th>
+						Superficie
+					</th>
+					<th>
+						Latitud
+					</th>
+					<th>
+						Longitud
+					</th>
+					<th>
+						Valor
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				@if(ltaInmuebles.Count > 0){
+					foreach (var item in ltaInmuebles)
+					{
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.TipoNombre)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Direccion)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Ambientes)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Superficie)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Latitud)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Longitud)
+							</td>
+							<td>
+								$@Html.DisplayFor(modelItem => item.Valor)
+							</td>
+						</tr>
+					}
+				} else {
+					<tr><td class="text-center" colspan="7">No hay Inmuebles para mostrar</td></tr>
+				}
+			</tbody>
+		</table>
 	</div>
 	<div class="card-footer">
 		<a asp-action="Index" class="float-end">Volver a la lista</a>

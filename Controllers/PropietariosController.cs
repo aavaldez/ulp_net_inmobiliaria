@@ -25,6 +25,8 @@ namespace ulp_net_inmobiliaria.Controllers
 		public ActionResult Details(int id)
 		{
 			var entidad = repo.ObtenerPorId(id);
+			RepositorioInmueble repoInmueble = new RepositorioInmueble();
+			ViewBag.Inmuebles = repoInmueble.ObtenerTodosPropietario(id);
 			return View(entidad);
 		}
 

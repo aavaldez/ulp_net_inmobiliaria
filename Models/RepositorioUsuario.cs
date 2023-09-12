@@ -69,7 +69,7 @@ namespace ulp_net_inmobiliaria.Models
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"UPDATE Usuarios 
-					SET Rol=@rol, Nombre=@nombre, Apellido=@apellido, Email=@email, Password=@password, Avatar=@avatar
+					SET Rol=@rol, Nombre=@nombre, Apellido=@apellido, Email=@email
 					WHERE Id = @id";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
@@ -78,8 +78,6 @@ namespace ulp_net_inmobiliaria.Models
 					command.Parameters.AddWithValue("@nombre", u.Nombre);
 					command.Parameters.AddWithValue("@apellido", u.Apellido);
 					command.Parameters.AddWithValue("@email", u.Email);
-					command.Parameters.AddWithValue("@password", u.Password);
-					command.Parameters.AddWithValue("@avatar", u.Avatar);
 					command.Parameters.AddWithValue("@id", u.Id);
 					connection.Open();
 					res = command.ExecuteNonQuery();
@@ -88,6 +86,50 @@ namespace ulp_net_inmobiliaria.Models
 			}
 			return res;
 		}
+
+	public int ModificarContraseña(Usuario usuario)
+	{
+		int res = 0;
+		using (MySqlConnection connection = new MySqlConnection(connectionString))
+		{
+			String sql = @"UPDATE usuarios
+				SET password = @password
+				WHERE id = @id;";
+
+			using (var command = new MySqlCommand(sql, connection))
+			{
+				command.Parameters.AddWithValue("@password", usuario.Password);
+				command.Parameters.AddWithValue("@id", usuario.Id);
+
+				connection.Open();
+				res = command.ExecuteNonQuery();
+				connection.Close();
+			}
+		}
+		return res;
+	}
+
+	public int ModificarAvatar(Usuario usuario)
+	{
+		int res = 0;
+		using (MySqlConnection connection = new MySqlConnection(connectionString))
+		{
+			String sql = @"UPDATE usuarios
+				SET avatar = @avatar
+				WHERE id = @id;";
+
+			using (var command = new MySqlCommand(sql, connection))
+			{
+				command.Parameters.AddWithValue("@avatar", usuario.Avatar);
+				command.Parameters.AddWithValue("@id", usuario.Id);
+
+				connection.Open();
+				res = command.ExecuteNonQuery();
+				connection.Close();
+			}
+		}
+		return res;
+	}
 
 		public List<Usuario> ObtenerTodos()
 		{

@@ -124,6 +124,7 @@ namespace ulp_net_inmobiliaria.Controllers
 		[Authorize]
 		public ActionResult Update(int id, Usuario usuario)
 		{
+			/*
 			Usuario p;
 			try
 			{
@@ -132,9 +133,6 @@ namespace ulp_net_inmobiliaria.Controllers
 				p.Nombre = usuario.Nombre;
 				p.Apellido = usuario.Apellido;
 				p.Email = usuario.Email;
-				p.Password = usuario.Password;
-				p.Avatar = usuario.Avatar;
-				p.Estado = usuario.Estado;
 				repo.Modificacion(p);
 				return RedirectToAction("Index");
 			}
@@ -142,6 +140,76 @@ namespace ulp_net_inmobiliaria.Controllers
 			{
 				throw;
 			}
+			*/
+
+			var usuarioDB = repo.ObtenerPorId(usuario.Id);
+
+			if (!ModelState.IsValid)
+			{
+				ViewBag.Roles = Usuario.ObtenerRoles();
+				return View(usuarioDB);
+			}
+
+			try
+			{
+				var usuarioEmailCheck = repo.ObtenerPorEmail(usuario.Email);
+				if (usuarioEmailCheck.Id > 0 && usuarioEmailCheck.Id != usuario.Id)
+				{
+					ModelState.AddModelError("Email", "El email ingresado ya existe");
+					ViewBag.Error = "Email no puede coincidir con otro usuario";
+					ViewBag.Roles = Usuario.ObtenerRoles();
+					return View(usuarioDB);
+				}
+
+				usuarioDB.Rol = User.IsInRole("Administrador") ? usuario.Rol : (int)enRoles.Empleado;
+				usuarioDB.Nombre = usuario.Nombre;
+				usuarioDB.Apellido = usuario.Apellido;
+				usuarioDB.Email = usuario.Email;
+				repo.Modificacion(usuarioDB);
+
+				if (usuario.AvatarFile != null && usuario.Id > 0)
+				{
+					string wwwPath = environment.WebRootPath;
+					string path = Path.Combine(wwwPath, "Uploads");
+					if (!Directory.Exists(path))
+					{
+						Directory.CreateDirectory(path);
+					}
+
+					if (usuarioDB.Avatar != null) {
+						// Borrar la foto si existe
+						string existingFilePath = Path.Combine(path, $"avatar_{usuario.Id}{Path.GetExtension(usuarioDB.Avatar)}");
+						if (System.IO.File.Exists(existingFilePath))
+						{
+							System.IO.File.Delete(existingFilePath);
+						}
+					}
+
+					string fileName = $"avatar_{usuario.Id + Path.GetExtension(usuario.AvatarFile.FileName)}";
+					string pathCompleto = Path.Combine(path, fileName);
+					usuario.Avatar = Path.Combine("/Uploads", fileName);
+
+					// Guardar la foto en la memoria
+					using (FileStream stream = new FileStream(pathCompleto, FileMode.Create))
+					{
+						usuario.AvatarFile.CopyTo(stream);
+					}
+					repo.ModificarAvatar(usuario);
+				}
+				return RedirectToAction(nameof(Index));
+			}
+			catch
+			{
+				throw;
+			}
+		}
+
+		public ActionResult CambiarPassword(){
+			return RedirectToAction(nameof(Index));
+		}
+
+		public ActionResult CambiarAvatar(){
+			return RedirectToAction(nameof(Index));
 		}
 
 		[HttpGet]
