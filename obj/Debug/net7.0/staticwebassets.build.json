@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "c6QYP8/bjFDw+J37jSyw55JgZRXEwlItyI0mW9+yb8Q=",
+  "Hash": "tQ4CgfYDxxcMkaX+GXtYvTjEdgzVXdIh7i8qtCRQ8iM=",
   "Source": "ulp_net_inmobiliaria",
   "BasePath": "_content/ulp_net_inmobiliaria",
   "Mode": "Default",
@@ -1103,6 +1103,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\PUESTO-A1\\Documents\\GitHub\\ulp_net_inmobiliaria\\wwwroot\\Uploads\\avatar_8.png",
+      "SourceId": "ulp_net_inmobiliaria",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\PUESTO-A1\\Documents\\GitHub\\ulp_net_inmobiliaria\\wwwroot\\",
+      "BasePath": "_content/ulp_net_inmobiliaria",
+      "RelativePath": "Uploads/avatar_8.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\avatar_8.png"
     }
   ]
 }

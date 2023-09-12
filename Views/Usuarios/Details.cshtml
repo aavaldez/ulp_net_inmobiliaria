@@ -13,26 +13,41 @@
 		<h5>Detalles Usuario</h5>
 	</div>
 	<div class="card-body">
-		<dl class="row">
-			<dt class="col-sm-2">
-				@Html.DisplayNameFor(model => model.Nombre)
-			</dt>
-			<dd class="col-sm-10">
-				@Html.DisplayFor(model => model.Nombre)
-			</dd>
-			<dt class="col-sm-2">
-				@Html.DisplayNameFor(model => model.Apellido)
-			</dt>
-			<dd class="col-sm-10">
-				@Html.DisplayFor(model => model.Apellido)
-			</dd>
-			<dt class="col-sm-2">
-				@Html.DisplayNameFor(model => model.Email)
-			</dt>
-			<dd class="col-sm-10">
-				@Html.DisplayFor(model => model.Email)
-			</dd>
-		</dl>
+		<div class="row">
+			<div class="col-sm-2">
+				<label for="AvatarFile" class="form-avatar">
+					<img src="@Model.Avatar" id="user-avatar">
+				</label>
+			</div>
+			<div class="col-sm-10">
+				<dl class="row">
+					<dt class="col-sm-2">
+						@Html.DisplayNameFor(model => model.Nombre)
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.Nombre)
+					</dd>
+					<dt class="col-sm-2">
+						@Html.DisplayNameFor(model => model.Apellido)
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.Apellido)
+					</dd>
+					<dt class="col-sm-2">
+						@Html.DisplayNameFor(model => model.Email)
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.Email)
+					</dd>
+					<dt class="col-sm-2">
+						@Html.DisplayNameFor(model => model.Rol)
+					</dt>
+					<dd class="col-sm-10">
+						@Html.DisplayFor(model => model.RolNombre)
+					</dd>
+				</dl>
+			</div>
+		</div>
 	</div>
 	<div class="card-footer">
 		<a asp-action="Index" class="float-end">Volver a la lista</a>

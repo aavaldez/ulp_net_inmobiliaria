@@ -48,8 +48,22 @@ namespace ulp_net_inmobiliaria.Controllers
 		[Authorize(Policy = "Administrador")]
 		public ActionResult Create(Usuario usuario)
 		{
+			if (!ModelState.IsValid)
+			{
+				ViewBag.Roles = Usuario.ObtenerRoles();
+				return View();
+			}
 			try
 			{
+				// Comprobar que el email ingresado no existe en la BD
+				var usuarioDB = repo.ObtenerPorEmail(usuario.Email);
+				if (usuarioDB != null)
+				{
+					ModelState.AddModelError("Email", "El email ingresado ya existe");
+					ViewBag.Error = "El email ingresado ya existe";
+					ViewBag.Roles = Usuario.ObtenerRoles();
+					return View();
+				}
 				string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
 					password: usuario.Password,
 					salt: System.Text.Encoding.ASCII.GetBytes("1234567890"),
@@ -59,7 +73,7 @@ namespace ulp_net_inmobiliaria.Controllers
 				));
 				usuario.Password = hashed;
 				usuario.Rol = User.IsInRole("Administrador") ? usuario.Rol : (int)enRoles.Empleado;
-				var lista = repo.Alta(usuario);
+				var res = repo.Alta(usuario);
 				if (usuario.AvatarFile != null && usuario.Id > 0)
 				{
 					string wwwPath = environment.WebRootPath;

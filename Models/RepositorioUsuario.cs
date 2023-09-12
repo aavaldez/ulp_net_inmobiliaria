@@ -17,8 +17,8 @@ namespace ulp_net_inmobiliaria.Models
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"INSERT INTO Usuarios 
-					(Rol, Nombre, Apellido, Email, Password, Avatar, Estado)
-					VALUES (@rol, @nombre, @apellido, @email, @password, @avatar, @estado);
+					(Rol, Nombre, Apellido, Email, Password, Avatar)
+					VALUES (@rol, @nombre, @apellido, @email, @password, @avatar);
 					SELECT LAST_INSERT_ID();";//devuelve el id insertado (LAST_INSERT_ID para mysql)
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
@@ -36,7 +36,6 @@ namespace ulp_net_inmobiliaria.Models
 					{
 						command.Parameters.AddWithValue("@avatar", p.Avatar);
 					}
-					command.Parameters.AddWithValue("@estado", p.Estado);
 					connection.Open();
 					res = Convert.ToInt32(command.ExecuteScalar());
 					p.Id = res;
@@ -64,27 +63,24 @@ namespace ulp_net_inmobiliaria.Models
 			return res;
 		}
 
-		public int Modificacion(Usuario p)
+		public int Modificacion(Usuario u)
 		{
 			int res = -1;
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"UPDATE Usuarios 
-					(Rol, Nombre, Apellido, Email, Password, Avatar, Estado)
-					VALUES (@rol, @nombre, @apellido, @email, @password, @avatar, @estado);
-					SET Rol=@rol, Nombre=@nombre, Apellido=@apellido, Email=@email, Password=@password, Avatar=@avatar, Estado=@estado
+					SET Rol=@rol, Nombre=@nombre, Apellido=@apellido, Email=@email, Password=@password, Avatar=@avatar
 					WHERE Id = @id";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
 					command.CommandType = CommandType.Text;
-					command.Parameters.AddWithValue("@rol", p.Rol);
-					command.Parameters.AddWithValue("@nombre", p.Nombre);
-					command.Parameters.AddWithValue("@apellido", p.Apellido);
-					command.Parameters.AddWithValue("@email", p.Email);
-					command.Parameters.AddWithValue("@password", p.Password);
-					command.Parameters.AddWithValue("@avatar", p.Avatar);
-					command.Parameters.AddWithValue("@estado", p.Estado);
-					command.Parameters.AddWithValue("@id", p.Id);
+					command.Parameters.AddWithValue("@rol", u.Rol);
+					command.Parameters.AddWithValue("@nombre", u.Nombre);
+					command.Parameters.AddWithValue("@apellido", u.Apellido);
+					command.Parameters.AddWithValue("@email", u.Email);
+					command.Parameters.AddWithValue("@password", u.Password);
+					command.Parameters.AddWithValue("@avatar", u.Avatar);
+					command.Parameters.AddWithValue("@id", u.Id);
 					connection.Open();
 					res = command.ExecuteNonQuery();
 					connection.Close();
@@ -93,9 +89,9 @@ namespace ulp_net_inmobiliaria.Models
 			return res;
 		}
 
-		public IList<Usuario> ObtenerTodos()
+		public List<Usuario> ObtenerTodos()
 		{
-			IList<Usuario> res = new List<Usuario>();
+			List<Usuario> res = new List<Usuario>();
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"SELECT 
