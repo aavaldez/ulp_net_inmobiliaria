@@ -54,11 +54,14 @@
 						</td>
 						<td>
 							<a class="ms-1 btn btn-sm btn btn-outline-success" asp-controller="Contratos" asp-action="Details"
-								asp-route-id="@item.Id"><span><i class="fa-solid fa-eye fa-fw"></i></span></a>
+								asp-route-id="@item.Id"><span><i class="fa-solid fa-circle-info fa-fw"></i></span></a>
 							<a class="ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Contratos" asp-action="Edit"
 								asp-route-id="@item.Id"><span><i class="fa-solid fa-pencil fa-fw"></i></span></a>
-							<a class="ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Contratos" asp-action="Delete"
-								asp-route-id="@item.Id"><span><i class="fa-solid fa-xmark fa-fw"></i></span></a>
+							@if (User.IsInRole("Administrador"))
+							{
+								<a class="ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Contratos" asp-action="Delete"
+									asp-route-id="@item.Id"><span><i class="fa-solid fa-trash fa-fw"></i></span></a>
+							}
 						</td>
 					</tr>
 				}

@@ -6,8 +6,11 @@
 
 <div class="card">
 	<div class="card-header">
-		<a class="float-end ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Propietarios" asp-action="Delete"
-			asp-route-id="@Model.Id"><span><i class="fa-solid fa-xmark fa-fw" title="Back"></i></span></a>
+		@if (User.IsInRole("Administrador"))
+		{
+			<a class="float-end ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Propietarios" asp-action="Delete"
+				asp-route-id="@Model.Id"><span><i class="fa-solid fa-trash fa-fw" title="Back"></i></span></a>
+		}
 		<a class="float-end ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Propietarios" asp-action="Edit"
 			asp-route-id="@Model.Id"><span><i class="fa-solid fa-pencil fa-fw" title="Back"></i></span></a>
 		<h5>Detalles Propietario</h5>

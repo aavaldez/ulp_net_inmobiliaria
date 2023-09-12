@@ -17,12 +17,13 @@ namespace ulp_net_inmobiliaria.Models
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"INSERT INTO Inmuebles 
-					(Tipo, Direccion, Ambientes, Superficie, Latitud, Longitud, Valor, PropietarioId)
-					VALUES (@tipo, @direccion, @ambientes, @superficie, @latitud, @longitud, @valor, @PropietarioId);
+					(Uso, Tipo, Direccion, Ambientes, Superficie, Latitud, Longitud, Valor, PropietarioId)
+					VALUES (@uso, @tipo, @direccion, @ambientes, @superficie, @latitud, @longitud, @valor, @PropietarioId);
 					SELECT LAST_INSERT_ID();";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
 					command.CommandType = CommandType.Text;
+					command.Parameters.AddWithValue("@uso", i.Tipo);
 					command.Parameters.AddWithValue("@tipo", i.Tipo);
 					command.Parameters.AddWithValue("@direccion", i.Direccion);
 					command.Parameters.AddWithValue("@ambientes", i.Ambientes);
@@ -39,7 +40,7 @@ namespace ulp_net_inmobiliaria.Models
 			}
 			return res;
 		}
-		
+
 		public int Baja(int id)
 		{
 			int res = -1;
@@ -57,18 +58,19 @@ namespace ulp_net_inmobiliaria.Models
 			}
 			return res;
 		}
-		
+
 		public int Modificacion(Inmueble i)
 		{
 			int res = -1;
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"UPDATE Inmuebles 
-					SET Tipo=@tipo, Direccion=@direccion, Ambientes=@ambientes, Superficie=@superficie, Latitud=@latitud, Longitud=@longitud, Valor=@Valor, Estado=@Estado
+					SET Uso=@uso, Tipo=@tipo, Direccion=@direccion, Ambientes=@ambientes, Superficie=@superficie, Latitud=@latitud, Longitud=@longitud, Valor=@Valor, Estado=@Estado
 					WHERE Id = @id";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
 					command.CommandType = CommandType.Text;
+					command.Parameters.AddWithValue("@uso", i.Uso);
 					command.Parameters.AddWithValue("@tipo", i.Tipo);
 					command.Parameters.AddWithValue("@direccion", i.Direccion);
 					command.Parameters.AddWithValue("@ambientes", i.Ambientes);
@@ -92,7 +94,7 @@ namespace ulp_net_inmobiliaria.Models
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"SELECT 
-					{nameof(i.Id)}, Tipo, Direccion, Ambientes, Superficie, Latitud, Longitud, Valor, Estado, PropietarioId, p.Nombre, p.Apellido, p.Dni
+					{nameof(i.Id)}, Uso, Tipo, Direccion, Ambientes, Superficie, Latitud, Longitud, Valor, Estado, PropietarioId, p.Nombre, p.Apellido, p.Dni
 					FROM Inmuebles i 
 					INNER JOIN Propietarios p ON p.Id = i.PropietarioId";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
@@ -105,6 +107,7 @@ namespace ulp_net_inmobiliaria.Models
 						Inmueble p = new Inmueble
 						{
 							Id = reader.GetInt32(nameof(Inmueble.Id)),
+							Uso = reader.GetInt32("Uso"),
 							Tipo = reader.GetInt32("Tipo"),
 							Direccion = reader.GetString("Direccion"),
 							Ambientes = reader.GetInt32("Ambientes"),
@@ -130,13 +133,13 @@ namespace ulp_net_inmobiliaria.Models
 			return res;
 		}
 
-		public Inmueble ObtenerPorId(int id)
+		public Inmueble? ObtenerPorId(int id)
 		{
-			Inmueble p = null;
+			Inmueble? p = null;
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
 				string sql = @"SELECT 
-					{nameof(i.Id)}, Tipo, Direccion, Ambientes, Superficie, Latitud, Longitud, Valor, Estado, PropietarioId, p.Nombre, p.Apellido, p.Dni
+					{nameof(i.Id)}, Uso, Tipo, Direccion, Ambientes, Superficie, Latitud, Longitud, Valor, Estado, PropietarioId, p.Nombre, p.Apellido, p.Dni
 					FROM Inmuebles i 
 					INNER JOIN Propietarios p ON p.Id = i.PropietarioId
 					WHERE i.Id=@id";
@@ -151,6 +154,7 @@ namespace ulp_net_inmobiliaria.Models
 						p = new Inmueble
 						{
 							Id = reader.GetInt32(nameof(Inmueble.Id)),
+							Uso = reader.GetInt32("Uso"),
 							Tipo = reader.GetInt32("Tipo"),
 							Direccion = reader.GetString("Direccion"),
 							Ambientes = reader.GetInt32("Ambientes"),

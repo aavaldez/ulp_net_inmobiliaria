@@ -1,22 +1,29 @@
 using ulp_net_inmobiliaria.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ulp_net_inmobiliaria.Controllers
 {
 	public class ContratosController : Controller
 	{
+		private readonly RepositorioContrato repo;
+		public ContratosController()
+		{
+			repo = new RepositorioContrato();
+		}
+
 		// GET: ContratosController
+		[Authorize]
 		public ActionResult Index()
 		{
-			RepositorioContrato repo = new RepositorioContrato();
 			var lista = repo.ObtenerTodos();
 			return View(lista);
 		}
 
 		[HttpGet]
+		[Authorize]
 		public ActionResult Details(int id)
 		{
-			RepositorioContrato repo = new RepositorioContrato();
 			var entidad = repo.ObtenerPorId(id);
 			RepositorioPago repoPago = new RepositorioPago();
 			ViewBag.Pagos = repoPago.ObtenerTodosContrato(id);
@@ -24,6 +31,7 @@ namespace ulp_net_inmobiliaria.Controllers
 		}
 
 		[HttpGet]
+		[Authorize]
 		public ActionResult Create()
 		{
 			RepositorioInquilino repoInquilino = new RepositorioInquilino();
@@ -34,25 +42,25 @@ namespace ulp_net_inmobiliaria.Controllers
 		}
 
 		[HttpPost]
+		[Authorize]
 		public ActionResult Create(Contrato contrato)
 		{
 			try
 			{
-				RepositorioContrato repo = new RepositorioContrato();
 				var lista = repo.Alta(contrato);
 				return RedirectToAction("Index");
 			}
 			catch (System.Exception)
 			{
-				
+
 				throw;
 			}
 		}
 
 		[HttpGet]
+		[Authorize]
 		public ActionResult Edit(int id)
 		{
-			RepositorioContrato repo = new RepositorioContrato();
 			RepositorioInquilino repoInquilino = new RepositorioInquilino();
 			ViewBag.Inquilinos = repoInquilino.ObtenerTodos();
 			RepositorioInmueble repoInmueble = new RepositorioInmueble();
@@ -62,12 +70,12 @@ namespace ulp_net_inmobiliaria.Controllers
 		}
 
 		[HttpPost]
+		[Authorize]
 		public ActionResult Update(int id, Contrato contrato)
 		{
 			Contrato? c = null;
 			try
 			{
-				RepositorioContrato repo = new RepositorioContrato();
 				c = repo.ObtenerPorId(id);
 				c.InmuebleId = contrato.InmuebleId;
 				c.InquilinoId = contrato.InquilinoId;
@@ -82,21 +90,21 @@ namespace ulp_net_inmobiliaria.Controllers
 				throw;
 			}
 		}
-	
+
 		[HttpGet]
+		[Authorize(Policy = "Administrador")]
 		public ActionResult Delete(int id)
 		{
-			RepositorioContrato repo = new RepositorioContrato();
 			var entidad = repo.ObtenerPorId(id);
 			return View(entidad);
 		}
 
 		[HttpPost]
-		public ActionResult Delete(int id, IFormCollection collection)
+		[Authorize(Policy = "Administrador")]
+		public ActionResult Delete(int id, Contrato contrato)
 		{
 			try
 			{
-				RepositorioContrato repo = new RepositorioContrato();
 				var lista = repo.Baja(id);
 				return RedirectToAction("Index");
 			}

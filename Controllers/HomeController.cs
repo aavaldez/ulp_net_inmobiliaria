@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using ulp_net_inmobiliaria.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ulp_net_inmobiliaria.Controllers;
 
@@ -13,22 +14,26 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    public IActionResult Index()
+    [Authorize]
+    public ActionResult Index()
     {
         return View();
     }
 
-    public IActionResult Privacy()
+    [Authorize]
+    public ActionResult Privacy()
     {
         return View();
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
+    [Authorize]
+    public ActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 
+    [Authorize]
     public ActionResult Restringido()
     {
         return View();

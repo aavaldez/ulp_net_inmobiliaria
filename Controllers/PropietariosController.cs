@@ -1,38 +1,46 @@
 using ulp_net_inmobiliaria.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ulp_net_inmobiliaria.Controllers
 {
 	public class PropietariosController : Controller
 	{
+		private readonly RepositorioPropietario repo;
+		public PropietariosController()
+		{
+			repo = new RepositorioPropietario();
+		}
+
 		// GET: PropietariosController
+		[Authorize]
 		public ActionResult Index()
 		{
-			RepositorioPropietario repo = new RepositorioPropietario();
 			var lista = repo.ObtenerTodos();
 			return View(lista);
 		}
 
 		[HttpGet]
+		[Authorize]
 		public ActionResult Details(int id)
 		{
-			RepositorioPropietario repo = new RepositorioPropietario();
 			var entidad = repo.ObtenerPorId(id);
 			return View(entidad);
 		}
 
 		[HttpGet]
+		[Authorize]
 		public ActionResult Create()
 		{
 			return View();
 		}
 
 		[HttpPost]
+		[Authorize]
 		public ActionResult Create(Propietario propietario)
 		{
 			try
 			{
-				RepositorioPropietario repo = new RepositorioPropietario();
 				var lista = repo.Alta(propietario);
 				return RedirectToAction("Index");
 			}
@@ -43,20 +51,20 @@ namespace ulp_net_inmobiliaria.Controllers
 		}
 
 		[HttpGet]
+		[Authorize]
 		public ActionResult Edit(int id)
 		{
-			RepositorioPropietario repo = new RepositorioPropietario();
-			Propietario p = repo.ObtenerPorId(id);
-			return View(p);
+			var entidad = repo.ObtenerPorId(id);
+			return View(entidad);
 		}
 
 		[HttpPost]
+		[Authorize]
 		public ActionResult Update(int id, Propietario propietario)
 		{
 			Propietario p;
 			try
 			{
-				RepositorioPropietario repo = new RepositorioPropietario();
 				p = repo.ObtenerPorId(id);
 				p.Nombre = propietario.Nombre;
 				p.Apellido = propietario.Apellido;
@@ -73,25 +81,25 @@ namespace ulp_net_inmobiliaria.Controllers
 		}
 
 		[HttpGet]
+		[Authorize(Policy = "Administrador")]
 		public ActionResult Delete(int id)
 		{
-			RepositorioPropietario repo = new RepositorioPropietario();
 			var entidad = repo.ObtenerPorId(id);
 			return View(entidad);
 		}
 
 		[HttpPost]
-		public ActionResult Delete(int id, IFormCollection collection)
+		[Authorize(Policy = "Administrador")]
+		public ActionResult Delete(int id, Propietario propietario)
 		{
 			try
 			{
-				RepositorioPropietario repo = new RepositorioPropietario();
-				var lista = repo.Baja(id);
-				return RedirectToAction("Index");
+				repo.Baja(id);
+				return RedirectToAction(nameof(Index));
 			}
-			catch (System.Exception)
+			catch
 			{
-				throw;
+				return View(propietario);
 			}
 		}
 	}

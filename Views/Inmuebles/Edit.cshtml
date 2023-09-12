@@ -1,8 +1,8 @@
 @model ulp_net_inmobiliaria.Models.Inmueble
 
 @{
-    ViewData["Title"] = "Editar Inmueble";
-    var Propietarios = (IList<Propietario>)ViewBag.Propietarios;
+	ViewData["Title"] = "Editar Inmueble";
+	var Propietarios = (IList<Propietario>)ViewBag.Propietarios;
 }
 
 <form asp-action="Update">
@@ -21,6 +21,16 @@
 							@foreach (var item in (IDictionary<int, string>)ViewBag.Tipos)
 							{
 								@:<option @(item.Key == Model.Tipo ? "selected" : "") value="@item.Key">@item.Value</option>
+							}
+						</select>
+						<span asp-validation-for="Tipo" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
+						<label asp-for="Uso" class="form-label"></label>
+						<select class="form-control" name="Uso">
+							@foreach (var item in (IDictionary<int, string>)ViewBag.Usos)
+							{
+								@:<option @(item.Key == Model.Uso ? "selected" : "") value="@item.Key">@item.Value</option>
 							}
 						</select>
 						<span asp-validation-for="Tipo" class="text-danger"></span>
@@ -55,7 +65,7 @@
 						<select class="form-control" name="PropietarioId">
 							@foreach (var item in Propietarios)
 							{
-								@:<option @(item.Id==Model.PropietarioId ? "selected" : "") value="@item.Id">@(item.ToString())</option>
+								@:<option @(item.Id == Model.PropietarioId ? "selected" : "") value="@item.Id">@(item.ToString())</option>
 							}
 						</select>
 						<span asp-validation-for="PropietarioId" class="text-danger"></span>
@@ -83,9 +93,11 @@
 			<a asp-action="Index" class="float-end">Volver a la lista</a>
 			<input type="submit" value="Guardar" class="btn btn-outline-primary btn-sm" />
 		</div>
-	<div>
+		<div>
 </form>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
 }

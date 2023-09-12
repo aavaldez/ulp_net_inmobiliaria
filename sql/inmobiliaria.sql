@@ -24,6 +24,7 @@ CREATE TABLE `inquilinos` (
 CREATE TABLE `inmuebles` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`propietarioId` INT NOT NULL,
+	`uso` INT NOT NULL DEFAULT 1,
 	`tipo` INT NOT NULL DEFAULT 1,
 	`direccion` VARCHAR(255) DEFAULT NULL,
 	`ambientes` VARCHAR(255) DEFAULT NULL,

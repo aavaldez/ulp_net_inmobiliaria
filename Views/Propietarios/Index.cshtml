@@ -55,16 +55,19 @@
 						<td>
 							<a class="ms-1 btn btn-sm btn btn-outline-success" asp-controller="Propietarios" asp-action="Details"
 								asp-route-id="@item.Id">
-								<span><i class="fa-solid fa-eye fa-fw" title="Back"></i></span>
+								<span><i class="fa-solid fa-circle-info fa-fw" title="Back"></i></span>
 							</a>
 							<a class="ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Propietarios" asp-action="Edit"
 								asp-route-id="@item.Id">
 								<span><i class="fa-solid fa-pencil fa-fw" title="Back"></i></span>
 							</a>
-							<a class="ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Propietarios" asp-action="Delete"
-								asp-route-id="@item.Id">
-								<span><i class="fa-solid fa-xmark fa-fw" title="Back"></i></span>
-							</a>
+							@if (User.IsInRole("Administrador"))
+							{
+								<a class="ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Propietarios" asp-action="Delete"
+									asp-route-id="@item.Id">
+									<span><i class="fa-solid fa-trash fa-fw" title="Back"></i></span>
+								</a>
+							}
 						</td>
 					</tr>
 				}
