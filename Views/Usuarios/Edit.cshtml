@@ -7,7 +7,7 @@
 
 <div class="row">
 	<div class="col-md-6">
-		<form asp-action="Update">
+		<form asp-action="Update" enctype="multipart/form-data">
 			<div class="card">
 				<div class="card-header">
 					<h5>Edición Usuario</h5>
@@ -20,11 +20,10 @@
 							<div class="mb-3">
 								<label for="AvatarFile" class="form-avatar">
 									<img src="@usuarioAvatar" id="user-avatar">
-									<div class="change-avatar">
-										<span><i class="fa-solid fa-pencil"></i></span></a>
-									</div>
 								</label>
-								<input class="form-control" type="file" name="AvatarFile" id="AvatarFile" hidden accept="image/*" />
+								<span class="float-start cambia-avatar"><i class="fa-solid fa-pencil"></i>
+									<input class="form-control" type="file" name="AvatarFile" id="AvatarFile" hidden accept="image/*" />
+								</span>
 							</div>
 
 							<input type="hidden" name="Id" value="@Model.Id" />

@@ -144,11 +144,6 @@ namespace ulp_net_inmobiliaria.Controllers
 
 			var usuarioDB = repo.ObtenerPorId(usuario.Id);
 
-			if (!ModelState.IsValid)
-			{
-				ViewBag.Roles = Usuario.ObtenerRoles();
-				return View(usuarioDB);
-			}
 
 			try
 			{
