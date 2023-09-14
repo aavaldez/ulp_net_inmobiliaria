@@ -144,16 +144,21 @@ namespace ulp_net_inmobiliaria.Controllers
 
 			var usuarioDB = repo.ObtenerPorId(usuario.Id);
 
+			if (!ModelState.IsValid)
+			{
+				//ViewBag.Roles = Usuario.ObtenerRoles();
+				//return View("Edit", usuarioDB);
+			}
 
 			try
 			{
 				var usuarioEmailCheck = repo.ObtenerPorEmail(usuario.Email);
-				if (usuarioEmailCheck.Id > 0 && usuarioEmailCheck.Id != usuario.Id)
+				if (usuarioEmailCheck != null && usuarioEmailCheck.Id != usuario.Id)
 				{
 					ModelState.AddModelError("Email", "El email ingresado ya existe");
 					ViewBag.Error = "Email no puede coincidir con otro usuario";
 					ViewBag.Roles = Usuario.ObtenerRoles();
-					return View(usuarioDB);
+					return View("Edit", usuarioDB);
 				}
 
 				usuarioDB.Rol = User.IsInRole("Administrador") ? usuario.Rol : (int)enRoles.Empleado;
@@ -171,7 +176,8 @@ namespace ulp_net_inmobiliaria.Controllers
 						Directory.CreateDirectory(path);
 					}
 
-					if (usuarioDB.Avatar != null) {
+					if (usuarioDB.Avatar != null)
+					{
 						// Borrar la foto si existe
 						string existingFilePath = Path.Combine(path, $"avatar_{usuario.Id}{Path.GetExtension(usuarioDB.Avatar)}");
 						if (System.IO.File.Exists(existingFilePath))
@@ -199,11 +205,13 @@ namespace ulp_net_inmobiliaria.Controllers
 			}
 		}
 
-		public ActionResult CambiarPassword(){
+		public ActionResult CambiarPassword()
+		{
 			return RedirectToAction(nameof(Index));
 		}
 
-		public ActionResult CambiarAvatar(){
+		public ActionResult CambiarAvatar()
+		{
 			return RedirectToAction(nameof(Index));
 		}
 

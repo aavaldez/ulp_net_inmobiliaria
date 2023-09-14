@@ -9,165 +9,165 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ulp_net_inmobiliaria
 build_property.RootNamespace = ulp_net_inmobiliaria
-build_property.ProjectDir = c:\Users\PUESTO-A1\Documents\GitHub\ulp_net_inmobiliaria\
+build_property.ProjectDir = C:\Users\ALBERTO\Documents\GitHub\ulp_net_inmobiliaria\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = c:\Users\PUESTO-A1\Documents\GitHub\ulp_net_inmobiliaria
+build_property.MSBuildProjectDirectory = C:\Users\ALBERTO\Documents\GitHub\ulp_net_inmobiliaria
 build_property._RazorSourceGeneratorDebug = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Contratos/Create.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Contratos/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhdG9zXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Contratos/Delete.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Contratos/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhdG9zXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Contratos/Details.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Contratos/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhdG9zXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Contratos/Edit.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Contratos/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhdG9zXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Contratos/Index.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Contratos/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhdG9zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Home/Index.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Home/Restringido.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Home/Restringido.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZXN0cmluZ2lkby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Inmuebles/Create.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Inmuebles/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5tdWVibGVzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Inmuebles/Delete.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Inmuebles/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5tdWVibGVzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Inmuebles/Details.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Inmuebles/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5tdWVibGVzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Inmuebles/Edit.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Inmuebles/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5tdWVibGVzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Inmuebles/Index.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Inmuebles/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5tdWVibGVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Inquilinos/Create.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Inquilinos/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5xdWlsaW5vc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Inquilinos/Delete.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Inquilinos/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5xdWlsaW5vc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Inquilinos/Details.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Inquilinos/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5xdWlsaW5vc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Inquilinos/Edit.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Inquilinos/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5xdWlsaW5vc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Inquilinos/Index.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Inquilinos/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5xdWlsaW5vc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Pagos/Create.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Pagos/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnb3NcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Pagos/Delete.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Pagos/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnb3NcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Pagos/Details.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Pagos/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnb3NcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Pagos/Edit.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Pagos/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnb3NcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Pagos/Index.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Pagos/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnb3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Propietarios/Create.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Propietarios/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGlldGFyaW9zXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Propietarios/Delete.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Propietarios/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGlldGFyaW9zXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Propietarios/Details.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Propietarios/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGlldGFyaW9zXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Propietarios/Edit.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Propietarios/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGlldGFyaW9zXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Propietarios/Index.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Propietarios/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGlldGFyaW9zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Shared/Error.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Shared/_Login.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Shared/_Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Usuarios/Create.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Usuarios/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Usuarios/Delete.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Usuarios/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Usuarios/Details.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Usuarios/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Usuarios/Edit.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Usuarios/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Usuarios/Index.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Usuarios/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Usuarios/Login.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Usuarios/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/_ViewImports.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/_ViewStart.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/PUESTO-A1/Documents/GitHub/ulp_net_inmobiliaria/Views/Shared/_Layout.cshtml]
+[C:/Users/ALBERTO/Documents/GitHub/ulp_net_inmobiliaria/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-8m8r4a5ax8
