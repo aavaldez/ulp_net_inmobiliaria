@@ -205,9 +205,38 @@ namespace ulp_net_inmobiliaria.Controllers
 			}
 		}
 
-		public ActionResult CambiarPassword()
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		[Authorize]
+		public ActionResult CambiarPassword(int id, Usuario usuario)
 		{
-			return RedirectToAction(nameof(Index));
+			try
+			{
+				// Comprobar que el email ingresado no existe en la BD
+				var usuarioDB = repo.ObtenerPorId(id);
+				// Comprobar que las contraseñas sean iguales
+				if (usuario.Password != usuario.PasswordConfirma)
+				{
+					ViewBag.Error = "Las contraseñas no coinciden";
+				} else 
+				{
+					string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+						password: usuario.Password,
+						salt: System.Text.Encoding.ASCII.GetBytes("1234567890"),
+						prf: KeyDerivationPrf.HMACSHA1,
+						iterationCount: 10000,
+						numBytesRequested: 256 / 8
+					));
+					usuario.Password = hashed;
+					usuarioDB.Password = usuario.Password;
+					repo.ModificarContraseña(usuarioDB);
+				}
+				return RedirectToAction("Edit", new { id });
+			} 
+			catch (System.Exception)
+			{
+				throw;
+			}
 		}
 
 		public ActionResult CambiarAvatar()

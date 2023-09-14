@@ -1,8 +1,8 @@
 @model ulp_net_inmobiliaria.Models.Contrato
 
 @{
-	ViewData["Title"] = "Crear Contrato";
-	var ltaInmuebles = (IList<Inmueble>)ViewBag.Inmuebles;
+    ViewData["Title"] = "Crear Contrato";
+    var ltaInmuebles = (IList<Inmueble>)ViewBag.Inmuebles;
 	var ltaInquilinos = (IList<Inquilino>)ViewBag.Inquilinos;
 }
 @if( ViewBag.Error != null ){
@@ -14,7 +14,7 @@
 <form asp-action="Create">
 	<div class="card">
 		<div class="card-header">
-			<h5>Nuevo Contrato</h5>
+			<h5>Renovar Contrato</h5>
 		</div>
 		<div class="card-body">
 			<div class="row">
@@ -32,33 +32,22 @@
 					</div>
 					<div class="mb-3">
 						<label asp-for="InmuebleId" class="form-label"></label>
-						<select name="InmuebleId" id="InmuebleId" class="form-control">
-							<option value="0" selected>Seleccione una opcion</option>
-							@foreach (var item in ltaInmuebles)
-							{
-								<option value="@item.Id" data-valor="@item.Valor">@(item.TipoNombre) - @(item.Direccion) - $@(item.Valor)
-								</option>
-							}
-						</select>
+						<input name="Inmueble" class="form-control" value="@Model.Inmueble.ToString()" readonly>
+						<input type="hidden" name="InmuebleId" value="@Model.InmuebleId" />
 						<span asp-validation-for="InmuebleId" class="text-danger"></span>
 					</div>
 					<div class="mb-3">
 						<label asp-for="Valor" class="form-label"></label>
 						<div class="input-group">
 							<span class="input-group-text" id="">$</span>
-							<input asp-for="Valor" class="form-control text-end" value="0,00" />
+							<input asp-for="Valor" class="form-control text-end" />
 						</div>
 						<span asp-validation-for="Valor" id="Valor" class="text-danger"></span>
 					</div>
 					<div class="mb-3">
 						<label asp-for="InquilinoId" class="form-label"></label>
-						<select name="InquilinoId" class="form-control">
-							<option value="0" selected>Seleccione una opcion</option>
-							@foreach (var item in ltaInquilinos)
-							{
-								<option value="@item.Id">@(item.ToString())</option>
-							}
-						</select>
+						<input name="Inquilino" class="form-control" value="@Model.Inquilino.ToString()" readonly>
+						<input type="hidden" name="InquilinoId" value="@Model.InquilinoId" />
 						<span asp-validation-for="InquilinoId" class="text-danger"></span>
 					</div>
 				</div>
@@ -70,20 +59,7 @@
 		</div>
 	</div>
 </form>
-<script>
-	var valor = document.getElementById('Valor');
-	document.getElementById('InmuebleId').addEventListener('change', function () {
-		let selectedI = this.selectedIndex;
-		var importe = this.options[selectedI].dataset.valor;
-		if (importe)
-			valor.setAttribute("value", importe);
-		else
-			valor.setAttribute("value", "0,00");
-	});
-</script>
 
 @section Scripts {
-	@{
-		await Html.RenderPartialAsync("_ValidationScriptsPartial");
-	}
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

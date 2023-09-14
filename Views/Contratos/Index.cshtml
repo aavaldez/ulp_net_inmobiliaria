@@ -4,13 +4,51 @@
 	ViewData["Title"] = "Listado";
 }
 
+@if( ViewBag.Error != null ){
+	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+		<strong>Atención!</strong> @ViewBag.Error
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+}
+
 <div class="card">
 	<div class="card-header">
-		<a asp-action="Create" class="float-end btn btn-outline-primary btn-sm"><span><i
+		<a asp-action="Create" class="float-end ms-1 btn btn-outline-primary btn-sm"><span><i
 					class="fa-solid fa-plus fa-fw"></i></span> Crear
 			Contrato</a>
+		@if( @ViewContext.RouteData.Values["action"].ToString() != "Index" ){
+			<a asp-action="Index" class="float-end ms-1 btn btn-outline-primary btn-sm">Todos</a>
+		}
+		@if( @ViewContext.RouteData.Values["action"].ToString() != "Expirados" ){
+			<a asp-action="Expirados" class="float-end ms-1 btn btn-outline-danger btn-sm">Expirados</a>
+		}
+		@if( @ViewContext.RouteData.Values["action"].ToString() != "Vigentes" ){
+			<a asp-action="Vigentes" class="float-end ms-1 btn btn-outline-success btn-sm">Vigentes</a>
+		}
 		<h5>Contratos</h5>
 	</div>
+	@if( @ViewContext.RouteData.Values["action"].ToString() == "Vigentes" ){
+		<div class="card-body">
+			<form id="dateForm" asp-controller="Contratos" asp-action="Vigentes" method="post">
+				<div class="row g-3 align-items-center">
+					<div class="col-auto">
+						<label for="desde">Desde:</label>
+					</div>
+					<div class="col-auto">
+						<input type="date" id="desde" name="desde" value="@(ViewBag.desde == null?ViewBag.desde.ToString():DateTime.Today.ToString())" class="form-control"/>
+					</div>
+					<div class="col-auto">
+						<label for="hasta">Hasta:</label>
+					</div>
+					<div class="col-auto">
+						<input type="date" id="hasta" name="hasta" value="@(ViewBag.hasta == null?ViewBag.hasta.ToString():DateTime.Today.ToString())" class="form-control"/>
+					</div>
+					<div class="col-auto">
+						<button type="submit" class="btn btn-outline-primary btn-sm"><i class="fa-solid fa-magnifying-glass"></i></button>
+					</div>
+			</form>
+		</div>
+	}
 	<div class="card-body">
 		<table class="table">
 			<thead>
@@ -55,8 +93,10 @@
 						<td>
 							<a class="ms-1 btn btn-sm btn btn-outline-success" asp-controller="Contratos" asp-action="Details"
 								asp-route-id="@item.Id"><span><i class="fa-solid fa-circle-info fa-fw"></i></span></a>
-							<a class="ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Contratos" asp-action="Edit"
-								asp-route-id="@item.Id"><span><i class="fa-solid fa-pencil fa-fw"></i></span></a>
+							@if( item.Estado != 2 || DateTime.Today > item.Hasta){
+								<a class="ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Contratos" asp-action="Edit"
+									asp-route-id="@item.Id"><span><i class="fa-solid fa-pencil fa-fw"></i></span></a>
+							}
 							@if (User.IsInRole("Administrador"))
 							{
 								<a class="ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Contratos" asp-action="Delete"

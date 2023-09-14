@@ -5,7 +5,12 @@
     var ltaInmuebles = (IList<Inmueble>)ViewBag.Inmuebles;
 	var ltaInquilinos = (IList<Inquilino>)ViewBag.Inquilinos;
 }
-
+@if( ViewBag.Error != null ){
+	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+		<strong>Atención!</strong> @ViewBag.Error
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+}
 <form asp-action="Update">
 	<div class="card">
 		<div class="card-header">
@@ -27,11 +32,6 @@
 						<span asp-validation-for="Hasta" class="text-danger"></span>
 					</div>
 					<div class="mb-3">
-						<label asp-for="Valor" class="form-label"></label>
-						<input asp-for="Valor" class="form-control" />
-						<span asp-validation-for="Valor" class="text-danger"></span>
-					</div>
-					<div class="mb-3">
 						<label asp-for="InmuebleId" class="form-label"></label>
 						<select name="InmuebleId" class="form-control">
 							@foreach (var item in ltaInmuebles)
@@ -40,6 +40,14 @@
 							}
 						</select>
 						<span asp-validation-for="InmuebleId" class="text-danger"></span>
+					</div>
+					<div class="mb-3">
+						<label asp-for="Valor" class="form-label"></label>
+						<div class="input-group">
+							<span class="input-group-text" id="">$</span>
+							<input asp-for="Valor" class="form-control text-end" />
+						</div>
+						<span asp-validation-for="Valor" id="Valor" class="text-danger"></span>
 					</div>
 					<div class="mb-3">
 						<label asp-for="InquilinoId" class="form-label"></label>

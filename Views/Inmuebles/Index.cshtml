@@ -3,14 +3,49 @@
 @{
 	ViewData["Title"] = "Listado";
 }
-
+@if( ViewBag.Error != null ){
+	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+		<strong>Atención!</strong> @ViewBag.Error
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+}
 <div class="card">
 	<div class="card-header">
-		<a asp-action="Create" class="float-end btn btn-outline-primary btn-sm"><span><i
+		<a asp-action="Create" class="float-end ms-1 btn btn-outline-primary btn-sm"><span><i
 					class="fa-solid fa-plus fa-fw"></i></span> Crear
 			Inmueble</a>
+		@if( @ViewContext.RouteData.Values["action"].ToString() == "Disponibles" || @ViewContext.RouteData.Values["action"].ToString() == "DisponiblesFecha" ){
+			<a asp-action="Index" class="float-end ms-1 btn btn-outline-warning btn-sm">Todos</a>
+		} else {
+			<a asp-action="Disponibles" class="float-end ms-1 btn btn-outline-success btn-sm">Disponibles</a>
+		}
 		<h5>Inmuebles</h5>
 	</div>
+	@if( @ViewContext.RouteData.Values["action"].ToString() == "Disponibles" || @ViewContext.RouteData.Values["action"].ToString() == "DisponiblesFecha" ){
+		<div class="card-body">
+			<form id="dateForm" asp-controller="Inmuebles" asp-action="DisponiblesFecha" method="post">
+				<div class="row g-3 mb-3 align-items-center">
+					<label for="">Fechas de posible contrato</label>
+				</div>
+				<div class="row g-3 align-items-center">
+					<div class="col-auto">
+						<label for="desde">Desde:</label>
+					</div>
+					<div class="col-auto">
+						<input type="date" id="desde" name="desde" value="@(ViewBag.desde == null?ViewBag.desde.ToString():DateTime.Today.ToString())" class="form-control"/>
+					</div>
+					<div class="col-auto">
+						<label for="hasta">Hasta:</label>
+					</div>
+					<div class="col-auto">
+						<input type="date" id="hasta" name="hasta" value="@(ViewBag.hasta == null?ViewBag.hasta.ToString():DateTime.Today.ToString())" class="form-control"/>
+					</div>
+					<div class="col-auto">
+						<button type="submit" class="btn btn-outline-primary btn-sm"><i class="fa-solid fa-magnifying-glass"></i></button>
+					</div>
+			</form>
+		</div>
+	}
 	<div class="card-body">
 		<table class="table">
 			<thead>
@@ -25,16 +60,10 @@
 						@Html.DisplayNameFor(model => model.Ambientes)
 					</th>
 					<th>
-						@Html.DisplayNameFor(model => model.Superficie)
-					</th>
-					<th>
-						@Html.DisplayNameFor(model => model.Latitud)
-					</th>
-					<th>
-						@Html.DisplayNameFor(model => model.Longitud)
-					</th>
-					<th>
 						@Html.DisplayNameFor(model => model.Valor)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.PropietarioId)
 					</th>
 					<th></th>
 				</tr>
@@ -53,16 +82,10 @@
 							@Html.DisplayFor(modelItem => item.Ambientes)
 						</td>
 						<td>
-							@Html.DisplayFor(modelItem => item.Superficie)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.Latitud)
-						</td>
-						<td>
-							@Html.DisplayFor(modelItem => item.Longitud)
-						</td>
-						<td>
 							$@Html.DisplayFor(modelItem => item.Valor)
+						</td>
+						<td>
+							@item.Propietario.ToString()
 						</td>
 						<td>
 							<a class="ms-1 btn btn-sm btn btn-outline-success" asp-controller="Inmuebles" asp-action="Details"

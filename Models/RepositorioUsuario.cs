@@ -87,49 +87,49 @@ namespace ulp_net_inmobiliaria.Models
 			return res;
 		}
 
-	public int ModificarContraseña(Usuario usuario)
-	{
-		int res = 0;
-		using (MySqlConnection connection = new MySqlConnection(connectionString))
+		public int ModificarContraseña(Usuario usuario)
 		{
-			String sql = @"UPDATE usuarios
-				SET password = @password
-				WHERE id = @id;";
-
-			using (var command = new MySqlCommand(sql, connection))
+			int res = 0;
+			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
-				command.Parameters.AddWithValue("@password", usuario.Password);
-				command.Parameters.AddWithValue("@id", usuario.Id);
+				String sql = @"UPDATE usuarios
+					SET password = @password
+					WHERE id = @id;";
 
-				connection.Open();
-				res = command.ExecuteNonQuery();
-				connection.Close();
+				using (var command = new MySqlCommand(sql, connection))
+				{
+					command.Parameters.AddWithValue("@password", usuario.Password);
+					command.Parameters.AddWithValue("@id", usuario.Id);
+
+					connection.Open();
+					res = command.ExecuteNonQuery();
+					connection.Close();
+				}
 			}
+			return res;
 		}
-		return res;
-	}
 
-	public int ModificarAvatar(Usuario usuario)
-	{
-		int res = 0;
-		using (MySqlConnection connection = new MySqlConnection(connectionString))
+		public int ModificarAvatar(Usuario usuario)
 		{
-			String sql = @"UPDATE usuarios
-				SET avatar = @avatar
-				WHERE id = @id;";
-
-			using (var command = new MySqlCommand(sql, connection))
+			int res = 0;
+			using (MySqlConnection connection = new MySqlConnection(connectionString))
 			{
-				command.Parameters.AddWithValue("@avatar", usuario.Avatar);
-				command.Parameters.AddWithValue("@id", usuario.Id);
+				String sql = @"UPDATE usuarios
+					SET avatar = @avatar
+					WHERE id = @id;";
 
-				connection.Open();
-				res = command.ExecuteNonQuery();
-				connection.Close();
+				using (var command = new MySqlCommand(sql, connection))
+				{
+					command.Parameters.AddWithValue("@avatar", usuario.Avatar);
+					command.Parameters.AddWithValue("@id", usuario.Id);
+
+					connection.Open();
+					res = command.ExecuteNonQuery();
+					connection.Close();
+				}
 			}
+			return res;
 		}
-		return res;
-	}
 
 		public List<Usuario> ObtenerTodos()
 		{

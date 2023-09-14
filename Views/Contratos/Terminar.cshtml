@@ -1,0 +1,96 @@
+@model ulp_net_inmobiliaria.Models.Contrato
+
+@{
+    ViewData["Title"] = "Eliminar";
+	var ltaPagos = (IList<Pago>)ViewBag.Pagos;
+}
+<div class="alert alert-danger fade show">
+	<p>Atención! Al finalizar el presente contrato de manera anticipada a la fecha declarada como Fin de contrato al momento de su creación, se le impone una multa por los meses restantes y adeudados.</p>
+	<p>El monto de la multa es de: <b>$@ViewBag.multa</b></p>
+</div>
+<form asp-action="Terminar">
+	<div class="card">
+		<div class="card-header">
+		<a class="float-end ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Contratos" asp-action="Details"
+			asp-route-id="@Model.Id" data-toggle="tooltip" data-placement="top" title="Volver al contrato"><span><i class="fa-solid fa-arrow-rotate-left fa-fw"></i></span></a></a>
+			<h5>Terminar Contrato</h5>
+		</div>
+		<div class="card-body">
+			<dl class="row">
+				<dt class = "col-sm-2">
+					@Html.DisplayNameFor(model => model.Desde)
+				</dt>
+				<dd class = "col-sm-10">
+					@Html.DisplayFor(model => model.Desde)
+				</dd>
+				<dt class = "col-sm-2">
+					@Html.DisplayNameFor(model => model.Hasta)
+				</dt>
+				<dd class = "col-sm-10">
+					@Html.DisplayFor(model => model.Hasta)
+				</dd>
+				<dt class = "col-sm-2">
+					@Html.DisplayNameFor(model => model.Valor)
+				</dt>
+				<dd class = "col-sm-10">
+					@Html.DisplayFor(model => model.Valor)
+				</dd>
+				<dt class = "col-sm-2">
+					@Html.DisplayNameFor(model => model.InmuebleId)
+				</dt>
+				<dd class = "col-sm-10">
+					@Model.Inmueble.ToString()
+				</dd>
+				<dt class = "col-sm-2">
+					@Html.DisplayNameFor(model => model.InquilinoId)
+				</dt>
+				<dd class = "col-sm-10">
+					@Model.Inquilino.ToString()
+				</dd>
+			</dl>
+		</div>
+		<h5 class="ps-3">Lista de Pagos del Contrato</h5>
+		<div class="card-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							Numero
+						</th>
+						<th>
+							Fecha
+						</th>
+						<th>
+							Importe
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					@if(ltaPagos.Count > 0){
+						foreach (var item in ltaPagos)
+						{
+							<tr>
+								<td>
+									@Html.DisplayFor(modelItem => item.Numero)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.Fecha)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.Importe)
+								</td>
+							</tr>
+						} 
+					}else{
+						<tr><td class="text-center" colspan="3">No hay pagos para mostrar</td></tr>
+					}
+				</tbody>
+			</table>
+		</div>
+		<div class="card-footer">
+			<input type="hidden" name="Id" value="@Model.Id" />
+			<a asp-action="Index" class="float-end">Volver a la lista</a>
+        	<input type="submit" value="Terminar" class="btn btn-outline-danger btn-sm" />
+		</div>
+	</div>
+</form>

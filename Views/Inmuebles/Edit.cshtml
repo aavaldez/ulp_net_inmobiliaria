@@ -81,8 +81,10 @@
 					<div class="mb-3">
 						<label asp-for="Estado" class="form-label"></label>
 						<select class="form-control" name="Estado">
-							<option value="0">No Disponible</option>
-							<option value="1">Disponible</option>
+							@foreach (var item in (IDictionary<int, string>)ViewBag.Estados)
+							{
+								@:<option @(item.Key == Model.Estado ? "selected" : "") value="@item.Key">@item.Value</option>
+							}
 						</select>
 						<span asp-validation-for="Tipo" class="text-danger"></span>
 					</div>

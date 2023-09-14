@@ -133,6 +133,128 @@ namespace ulp_net_inmobiliaria.Models
 			return res;
 		}
 
+		public List<Inmueble> ObtenerDisponibles()
+		{
+			List<Inmueble> res = new List<Inmueble>();
+			using (MySqlConnection connection = new MySqlConnection(connectionString))
+			{
+				string sql = @"SELECT 
+					{nameof(i.Id)}, i.Uso, i.Tipo, i.Direccion, i.Ambientes, i.Superficie, i.Latitud, i.Longitud, i.Valor, i.Estado, i.PropietarioId, p.Nombre, p.Apellido, p.Dni
+					FROM Inmuebles i 
+					INNER JOIN Propietarios p ON p.Id = i.PropietarioId
+					WHERE i.Estado = 1";
+				using (MySqlCommand command = new MySqlCommand(sql, connection))
+				{
+					command.CommandType = CommandType.Text;
+					connection.Open();
+					var reader = command.ExecuteReader();
+					while (reader.Read())
+					{
+						Inmueble p = new Inmueble
+						{
+							Id = reader.GetInt32(nameof(Inmueble.Id)),
+							Uso = reader.GetInt32("Uso"),
+							Tipo = reader.GetInt32("Tipo"),
+							Direccion = reader.GetString("Direccion"),
+							Ambientes = reader.GetInt32("Ambientes"),
+							Superficie = reader.GetInt32("Superficie"),
+							Latitud = reader.GetDecimal("Latitud"),
+							Longitud = reader.GetDecimal("Longitud"),
+							Valor = reader.GetDecimal("Valor"),
+							Estado = reader.GetInt32("Estado"),
+							PropietarioId = reader.GetInt32("PropietarioId"),
+							Propietario = new Propietario
+							{
+								Id = reader.GetInt32("PropietarioId"),
+								Nombre = reader.GetString("Nombre"),
+								Apellido = reader.GetString("Apellido"),
+								Dni = reader.GetString("Dni")
+							}
+						};
+						res.Add(p);
+					}
+					connection.Close();
+				}
+			}
+			return res;
+		}
+
+		public List<Inmueble> ObtenerDisponiblesFecha(DateTime? desde, DateTime? hasta)
+		{
+			List<Inmueble> res = new List<Inmueble>();
+			using (MySqlConnection connection = new MySqlConnection(connectionString))
+			{
+				var query = @"SELECT 
+					{nameof(i.Id)}, i.Uso, i.Tipo, i.Direccion, i.Ambientes, i.Superficie, i.Latitud, i.Longitud, i.Valor, i.Estado, i.PropietarioId, p.Nombre, p.Apellido, p.Dni
+				FROM inmuebles i
+				INNER JOIN Propietarios p ON p.Id = i.PropietarioId
+				WHERE i.Estado = 1
+				AND NOT EXISTS (
+					SELECT 1
+					FROM contratos c
+					WHERE c.InmuebleId = i.Id
+					AND c.Estado = 1 ";
+
+				if (desde != DateTime.MinValue && hasta != DateTime.MinValue) // Si estan ambos valores
+				{
+					query += "AND c.desde <= @hasta AND c.hasta >= @desde";
+				}
+				else if (desde != DateTime.MinValue && hasta == DateTime.MinValue) // Si esta solo el "desde"
+				{
+					query += "AND c.hasta >= @desde";
+				}
+				else if (hasta != DateTime.MinValue && desde == DateTime.MinValue) // Si esta solo el "hasta"
+				{
+					query += "AND c.desde <= @hasta";
+				}
+
+				query += ");";
+
+				using (MySqlCommand command = new MySqlCommand(query, connection))
+				{
+					if (desde.HasValue)
+					{
+						command.Parameters.AddWithValue("@desde", desde.Value);
+					}
+
+					if (hasta.HasValue)
+					{
+						command.Parameters.AddWithValue("@hasta", hasta.Value);
+					}
+
+					connection.Open();
+					var reader = command.ExecuteReader();
+					while (reader.Read())
+					{
+						Inmueble inmueble = new Inmueble
+						{
+							Id = reader.GetInt32(nameof(Inmueble.Id)),
+							Uso = reader.GetInt32("Uso"),
+							Tipo = reader.GetInt32("Tipo"),
+							Direccion = reader.GetString("Direccion"),
+							Ambientes = reader.GetInt32("Ambientes"),
+							Superficie = reader.GetInt32("Superficie"),
+							Latitud = reader.GetDecimal("Latitud"),
+							Longitud = reader.GetDecimal("Longitud"),
+							Valor = reader.GetDecimal("Valor"),
+							Estado = reader.GetInt32("Estado"),
+							PropietarioId = reader.GetInt32("PropietarioId"),
+							Propietario = new Propietario
+							{
+								Id = reader.GetInt32("PropietarioId"),
+								Nombre = reader.GetString("Nombre"),
+								Apellido = reader.GetString("Apellido"),
+								Dni = reader.GetString("Dni")
+							}
+						};
+						res.Add(inmueble);
+					}
+				}
+				connection.Close();
+			}
+			return res;
+		}
+		
 		public List<Inmueble> ObtenerTodosPropietario(int id)
 		{
 			List<Inmueble> res = new List<Inmueble>();

@@ -46,7 +46,7 @@
 							{
 								<div class="mb-3">
 									<label asp-for="Rol" class="form-label"></label>
-									<select class="form-control" name="Tipo">
+									<select class="form-control" name="Rol">
 										@foreach (var item in (IDictionary<int, string>)ViewBag.Roles)
 										{
 											@:<option @(item.Key == Model.Rol ? "selected" : "") value="@item.Key">@item.Value</option>
@@ -59,7 +59,10 @@
 					</div>
 				</div>
 				<div class="card-footer">
-					<a asp-action="Index" class="float-end">Volver a la lista</a>
+					@if (User.IsInRole("Administrador"))
+					{
+						<a asp-action="Index" class="float-end">Volver a la lista</a>
+					}
 					<input type="submit" value="Guardar" class="btn btn-outline-primary btn-sm" />
 				</div>
 			</div>

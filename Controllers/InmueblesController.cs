@@ -20,11 +20,43 @@ namespace ulp_net_inmobiliaria.Controllers
 			return View(lista);
 		}
 
+		[Authorize]
+		public ActionResult Disponibles()
+		{
+			var lista = repo.ObtenerDisponibles();
+			ViewBag.desde = false;
+			ViewBag.hasta = false;
+			return View("Index", lista);
+		}
+
+		[Authorize]
+		public ActionResult DisponiblesFecha(DateTime desde, DateTime hasta)
+		{
+			if (desde == DateTime.MinValue && hasta == DateTime.MinValue)
+			{
+				TempData["Error"] = "Tiene que completar al menos una fecha.";
+				return RedirectToAction("Index");
+			}
+
+			if (desde != DateTime.MinValue && hasta != DateTime.MinValue && desde > hasta)
+			{
+				TempData["Error"] = "La fecha inicial no puede ser mayor a la fecha final.";
+				return RedirectToAction("Index");
+			}
+
+			var lista = repo.ObtenerDisponiblesFecha(desde, hasta);
+			ViewBag.desde = desde;
+			ViewBag.hasta = hasta;
+			return View("Index", lista);
+		}
+
 		[HttpGet]
 		[Authorize]
 		public ActionResult Details(int id)
 		{
 			var entidad = repo.ObtenerPorId(id);
+			RepositorioContrato repoContrato = new RepositorioContrato();
+			ViewBag.Contratos = repoContrato.ObtenerTodosInmueble(id);
 			return View(entidad);
 		}
 
@@ -62,6 +94,8 @@ namespace ulp_net_inmobiliaria.Controllers
 			RepositorioPropietario repoPropietario = new RepositorioPropietario();
 			ViewBag.Propietarios = repoPropietario.ObtenerTodos();
 			ViewBag.Tipos = Inmueble.ObtenerTipos();
+			ViewBag.Usos = Inmueble.ObtenerUsos();
+			ViewBag.Estados = Inmueble.ObtenerEstados();
 			Inmueble? i = repo.ObtenerPorId(id);
 			return View(i);
 		}

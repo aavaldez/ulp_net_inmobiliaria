@@ -24,8 +24,9 @@ namespace ulp_net_inmobiliaria.Models
 		public string Email { get; set; } = "";
 		[Required(ErrorMessage = "La contraseña es obligatoria."), DataType(DataType.Password)]
 		public string Password { get; set; } = "";
+		[NotMapped]
 		[Display(Name = "Confirmar password")]
-		[Required(ErrorMessage = "La confirmacion es requerida")]
+		[Required(ErrorMessage = "La confirmacion es requerida"), DataType(DataType.Password)]
 		public string PasswordConfirma { get; set; } = "";
 		public string? Avatar { get; set; }
 		[NotMapped]

@@ -10,12 +10,16 @@
 		@if (User.IsInRole("Administrador"))
 		{
 			<a class="float-end ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Contratos" asp-action="Delete"
-				asp-route-id="@Model.Id"><span><i class="fa-solid fa-trash fa-fw"></i></span></a>
+				asp-route-id="@Model.Id" data-toggle="tooltip" data-placement="top" title="Eliminar"><span><i class="fa-solid fa-trash fa-fw"></i></span></a>
 		}
-		<a class="float-end ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Contratos" asp-action="Edit"
-			asp-route-id="@Model.Id"><span><i class="fa-solid fa-pencil fa-fw"></i></span></a></a>
-		<a class="float-end ms-1 btn btn-sm btn btn-outline-success" asp-controller="Contratos" asp-action="Index"
-			asp-route-id="@Model.Id"><span><i class="fa-solid fa-repeat fa-fw"></i></span></a>
+		@if( Model.Estado != 2){
+			<a class="float-end ms-1 btn btn-sm btn btn-outline-primary" asp-controller="Contratos" asp-action="Edit"
+				asp-route-id="@Model.Id" data-toggle="tooltip" data-placement="top" title="Editar"><span><i class="fa-solid fa-pencil fa-fw"></i></span></a>
+			<a class="float-end ms-1 btn btn-sm btn btn-outline-danger" asp-controller="Contratos" asp-action="Terminar"
+				asp-route-id="@Model.Id" data-toggle="tooltip" data-placement="top" title="Terminar"><span><i class="fa-solid fa-repeat fa-xmark"></i></span></a>
+		}
+		<a class="float-end ms-1 btn btn-sm btn btn-outline-success" asp-controller="Contratos" asp-action="Renovar"
+			asp-route-id="@Model.Id" data-toggle="tooltip" data-placement="top" title="Renovar"><span><i class="fa-solid fa-repeat fa-fw"></i></span></a>
 		<a class="float-end ms-1 btn btn-sm btn-outline-primary" asp-controller="Pagos" asp-action="Create"
 			asp-route-id="@Model.Id"><span><i class="fa-solid fa-hand-holding-dollar fa-fw"></i></span> Crear Pago</a>
 		<h5>Detalles Contrato</h5>
@@ -54,6 +58,7 @@
 			</dd>
 		</dl>
 	</div>
+	<h5 class="ps-3">Lista de Pagos del Contrato</h5>
 	<div class="card-body">
 		<table class="table">
 			<thead>

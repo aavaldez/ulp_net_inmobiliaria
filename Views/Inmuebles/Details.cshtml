@@ -2,6 +2,7 @@
 
 @{
 	ViewData["Title"] = "Detalles";
+	var ltaContratos = (List<Contrato>)ViewBag.Contratos;
 }
 
 <div class="card">
@@ -72,6 +73,50 @@
 				@Model.Propietario.ToString()
 			</dd>
 		</dl>
+	</div>
+	<h5 class="ps-3">Lista de Contratos del Inmueble</h5>
+	<div class="card-body">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>
+						Desde
+					</th>
+					<th>
+						Hasta
+					</th>
+					<th>
+						Valor
+					</th>
+					<th>
+						Inquilino
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				@if(ltaContratos.Count > 0){
+					foreach (var item in ltaContratos)
+					{
+						<tr>
+							<td>
+								@(item.Desde.ToShortDateString())
+							</td>
+							<td>
+								@(item.Hasta.ToShortDateString())
+							</td>
+							<td>
+								$@Html.DisplayFor(modelItem => item.Valor)
+							</td>
+							<td>
+								@item.Inquilino.ToString()
+							</td>
+						</tr>
+					}
+				} else {
+					<tr><td class="text-center" colspan="4">No hay Contratos para mostrar</td></tr>
+				}
+			</tbody>
+		</table>
 	</div>
 	<div class="card-footer">
 		<a asp-action="Index" class="float-end">Volver a la lista</a>
