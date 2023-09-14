@@ -70,7 +70,10 @@
 				@Html.DisplayNameFor(model => model.PropietarioId)
 			</dt>
 			<dd class="col-sm-10">
-				@Model.Propietario.ToString()
+				@Model.Propietario.ToString() <a class="ms-1 btn btn-sm btn btn-outline-success" asp-controller="Propietarios" asp-action="Details"
+					asp-route-id="@Model.PropietarioId">
+						<span><i class="fa-solid fa-circle-info fa-fw" title="Back"></i></span>
+					</a>
 			</dd>
 		</dl>
 	</div>
@@ -108,7 +111,8 @@
 								$@Html.DisplayFor(modelItem => item.Valor)
 							</td>
 							<td>
-								@item.Inquilino.ToString()
+								<a class="ms-1 btn btn-sm btn btn-outline-success" asp-controller="Inquilinos" asp-action="Details"
+								asp-route-id="@item.InquilinoId"><span><i class="fa-solid fa-circle-info fa-fw"></i></span></a> @item.Inquilino.ToString() 
 							</td>
 						</tr>
 					}

@@ -37,7 +37,7 @@ namespace ulp_net_inmobiliaria.Models
 			return res;
 		}
 
-		public int Baja(int id)
+		public int BajaFisica(int id)
 		{
 			int res = -1;
 			using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -46,6 +46,27 @@ namespace ulp_net_inmobiliaria.Models
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
 					command.CommandType = CommandType.Text;
+					command.Parameters.AddWithValue("@id", id);
+					connection.Open();
+					res = command.ExecuteNonQuery();
+					connection.Close();
+				}
+			}
+			return res;
+		}
+
+		public int Baja(int id)
+		{
+			int res = -1;
+			using (MySqlConnection connection = new MySqlConnection(connectionString))
+			{
+				string sql = @"UPDATE Inquilinos 
+					SET Estado=@estado
+					WHERE Id = @id";
+				using (MySqlCommand command = new MySqlCommand(sql, connection))
+				{
+					command.CommandType = CommandType.Text;
+					command.Parameters.AddWithValue("@estado", 0);
 					command.Parameters.AddWithValue("@id", id);
 					connection.Open();
 					res = command.ExecuteNonQuery();
@@ -87,7 +108,8 @@ namespace ulp_net_inmobiliaria.Models
 			{
 				string sql = @"SELECT 
 					Id, Nombre, Apellido, Dni, Telefono, Email, Estado
-					FROM Inquilinos";
+					FROM Inquilinos
+					WHERE Estado = 1";
 				using (MySqlCommand command = new MySqlCommand(sql, connection))
 				{
 					command.CommandType = CommandType.Text;

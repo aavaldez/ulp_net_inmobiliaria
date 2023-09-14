@@ -98,6 +98,8 @@ namespace ulp_net_inmobiliaria.Controllers
 			RepositorioPago repoPago = new RepositorioPago();
 			ViewBag.Pagos = repoPago.ObtenerTodosContrato(id);
 			//Verificar la cantidad de meses que duraba el contrato
+
+			//Calcular la fecha con timespan
 			var mesesContrato = ((contrato.Hasta.Year - contrato.Desde.Year) * 12) + contrato.Hasta.Month - contrato.Desde.Month;
 			var mesesActuales = ((DateTime.Today.Year - contrato.Desde.Year) * 12) + DateTime.Today.Month - contrato.Desde.Month;
 			
@@ -110,7 +112,7 @@ namespace ulp_net_inmobiliaria.Controllers
 			if( mesesActuales - ViewBag.Pagos.Count > 0 )
 				deuda = contrato.Valor * ( mesesActuales - ViewBag.Pagos.Count );
 
-			ViewBag.multa = ViewBag.multa + deuda;
+			ViewBag.multa = ViewBag.multa;
 
 			return View(contrato);
 		}
